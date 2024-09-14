@@ -23,6 +23,18 @@
 
 ### Követelménylista
 
+### Funkcionális követelmények
+1. A felhasználók regisztrálhatnak és bejelentkezhetnek az alkalmazásba.
+2. A felhasználók blogbejegyzéseket hozhatnak létre, szerkeszthetnek és törölhetnek.
+3. A felhasználók megtekinthetik más felhasználók blogbejegyzéseit.
+4. A blogbejegyzésekhez hozzászólásokat fűzhetnek a felhasználók.
+5. Az adminisztrátorok moderálhatják a hozzászólásokat és a blogbejegyzéseket.
 
+### Nem-funkcionális követelmények
+1. A rendszer maximálisan 2 másodpercen belül válaszol az oldalkérésekre.
+2. A felhasználói felület reszponzív, minden eszközön optimálisan jelenik meg (asztali gép, mobil, tablet).
+3. A rendszer naponta legfeljebb 5000 felhasználót tud egyidejűleg kiszolgálni.
+4. A rendszer heti rendszerességgel automatikus mentést készít az adatbázisról.
+5. A webalkalmazás folyamatosan frissül és biztonsági patcheket kap legalább negyedévente.
 
 ### Fogalomszótár
