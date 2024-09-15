@@ -9,7 +9,33 @@
 ### Jelenlegi üzleti folyamatok
 
 
+
+
+
 ### Igényelt üzleti folyamatok
+**Regisztráció**:
+- Kötelező adatok megadása &rarr; Megadott adatok validálása &rarr; Új felhasználó felvétele a rendszerbe.
+
+**Bejelentkezés**:
+- Email cím és jelszó páros segítségével bejelentkezés egy már létező felhasználói fiókba.
+- Adminisztrátori szerepkörben való belépés biztosítása
+
+**Blogbejegyzések kezelése**:
+- Blogbejegyzések megjelenítése időrendben
+- Új blogbejegyzés létrehozása &rarr; Bejegyzés adatainak kitöltése &rarr; Bejegyzés adatainak mentése
+- Meglévő blogbejegyzések módosítása &rarr; Szerkesztési felület biztosítása &rarr; Modósított bejegyzés adatainak mentése
+- Meglévő blogbejegyzések törlése &rarr; Törlés megerősítése &rarr; Bejegyzése törlése
+
+
+**Blogbejegyzések keresése**:
+- Cím alapján blogbejegyzések keresése. &rarr; Keresési lehetőség &rarr; Keresési paraméter megadása &rarr; Keresés &rarr; Találatok megjelenítése
+
+**Hozzászólások kezelése**:
+
+- Adott blogbejegyzéshez tartozó hozzászólások megjelenítése időrendben
+- Új hozzászólás írása &rarr; Tartalom megadása &rarr; Hozzászólás mentése az adott blogbejegyzéshez
+- Meglévő hozzászólás törlése &rarr; Törlés megerősítése &rarr; Hozzászólás törlése
+
 
 
 ### Rendszerre vonatkozó szabályok
