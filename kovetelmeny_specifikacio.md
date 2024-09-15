@@ -14,10 +14,8 @@
 - Az webalkalmazásban lehetőség lesz bejelentkezni e-mail és jelszó megadásával ami biztonságosan és kódolva lesz eltárolva.
 
 ### Jelenlegi üzleti folyamatok
-
-
-
-
+- Igények és felmerülő kérdések összeállítása, rendszerezése a webapplikációval kapcsolatban
+- Agilis egyeztetés a kivitelezővel a felmerülő igények tisztázása végett
 
 ### Igényelt üzleti folyamatok
 **Regisztráció**:
