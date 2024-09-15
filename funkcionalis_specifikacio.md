@@ -33,7 +33,7 @@
 
 - **Jogosultságok**:
 - 1. A felhasználók csak saját blogbejegyzéseiket törölhetik, mások bejegyzéseire csak megtekintése joguk van.
-- 2. A rendszer minden törlési művelet előtt ellenőrzi, hogy megadott felhasználónak van e joga végrehajtani az operációt.
+- 2. A rendszer minden törlési művelet előtt ellenőrzi, hogy az adott felhasználónak van e joga végrehajtani az operációt.
 
 
 ## 5. Blogbjegyzés szerkesztése
