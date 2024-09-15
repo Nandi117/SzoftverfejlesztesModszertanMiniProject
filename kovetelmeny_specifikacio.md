@@ -10,6 +10,8 @@
 - Az applikációban lehetőség lesz bejegyzéseket olvasni is és interakcióba is léphetnek a tartalommal, például kommentálással.
 - Felhasználók jogkörökre lesznek osztva, admin, szerző, olvasó. Ennek köszönhetően a szerzők vagy adminok törölhetnek bejegyzéseket. Az adminok bárki, a szerző a saját posztját törölheti.
 - A webapplikáció design-a reszponzív lesz, így okostelefonon, asztali számítógépen, stb... is elérhető és felhasználóbarát lesz.
+- A rendszer adatbázisban képes lesz eltárolni a korábbi bejegyzéseket, és a felhsználói feluleten ezeket vissza lehet majd keresni.
+- Az webalkalmazásban lehetőség lesz bejelentkezni e-mail és jelszó megadásával ami biztonságosan és kódolva lesz eltárolva.
 
 ### Jelenlegi üzleti folyamatok
 
