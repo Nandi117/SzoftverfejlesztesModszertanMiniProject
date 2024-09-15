@@ -6,7 +6,10 @@
 - Verziókövetésre git-et használunk amit egy közös gitHub repository használatával oldunk meg.
   
 ### Igényelt rendszer
-
+- A kész applikációban képes lesz a felhasználható blog posztokat létrehozni, szerkeszteni, törölni anélkül hogy a kód módosításával kellene foglalkozni. Ez felhasználóbaráttá, és gyorsabbá tenné az új bejegyzések létrehoását.
+- Az applikációban lehetőség lesz bejegyzéseket olvasni is és interakcióba is léphetnek a tartalommal, például kommentálással.
+- Felhasználók jogkörökre lesznek osztva, admin, szerző, olvasó. Ennek köszönhetően a szerzők vagy adminok törölhetnek bejegyzéseket. Az adminok bárki, a szerző a saját posztját törölheti.
+- A webapplikáció design-a reszponzív lesz, így okostelefonon, asztali számítógépen, stb... is elérhető és felhasználóbarát lesz.
 
 ### Jelenlegi üzleti folyamatok
 
