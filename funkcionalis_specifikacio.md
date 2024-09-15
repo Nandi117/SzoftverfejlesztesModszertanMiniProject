@@ -21,3 +21,16 @@
 - **Folyamat**:
   1. A főoldalon megjelennek a legújabb és legnépszerűbb bejegyzések.
   2. A felhasználó egy bejegyzésre kattintva elérheti annak tartalmát.
+
+## 4. Blogbejegyzés törlése
+- **Leírás**: A felhasználható törölheti saját blogbejegyzéseit.
+- **Folyamat**:
+  1. Saját blogbejegyzések esetében megjelenik az egyes kártya elemeken a törlés gomb.
+  2. Törlés gombra kattintva ugorjon fel egy megerősítés, hogy biztosan törölni szeretné-e a blogbejegyzést a felhasználó.
+  3. Törlés megerősítése:
+     4. **Mégse**: Bezárja a felugró ablakot, törlés művelet megszakítása.
+     5. **Igen**: Törli az adott blogbejegyzést.
+
+- **Jogosultságok**:
+- 1. A felhasználó csak saját blogbejegyzéseiket törölhetik, mások bejegyzéseire csak megtekintése joguk van.
+- 2. A rendszer minden törlési művelet előtt ellenőrzi, hogy megadott felhasználónak van e joga végrehajtani az operációt.
