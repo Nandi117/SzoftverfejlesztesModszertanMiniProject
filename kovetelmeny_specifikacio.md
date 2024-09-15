@@ -1,8 +1,10 @@
 
 ## Blog webapplikáció követelmény specifikáció
 ### Jelenlegi helyzet
-
-
+- Jelenleg a webapplikáció nem létezik, a tervezés folyamatban van.
+- A tervezés folyamatában Trello-t használva követjük a megoldandó feladatokat.
+- Verziókövetésre git-et használunk amit egy közös gitHub repository használatával oldunk meg.
+  
 ### Igényelt rendszer
 
 
