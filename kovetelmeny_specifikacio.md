@@ -12,10 +12,8 @@
 - A webapplikáció design-a reszponzív lesz, így okostelefonon, asztali számítógépen, stb... is elérhető és felhasználóbarát lesz.
 
 ### Jelenlegi üzleti folyamatok
-
-
-
-
+- Igények és felmerülő kérdések összeállítása, rendszerezése a webapplikációval kapcsolatban
+- Agilis egyeztetés a kivitelezővel a felmerülő igények tisztázása végett
 
 ### Igényelt üzleti folyamatok
 **Regisztráció**:
