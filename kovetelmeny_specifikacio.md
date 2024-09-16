@@ -69,3 +69,20 @@
 5. A webalkalmazás folyamatosan frissül és biztonsági patcheket kap legalább negyedévente.
 
 ### Fogalomszótár
+
+- **Adminisztrátor**: Felhasználó, aki teljes hozzáféréssel rendelkezik az applikációhoz, tartalmakat kezelhet, és rendszerműveleteket végezhet.
+- **Bejelentkezés**: A felhasználó email-cím és jelszó megadásával lép be a rendszerbe.
+- **Blogbejegyzés**: A felhasználók által létrehozott tartalmi egység, amely szöveget, képeket vagy egyéb elemeket tartalmazhat.
+- **Felhasználó**: Az alkalmazásba regisztrált személy, aki blogbejegyzéseket hozhat létre és olvashat, kommentálhat.
+- **Hozzászólás**: A felhasználók által a blogbejegyzésekhez fűzött vélemények vagy kérdések.
+- **Regisztráció**: Új felhasználói fiók létrehozása a kötelező adatok megadásával.
+- **Reszponzív dizájn**: A weboldal alkalmazkodik különböző eszközök kijelzőihez (mobil, tablet, PC).
+- **Szerző**: Olyan felhasználó, aki blogbejegyzést hozhat létre, szerkeszthet, törölhet.
+- **Verziókövetés**: A kód változásainak nyomon követése git használatával.
+- **Komment moderálás**: A hozzászólások kezelésének folyamata, amelyet az adminisztrátor végez.
+- **Automatikus adatmentés**: Hetente végzett adatbázis-mentés a rendszerben.
+- **HTTPS protokoll**: Biztonságos adatátvitel titkosítással a felhasználó és a szerver között.
+- **Jelszó titkosítás**: A jelszavak kódolt formában történő tárolása.
+- **Keresési funkció**: Olyan lehetőség, amely blogbejegyzések cím alapján történő keresését teszi lehetővé.
+- **Agilis módszertan**: Rugalmas, iteratív fejlesztési folyamat, rendszeres visszajelzésekkel.
+- **Felhasználói felület (UI)**: Az applikáció azon része, amelyet a felhasználók látnak és használnak.
