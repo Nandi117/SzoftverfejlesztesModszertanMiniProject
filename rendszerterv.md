@@ -80,7 +80,7 @@ Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
 ### 2.3 Technológiai áttekintés
 Alkalmazandó technológiák és jelentőségüknek áttikentése
 
-- #### 1. Felhasználói felület technológiák :
+- #### 1. Felhasználói felület technológiák
     - **React**:
         - Össszetett felhasználói felületek létrehozására alkalmas nyílt Javascript könyvtár
         - Dinamikus felületek létrehozása
@@ -100,7 +100,14 @@ Alkalmazandó technológiák és jelentőségüknek áttikentése
       - Minimalista és rugalmas Node.js keretrendszer
       - Nagy teljesítmény
       - Rugalmasság
-  
+
+- #### 3. Adatbázis technológiák
+  - **MongoDB**:
+    - Nyilt forráskódú, NoSQL adatbázis, amelyet a rugalmassága és a dokumentum-orientált adatszerkezet miatt széles körben alkalmaznak
+    - Hagyományos relációs adatbázisoktól eltérően nem táblákban hanem dokumentumokban tárolja az adatokat, amelyek JSON szerű objektumok
+    - Egyszerű integrálhatóság Javascript alapú technológiákhoz
+    - Nagy teljesítmény
+    - Skálázhatóság: Könnyen skálázható
 
 ## 1. Biztonsági Funkciók
 
