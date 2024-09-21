@@ -78,7 +78,25 @@ Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
 
 
 ### 2.3 Technológiai áttekintés
+Alkalmazandó technológiák és jelentőségüknek áttikentése
 
+- #### 1. Felhasználói felület technológiák :
+    - **React**:
+        - Össszetett felhasználói felületek létrehozására alkalmas nyílt Javascript könyvtár
+        - Dinamikus felületek létrehozása
+        - Modularitást és újrafelhasználhatóságot biztosít
+    - **Redux**:
+        - Állapotkezelés: Központi tároló hely biztosítása az alkalmazása teljes állapotának tárolására
+        - Komponensek közötti kommunikáció: Adatok egyszerű átadása és elérhetőség biztosítása más komponsek számára
+        - Tesztelhetőség: Elősegíti az alkalmazás egyes részeinek tesztelését
+    - **Tailwind**:
+        - Utility-first CSS keretrendszer
+        - Beépített és testreszabható komponensek
+        - Gyors fejlesztés
+        - Rugalmasság
+
+- #### 2. Szerver oldali technológiák
+  
 
 ## 1. Biztonsági Funkciók
 
