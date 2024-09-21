@@ -17,7 +17,18 @@
 
 
 
-## Architekturális Terv
+## 2. Architekturális Terv
+A rendszer architektúráját ismertető fejezet. A rendszer felépítését ismerteti architektúrális szinten.
+### 2.1 Áttekintés
+A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
+* Felhasználói felület (User Interface)
+* API (Application Programming Interface)
+* Adatbázis
+
+#### 2.1.1 Architektúrális diagramm:
+
+
+
 
 ## 1. Biztonsági Funkciók
 
