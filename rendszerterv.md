@@ -26,7 +26,17 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 * Adatbázis
 
 #### 2.1.1 Architektúrális diagramm:
+![alt text](assets/arch_overview.drawio.png)
 
+### 2.2 Rétegek és felelősségek áttekintése
+### 2.2.1 Prezentációs réteg (Felhasználó felület - User Interface)
+- Interaktív kapcsolatot tart felhasználó és a rendszer között
+- Kizárólag adatok felvitelének, módosításának és a lekérdezett adatok megjelenítésenek szolgáltat interaktív felhasználói felületet
+- Reszponzivitás biztosítása annak érdekében, hogy többfajta eszközön is megfelelő interaktív felületet biztosítson a felhasznááló számára
+
+
+
+### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
 
 
 
