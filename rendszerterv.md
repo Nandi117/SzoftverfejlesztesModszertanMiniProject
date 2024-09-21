@@ -96,6 +96,10 @@ Alkalmazandó technológiák és jelentőségüknek áttikentése
         - Rugalmasság
 
 - #### 2. Szerver oldali technológiák
+    - **Express.js**: 
+      - Minimalista és rugalmas Node.js keretrendszer
+      - Nagy teljesítmény
+      - Rugalmasság
   
 
 ## 1. Biztonsági Funkciók
