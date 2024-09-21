@@ -34,7 +34,10 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 - Kizárólag adatok felvitelének, módosításának és a lekérdezett adatok megjelenítésenek szolgáltat interaktív felhasználói felületet
 - Reszponzivitás biztosítása annak érdekében, hogy többfajta eszközön is megfelelő interaktív felületet biztosítson a felhasznááló számára
 
-
+### 2.2.2 API réteg
+- Meghatározott formátumú beérkező kérések fogadása és kezelése, adatok továbbítása az üzleti logikáért felelős réteg felé
+- Válaszok formázása a kérést küldő alkalmazása számára
+- Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
 
 ### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
 
