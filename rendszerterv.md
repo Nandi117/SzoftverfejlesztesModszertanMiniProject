@@ -65,6 +65,20 @@ Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
 - Adatbázis-függetlenség biztosítása
 
 
+### 2.2.5 Adatbázis réteg
+- Adatok tárolása
+  - Az alkalmazás összes adatát struktúráltan tárolja
+- Adatvédelem
+  - Adatok biztonságának biztosítása, illektéktelen hozzáférések megakadályozása
+  - Adatok elvesztésének megakadályozása
+- Adat integritás
+  - Adatok konzisztenciájának és pontosságának fenntartása
+- Adatlekérdezés
+  - Lehetővé teszi az adatok gyors és hatékony lekérdezését
+
+
+### 2.3 Technológiai áttekintés
+
 
 ## 1. Biztonsági Funkciók
 
