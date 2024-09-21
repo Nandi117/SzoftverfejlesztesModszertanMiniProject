@@ -40,6 +40,16 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 - Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
 
 ### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
+- Üzleti szabályok megvalósítása
+- **API** illetve **Adathozzáférési rétegből** származó adatok feldolgozása, ez magában hordozza az adatok érvényesítését, átalakítását
+- Komplex üzleti folyamatok kezelése és megvalósítása
+- Döntések meghozatala a beérkező adatok alapján
+- Esetleges számítások elvégzése a beérkező adatok alapján
+- Egyéb szolgáltatások nyújtása:
+  - Értesítés kezelése és küldése
+  - Integráció más rendszerekkel
+
+
 
 
 
