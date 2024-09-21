@@ -40,7 +40,7 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 - Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
 
 ### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
-- Üzleti szabályok megvalósítása
+- Üzleti szabályok megvalósítása és betartása
 - **API** illetve **Adathozzáférési rétegből** származó adatok feldolgozása, ez magában hordozza az adatok érvényesítését, átalakítását
 - Komplex üzleti folyamatok kezelése és megvalósítása
 - Döntések meghozatala a beérkező adatok alapján
@@ -49,7 +49,20 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
   - Értesítés kezelése és küldése
   - Integráció más rendszerekkel
 
-
+### 2.2.4 Adathozzáférési réteg (Data Access Layer - DAL)
+Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
+- Kapcsolatot tart az **Adatbázis** illetve az **Üzleti logikáért** felelős réteg között
+- Adatok lekérdezése az adatbázisból
+  - Az alkalmazás kérésére lekérdezi az adatok az adatbázisból a kapott paraméterek függvényében
+- Adatok módosítása az adatbázisban
+  - Az alkalmazás kérésére módosítja az adatokat a kapott új adatok alapján 
+- Adatok mentése az adatbázisba
+  - Az alkalmazás kérésére menti a kapott adatokat az adatbázisba 
+- Adatok törlése az adatbázisból
+  - Az alkalmazás kérésére törli az adatokat az adátbázisból - **Logikai törlés**
+- Adatok érvényesítése
+  - Ellenőrzi, hogy az adatok megfelelnek-e az adatbázisban érvényes korlátozásoknak
+- Adatbázis-függetlenség biztosítása
 
 
 
