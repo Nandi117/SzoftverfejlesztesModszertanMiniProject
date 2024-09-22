@@ -113,6 +113,22 @@ Alkalmazandó technológiák és jelentőségüknek áttikentése
     - Nagy teljesítmény
     - Skálázhatóság: Könnyen skálázható
 
+
+### 2.4 Függőségek
+A rendszer függőséiget és azok elmaradása esetén lehetséges következmények bemutatása.
+
+| Függőség             | Cél                                         | Megjegyzés                                                                 | Elmaradás esetén következmények |
+|----------------------|---------------------------------------------|----------------------------------------------------------------------------|---------------------------------|
+| **react**            | Felhasználói felület létrehozása            | Megbízható, gyors Javascript könyvtár UI-k építéséhez.                     | Az alkalmazásnak nem lesz interaktív felhasználói felülete.|
+| **redux**            | Állapotkezelés                              | A React alkalmazások állapotának kezelésére szolgál.                       |  Az alkalmazás állapota nem lesz centralizáltan kezelve, ami bonyolulttá teheti a fejlesztést.|
+| **react-router-dom** | Útvonalak kezelése                          | A React alkalmazásokban az oldalak közötti navigációt teszi lehetővé.      | Az alkalmazás különböző oldalakra nem lesz navigálható.|
+| **axios**            | HTTP kérések küldése                        | A szerver felé HTTP küldésére szolgál.                                     | Az alkalmazás nem tud kommunikálni a szerverrel.|
+| **node.js**          | Javascript runtime evironment               | A JavaScript kódot a szerveren futtatja.                                   | Az alkalmazás szervere nem fog működni. |
+| **express**          | Web framework                               | A Node.js-hez tartozó web framework, amely segít a HTTP kérések kezelésében. | A backend nem tudja kezelni a HTTP kéréseket.|
+| **mongoose**         | MongoDB ODM                                 | A MongoDB adatbázishoz való kapcsolódást és a dokumentumok kezelését teszi lehetővé. | Az alkalmazás nem tud adatokat tárolni a MongoDB-ben.|
+| **cors**             | Cross-Origin Resource Sharing engedélyezése | A különböző domain-ek közötti kommunikációt teszi lehetővé.                | A frontend nem tud kommunikálni a szerverrel, ha különböző domain-eken futnak.|
+| **jsonwebtoken**| JSON Web Tokens kezelése                    |  Az autentikációhoz és az autorizációhoz használható.| Az alkalmazás nem tudja hitelesíteni a felhasználókat.|
+
 ## 1. Biztonsági Funkciók
 
 ### 1.1. Autentikáció és jogosultságkezelés
