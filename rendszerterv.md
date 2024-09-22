@@ -59,3 +59,37 @@
 ### 2.4. Microservices architektúra
 - A rendszer egy microservices architektúrán alapul, amely lehetővé teszi, hogy az egyes szolgáltatások különálló komponensként működjenek. Így a fejlesztők könnyedén hozzáadhatnak új szolgáltatásokat anélkül, hogy a meglévő szolgáltatások működését befolyásolnák.
 - Az egyes szolgáltatások külön-külön skálázhatók és frissíthetők, ami biztosítja a rendszer rugalmasságát és könnyű bővíthetőségét.
+
+## 3. Fejlesztői eszközök
+
+### 3.1. Verziókezelés - Git
+- A projekt verziókövetését a Git rendszerrel végezzük. A forráskód tárolása és kezelése egy GitHub repository-ban történik, amely támogatja a kollaboratív fejlesztést és a visszagörgetési lehetőségeket.
+- Branching modell: a fejlesztők külön brancheken dolgoznak, majd a véglegesítést pull requestekkel oldják meg. A `main` ág stabil, release-re kész kódot tartalmaz.
+
+### 3.2. Fejlesztési környezet - IDE és kódszerkesztők
+- Javasolt IDE: **Visual Studio Code**, amely gazdag bővítmény támogatással rendelkezik, mint például a Git integráció, valamint a nyelvi szerkesztő bővítmények (HTML, CSS, JavaScript).
+- Egyéb javasolt fejlesztői eszközök: **IntelliJ IDEA**, **WebStorm** a JavaScript és webes fejlesztésekhez, valamint **PyCharm** a Python fejlesztéshez.
+
+### 3.3. Konténerizálás - Docker
+- A fejlesztési környezet egységesítéséhez és a deploy folyamatok egyszerűsítéséhez a Docker konténerizálási megoldást alkalmazzuk. Minden fejlesztői környezet azonos Docker image-t használ, így biztosítva a konzisztens futtatási környezetet.
+- A Docker Compose segítségével több szolgáltatás (pl. web szerver, adatbázis) egyszerre futtatható, szinkronban a helyi fejlesztői környezettel.
+
+### 3.4. CI/CD pipeline - GitHub Actions
+- A folyamatos integráció és folyamatos szállítás (CI/CD) folyamatokat a **GitHub Actions** platform biztosítja. Minden commit és pull request automatikusan építési és tesztelési folyamatokon megy keresztül, amely biztosítja, hogy a kód mindig stabil állapotban maradjon.
+- Az automatikus tesztelés és kódminőség-ellenőrzés (pl. linting, statikus kódelemzés) be van állítva a build pipeline-ba.
+
+### 3.5. Tesztelési keretrendszer
+- Az egységtesztek futtatásához a **Jest** keretrendszert használjuk (JavaScript), míg backend oldalon **Pytest** (Python) kerül alkalmazásra.
+- Minden új funkcióhoz kötelező a megfelelő teszt lefedettség, amely biztosítja a kód helyes működését és a regressziók elkerülését.
+
+### 3.6. Hibajegy- és feladatkezelő eszköz - Jira
+- A feladatok követését és priorizálását a **Jira** rendszer végzi. Itt minden feladat jól nyomon követhető, a felhasználói sztorik, hibajegyek és fejlesztési backlogok rendszerezésre kerülnek.
+- A sprinttervezéshez és a hatékonyság követéséhez Scrum-alapú táblák állnak rendelkezésre.
+
+### 3.7. Kódminőség-ellenőrzés - ESLint és Prettier
+- A JavaScript és TypeScript kódok formázását és ellenőrzését az **ESLint** és **Prettier** eszközökkel végezzük. Ez biztosítja az egységes kódstílust és a lehetséges hibák gyors felismerését a fejlesztés korai szakaszában.
+- Ezek a fejlesztői eszközök automatikusan futnak minden commit során, így biztosítva a kód tisztaságát.
+
+### 3.8. Verziókezelési szabályok
+- Minden commit üzenet és branch név követi az egységes nevezéktant. A commit üzeneteknek egyértelműnek és informatívnak kell lenniük, míg a branchek neveinek utalniuk kell a kapcsolódó feladatra (pl. `feat/login-page`).
+- Minden kódrészlet átmegy code review-n, amit egy másik fejlesztő validál.
