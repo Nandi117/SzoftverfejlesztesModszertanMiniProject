@@ -77,6 +77,10 @@ Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
   - Lehetővé teszi az adatok gyors és hatékony lekérdezését
 
 
+### 2.2.6 Szerver oldali rétegek felépítése és rétegek közötti kapcsolatok:
+![alt text](assets/server_layers.drawio.png)
+
+
 ### 2.3 Technológiai áttekintés
 Alkalmazandó technológiák és jelentőségüknek áttikentése
 
