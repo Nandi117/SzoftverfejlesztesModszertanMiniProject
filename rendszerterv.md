@@ -1,23 +1,20 @@
-# Rendszerterv
-
-
-## Adatbázis Terv
+# Adatbázis Terv
 
 
 
-## Funkcionális Terv
+# Funkcionális Terv
 
 
 
-## Tesztterv
+# Tesztterv
 
 
 
-## Fizikai Környezet
+# Fizikai Környezet
 
 
 
-## Architekturális Terv
+# Architekturális Terv
 
 ## 1. Biztonsági Funkciók
 
