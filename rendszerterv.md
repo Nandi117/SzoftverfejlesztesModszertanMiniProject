@@ -66,6 +66,52 @@ A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
 
 # Funkcionális Terv
 
+## 1. Felhasználókezelés
+
+### 1.1. Regisztráció
+
+- A felhasználók megadhatják a szükséges adatokat (felhasználónév, email, jelszó) egy regisztrációs űrlapon.
+- A jelszavakat titkosítva tároljuk bcrypt algoritmussal.
+- Az email egyedi azonosítóként szolgál.
+- Az űrlap validációkat tartalmaz, mint például az email formátumának ellenőrzése, valamint az erős jelszó követelménye (min. 8 karakter, szám és speciális karakter).
+### 1.2. Bejelentkezés
+
+- A felhasználók bejelentkezhetnek felhasználónév vagy email és jelszó kombinációjával.
+- Hiba esetén visszajelzést kapnak a helytelen bejelentkezési adatokról.
+- Sikeres bejelentkezés után egy hitelesítő JSON Web Token-t (JWT) kapnak.
+### 1.3. Jelszó visszaállítás
+
+- A felhasználók elfelejtett jelszó esetén kérhetnek email alapú jelszó visszaállítást.
+- Felhasználói profil szerkesztése
+
+- A felhasználók módosíthatják a profiljukat (név, profilkép, bio).
+- A profilkép URL-t tároljuk, amely egy külső fájlkezelő rendszerből származhat.
+### 1.4. Követési rendszer
+
+- A felhasználók követhetnek más felhasználókat.
+- Követés/törlés gomb áll rendelkezésre más felhasználók profiloldalán.
+## 2. Blogbejegyzések kezelése
+
+### 2.1. Új blogbejegyzés létrehozása
+
+- A felhasználók létrehozhatnak új bejegyzést egy űrlap kitöltésével, ahol megadhatják a bejegyzés címét, tartalmát, és feltölthetnek képet (image URL formájában).
+- A bejegyzés az adatbázisba mentésre kerül a felhasználó azonosítójával.
+### 2.2. Blogbejegyzések listázása
+
+- A felhasználók megtekinthetik saját és mások blogbejegyzéseit.
+- A blogbejegyzéseket időrend szerint rendezzük, és minden bejegyzés rövid leírással, kép előnézettel jelenik meg.
+### 2.3. Blogbejegyzés szerkesztése
+
+- A bejegyzés tulajdonosa módosíthatja a blogbejegyzés tartalmát, címét és a feltöltött képet.
+- A bejegyzés mentésekor frissítjük a updated_at mezőt.
+### 2.4. Blogbejegyzés törlése
+
+- A felhasználók törölhetik saját bejegyzéseiket.
+- Törlés esetén a kapcsolódó kommentek is törlésre kerülnek (logikai törlés).
+### 2.5. Blogbejegyzések kedvelése
+
+- A felhasználók kedvelhetik más felhasználók bejegyzéseit.
+- Egy felhasználó csak egyszer kedvelhet egy bejegyzést.
 
 # Fizikai Környezet
 
