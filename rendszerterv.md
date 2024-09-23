@@ -1,5 +1,67 @@
 # Adatbázis Terv
+## 1. Áttekintés
+A blog webalkalmazás lehetővé teszi a felhasználók számára blogbejegyzések létrehozását, olvasását, frissítését és törlését, valamint kommentek hozzáadását az egyes bejegyzésekhez.
+## 2. Adatbázis típus
+A projekthez relációs adatbázist (pl. MySQL, PostgreSQL) használunk, mivel ez jól alkalmazható strukturált adatok kezelésére, meghatározott kapcsolatokkal. Alternatívaként egy NoSQL adatbázis (pl. MongoDB) is fontolóra vehető, ha az alkalmazásnak skálázódnia kell
+## 3. Entitások és Táblák
 
+### 3.1 Users
+
+A `Users` tábla az összes regisztrált felhasználót fogja tárolni, beleértve a profiljukhoz tartozó adatokat.
+
+#### Mezők:
+- `user_id` (Elsődleges kulcs)
+- `username` (Egyedi)
+- `email` (Egyedi)
+- `password_hash`
+- `bio`
+- `profile_picture_url`
+- `created_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy felhasználó több blogbejegyzést hozhat létre.
+- Egy felhasználó több bejegyzést is kedvelhet.
+- Egy felhasználó több bejegyzéshez is hozzászólhat.
+- Egy felhasználó követhet más felhasználókat (önhivatkozó kapcsolat).
+
+### 3.2 BlogPosts
+
+A `BlogPosts` tábla a felhasználók által létrehozott blogbejegyzések részleteit tárolja.
+
+#### Mezők:
+- `post_id` (Elsődleges kulcs)
+- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
+- `title`
+- `content`
+- `image_url`
+- `created_at` (Dátum)
+- `updated_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy bejegyzéshez több komment is tartozhat.
+- Egy bejegyzést több felhasználó is kedvelhet.
+
+### 3.3 Comments
+
+A `Comments` tábla a blogbejegyzésekhez fűzött felhasználói kommenteket tárolja.
+
+#### Mezők:
+- `comment_id` (Elsődleges kulcs)
+- `post_id` (Külső kulcs hivatkozva a `BlogPosts` táblára)
+- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
+- `content`
+- `created_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy komment egy blogbejegyzéshez kapcsolódik.
+- Egy komment egy felhasználóhoz kapcsolódik.
+
+
+## 4. Kapcsolatok a Táblák Között
+
+A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
+
+- **1-to-many** kapcsolat a `Users` és a `BlogPosts`, `Comments` táblák között.
 
 
 # Funkcionális Terv
