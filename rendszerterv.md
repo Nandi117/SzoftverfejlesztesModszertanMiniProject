@@ -24,6 +24,23 @@ A `Users` tábla az összes regisztrált felhasználót fogja tárolni, beleért
 - Egy felhasználó több bejegyzéshez is hozzászólhat.
 - Egy felhasználó követhet más felhasználókat (önhivatkozó kapcsolat).
 
+### 3.2 BlogPosts
+
+A `BlogPosts` tábla a felhasználók által létrehozott blogbejegyzések részleteit tárolja.
+
+#### Mezők:
+- `post_id` (Elsődleges kulcs)
+- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
+- `title`
+- `content`
+- `image_url`
+- `created_at` (Dátum)
+- `updated_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy bejegyzéshez több komment is tartozhat.
+- Egy bejegyzést több felhasználó is kedvelhet.
+
 
 
 
