@@ -1,5 +1,5 @@
 # Adatbázis Terv
-
+A blog webalkalmazás lehetővé teszi a felhasználók számára blogbejegyzések létrehozását, olvasását, frissítését és törlését, valamint kommentek hozzáadását az egyes bejegyzésekhez.
 
 
 # Funkcionális Terv
