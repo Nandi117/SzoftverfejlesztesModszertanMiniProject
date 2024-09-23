@@ -466,4 +466,39 @@ A rendszer függőséiget és azok elmaradása esetén lehetséges következmén
 | **cors**             | Cross-Origin Resource Sharing engedélyezése | A különböző domain-ek közötti kommunikációt teszi lehetővé.                | A frontend nem tud kommunikálni a szerverrel, ha különböző domain-eken futnak.|
 | **jsonwebtoken**     | JSON Web Tokens kezelése                    |  Az autentikációhoz és az autorizációhoz használható.| Az alkalmazás nem tudja hitelesíteni a felhasználókat.|
 
+## 5. Változások kezelése
+
+### 5.1. Verziókövetés - Git branching modell
+- A változások kezelésének alapja a Git branching modell. Minden új fejlesztési feladat (feature), hibajavítás (bugfix) vagy hotfix egy külön ágon (branch) történik. 
+- A következő ágakat használjuk:
+  - `main`: Ez az ág a stabil, kiadásra kész kódot tartalmazza. Ide kizárólag az átvizsgált (reviewed) és tesztelt kódok kerülhetnek be.
+  - `develop`: Ez az ág az aktív fejlesztés alatt álló kódot tartalmazza. Minden új funkció és hibajavítás a `develop` ágba kerül be először.
+  - Feature ágak (`feature/xyz`): Minden új funkcióhoz külön feature ág kerül létrehozásra. Az elvégzett fejlesztések után ez az ág a `develop` ágba kerül visszamergetésre (pull request).
+  - Hotfix ágak (`hotfix/xyz`): Kritikus hibajavítások esetén a `main` ágból nyitunk hotfix ágat, amely azonnali javításokkal tér vissza a `main` ágba.
+
+### 5.2. Pull Request és Code Review
+- Minden változtatás pull requesten (PR) keresztül történik. A fejlesztők PR-t hoznak létre a feature vagy bugfix ágak esetén, amelyek aztán átesnek code review-n.
+- A code review célja a minőségi kód biztosítása és a hibák kiszűrése, mielőtt a kód bekerülne a `develop` vagy `main` ágba. Legalább egy másik fejlesztő átnézi a kódot, és jóváhagyás után a változtatások beolvadhatnak.
+
+### 5.3. Verziószámozás
+- A projektben a Semantic Versioning (SemVer) módszert használjuk a verziószámozásra:
+  - `MAJOR`: Inkompatibilis változtatások, amelyek új főverziót igényelnek.
+  - `MINOR`: Új funkciók, amelyek kompatibilisek a meglévő API-val.
+  - `PATCH`: Hibajavítások és kisebb módosítások, amelyek nem befolyásolják az API működését.
+
+### 5.4. Dokumentáció frissítése
+- Minden változás után a megfelelő dokumentáció frissítése kötelező. Ez magában foglalja a felhasználói dokumentációt és a fejlesztői API dokumentációt is, ha releváns változtatás történt.
+- A README.md és az egyéb fejlesztői leírások folyamatos karbantartása elengedhetetlen annak érdekében, hogy az új fejlesztések és változtatások egyértelműek legyenek.
+
+### 5.5. Tesztelési folyamat a változások után
+- Minden változtatás után automatikusan futnak le a tesztek a CI/CD pipeline-ban, hogy biztosítva legyen a rendszer stabilitása.
+- A változtatásokhoz kapcsolódó új funkcióknak saját egység- és integrációs tesztjeik vannak. Ezek biztosítják, hogy az új kód nem törte meg a meglévő funkcionalitást.
+
+### 5.6. Változások követése Jira-ban
+- Minden változtatás és új fejlesztési feladat követése a Jira-ban történik. Minden feladat rendelkezik egy egyedi azonosítóval, amely a Git commitok üzeneteiben is megjelenik.
+- A Jira használata lehetővé teszi a változtatások átlátható nyomon követését és priorizálását. A sprint és feladat státuszokat folyamatosan frissítjük, így az aktuális projektállapot mindig naprakész.
+
+### 5.7. Változások roll-back lehetősége
+- Ha egy változtatás hibásan működik vagy kritikus hibát okoz, a Git segítségével a változások visszagörgethetők (rollback). A Git `revert` és `reset` funkcióival könnyedén visszaállíthatók a korábbi, stabil verziók.
+- A CI/CD pipeline szintén segít az azonnali visszajelzésben, ha egy változtatás hibásan került be, így a hibák gyorsan korrigálhatók.
 
