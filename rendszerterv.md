@@ -41,6 +41,21 @@ A `BlogPosts` tábla a felhasználók által létrehozott blogbejegyzések rész
 - Egy bejegyzéshez több komment is tartozhat.
 - Egy bejegyzést több felhasználó is kedvelhet.
 
+### 3.3 Comments
+
+A `Comments` tábla a blogbejegyzésekhez fűzött felhasználói kommenteket tárolja.
+
+#### Mezők:
+- `comment_id` (Elsődleges kulcs)
+- `post_id` (Külső kulcs hivatkozva a `BlogPosts` táblára)
+- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
+- `content`
+- `created_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy komment egy blogbejegyzéshez kapcsolódik.
+- Egy komment egy felhasználóhoz kapcsolódik.
+
 
 
 
