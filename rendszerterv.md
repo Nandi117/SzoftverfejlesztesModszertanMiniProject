@@ -25,6 +25,8 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 * API (Application Programming Interface)
 * Adatbázis
 
+Az egyes komponensek további részegységekre lesznek bonthatók, melyeknek feladatait, jelentőségét lenteebb 
+részletesebben áttekintjük.
 #### 2.1.1 Architektúrális diagramm:
 ![alt text](assets/arch_overview.drawio.png)
 
@@ -38,6 +40,13 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 - Meghatározott formátumú beérkező kérések fogadása és kezelése, adatok továbbítása az üzleti logikáért felelős réteg felé
 - Válaszok formázása a kérést küldő alkalmazása számára
 - Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
+- **Fő komponensek**:
+  - Felhasználó kezelés végpontok
+  - Blogok kezelése végpontok
+  - Hozzászólások kezelése végpontok
+- Az egyes komponensek definiálják a négy alapműveletet (CRUD), emellett tetszőlegesen kibővíthetőek
+- Az adatovábbítással járó műveletekhez adattranszfer objektumok használata
+- A kérésekben elküldött adatok formátuma JSON
 
 ### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
 - Üzleti szabályok megvalósítása és betartása
@@ -48,6 +57,14 @@ A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
 - Egyéb szolgáltatások nyújtása:
   - Értesítés kezelése és küldése
   - Integráció más rendszerekkel
+
+- **Fő komponensek**: 
+  - Felhasználó kezelés üzleti réteg
+  - Blogbejegyzések kezelése üzleti réteg
+  - Hozzászólások kezelése üzleti
+  - **Kommunikáció**:
+    - Minden réteg interfészen kereesztül kommunikál az egyéb réteggekkel
+
 
 ### 2.2.4 Adathozzáférési réteg (Data Access Layer - DAL)
 Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
