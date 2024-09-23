@@ -57,6 +57,11 @@ A `Comments` tábla a blogbejegyzésekhez fűzött felhasználói kommenteket t�
 - Egy komment egy felhasználóhoz kapcsolódik.
 
 
+## 4. Kapcsolatok a Táblák Között
+
+A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
+
+- **1-to-many** kapcsolat a `Users` és a `BlogPosts`, `Comments` táblák között.
 
 
 # Funkcionális Terv
