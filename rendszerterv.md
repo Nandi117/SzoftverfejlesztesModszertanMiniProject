@@ -112,6 +112,27 @@ A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
 
 - A felhasználók kedvelhetik más felhasználók bejegyzéseit.
 - Egy felhasználó csak egyszer kedvelhet egy bejegyzést.
+## 3. Kommentkezelés
+
+### 3.1. Új komment létrehozása
+
+- A felhasználók kommenteket fűzhetnek a blogbejegyzésekhez.
+- A kommentek megjelennek a hozzászólások részben, és időrendben vannak rendezve.
+### 3.2. Komment szerkesztése
+
+- A felhasználók módosíthatják saját hozzászólásaikat.
+### 3.3. Komment törlése
+
+- A felhasználók törölhetik saját kommentjeiket.
+- Törlés esetén a komment logikailag törlődik az adatbázisból.
+## 4. Adminisztrációs funkciók
+
+### 4.1. Felhasználók kezelése
+
+- Az adminisztrátorok felfüggeszthetik, módosíthatják vagy törölhetik a felhasználói fiókokat.
+### 4.2. Tartalom moderálása
+
+- Az adminisztrátorok módosíthatják vagy törölhetik a felhasználók által létrehozott blogbejegyzéseket és kommenteket, ha azok nem felelnek meg az oldal irányelveinek.
 
 # Fizikai Környezet
 
