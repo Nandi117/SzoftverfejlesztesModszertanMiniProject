@@ -157,6 +157,96 @@ A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
 
 - Heti adatmentés történik az adatbázisról, melyek visszaállíthatók hiba vagy adatvesztés esetén.
 
+# Tesztterv
+
+## 1. Áttekintés
+Ez a tesztterv részletezi a blog webalkalmazás adatbázisának, felhasználói funkcióinak, blogkezelésének és biztonsági elemeinek tesztelésére vonatkozó lépéseket. A cél annak biztosítása, hogy a rendszer megfelelően működjön, és megfeleljen az üzleti követelményeknek.
+
+## 2. Tesztelési célok
+- Annak ellenőrzése, hogy az adatbázis-struktúra helyesen működik.
+- Az egyes funkciók helyes működésének megerősítése (CRUD műveletek, felhasználókezelés, kommentkezelés).
+- A rendszer biztonsági funkcióinak (autentikáció, jogosultságkezelés) validálása.
+- A felhasználói értesítések és adminisztrációs funkciók megfelelő működésének ellenőrzése.
+
+## 3. Tesztelési területek
+
+## 3.1 Felhasználókezelés
+### 3.1.1 Regisztráció
+- **Bemenet**: Regisztráció űrlap kitöltése helyes adatokkal (felhasználónév, email, jelszó).
+- **Elvárt eredmény**: A felhasználói fiók sikeresen létrejön, és a felhasználó adatbázisban tárolódik.
+- **Hibaesetek**: Hiányos vagy érvénytelen adatok esetén hibaüzenet jelenik meg (pl. üres mezők, duplikált email).
+
+### 3.1.2 Bejelentkezés
+- **Bemenet**: Helyes felhasználónév/email és jelszó megadása.
+- **Elvárt eredmény**: A felhasználó sikeresen bejelentkezik, és egy JWT-t kap.
+- **Hibaesetek**: Helytelen adatok megadása esetén hibaüzenet jelenik meg.
+
+### 3.1.3 Jelszó visszaállítás
+- **Bemenet**: A jelszó visszaállítási folyamat elindítása regisztrált email-címmel.
+- **Elvárt eredmény**: A felhasználó emailt kap a jelszó visszaállítási linkkel.
+- **Hibaesetek**: Helytelen email-cím esetén hibaüzenet jelenik meg.
+
+## 3.2 Blogbejegyzések kezelése
+### 3.2.1 Blogbejegyzés létrehozása
+- **Bemenet**: Új blogbejegyzés létrehozása cím és tartalom megadásával.
+- **Elvárt eredmény**: A bejegyzés sikeresen mentésre kerül az adatbázisba.
+- **Hibaesetek**: Hiányzó adatok esetén a rendszer hibaüzenetet ad.
+
+### 3.2.2 Blogbejegyzés szerkesztése
+- **Bemenet**: Egy meglévő blogbejegyzés módosítása.
+- **Elvárt eredmény**: A módosított adatok mentésre kerülnek, és az updated_at mező frissül.
+- **Hibaesetek**: Nem engedélyezett felhasználó módosítási kísérlet esetén hibaüzenet jelenik meg.
+
+### 3.2.3 Blogbejegyzés törlése
+- **Bemenet**: A felhasználó törli saját blogbejegyzését.
+- **Elvárt eredmény**: A bejegyzés logikailag törlődik az adatbázisból.
+- **Hibaesetek**: Nem jogosult felhasználó esetén hibaüzenet jelenik meg.
+
+## 3.3 Kommentkezelés
+### 3.3.1 Új komment létrehozása
+- **Bemenet**: Komment hozzáadása egy blogbejegyzéshez.
+- **Elvárt eredmény**: A komment sikeresen mentésre kerül, és megjelenik a hozzászólások között.
+- **Hibaesetek**: Hiányzó tartalom vagy nem bejelentkezett felhasználó esetén hibaüzenet.
+
+### 3.3.2 Komment szerkesztése
+- **Bemenet**: Saját komment módosítása.
+- **Elvárt eredmény**: A komment frissítése az adatbázisban megtörténik.
+- **Hibaesetek**: Nem jogosult felhasználó szerkesztési kísérletekor hibaüzenet jelenik meg.
+
+## 3.4 Biztonsági tesztek
+### 3.4.1 Autentikáció
+- **Bemenet**: Helyes és helytelen bejelentkezési adatok megadása.
+- **Elvárt eredmény**: Helyes adatokkal sikeres bejelentkezés, helytelen adatokkal hibaüzenet.
+- **Hibaesetek**: Nem megfelelő authentikációs mechanizmus esetén (pl. jelszó kiszivárgása).
+
+### 3.4.2 HTTPS kapcsolatok
+- **Bemenet**: HTTPS protokoll használata a webalkalmazáshoz való csatlakozáskor.
+- **Elvárt eredmény**: Minden adatforgalom titkosítva zajlik.
+- **Hibaesetek**: Nem titkosított (HTTP) kapcsolódási kísérlet esetén figyelmeztetés.
+
+### 3.4.3 Jogosultságkezelés
+- **Bemenet**: Adminisztrátori és normál felhasználói műveletek végrehajtása.
+- **Elvárt eredmény**: Csak az adminisztrátorok férnek hozzá bizonyos funkciókhoz.
+- **Hibaesetek**: Jogosultsági hibák esetén hibaüzenet.
+
+## 3.5 Értesítések
+### 3.5.1 Új követő értesítése
+- **Bemenet**: Egy felhasználó követi a másikat.
+- **Elvárt eredmény**: Az érintett felhasználó értesítést kap az új követőről.
+- **Hibaesetek**: Hiányzó vagy késleltetett értesítések.
+
+## 3.6 Adminisztrációs funkciók
+### 3.6.1 Felhasználók kezelése
+- **Bemenet**: Az adminisztrátor módosítja vagy törli egy felhasználó fiókját.
+- **Elvárt eredmény**: A művelet sikeres végrehajtása az adatbázisban.
+- **Hibaesetek**: Helytelen adminisztrátori jogosultságok esetén a művelet sikertelen.
+
+## 4. Tesztelési módszertan
+- **Manuális tesztelés**: A felhasználói felület funkcióinak ellenőrzéséhez.
+- **Automatizált tesztelés**: Unit tesztek futtatása backend funkciókhoz.
+- **Biztonsági tesztelés**: Behatolás-észlelési és autentikációs tesztek futtatása.
+
+
 # Fizikai Környezet
 
 
