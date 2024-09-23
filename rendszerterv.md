@@ -3,6 +3,27 @@
 A blog webalkalmazás lehetővé teszi a felhasználók számára blogbejegyzések létrehozását, olvasását, frissítését és törlését, valamint kommentek hozzáadását az egyes bejegyzésekhez.
 ## 2. Adatbázis típus
 A projekthez relációs adatbázist (pl. MySQL, PostgreSQL) használunk, mivel ez jól alkalmazható strukturált adatok kezelésére, meghatározott kapcsolatokkal. Alternatívaként egy NoSQL adatbázis (pl. MongoDB) is fontolóra vehető, ha az alkalmazásnak skálázódnia kell
+## 3. Entitások és Táblák
+
+### 3.1 Users
+
+A `Users` tábla az összes regisztrált felhasználót fogja tárolni, beleértve a profiljukhoz tartozó adatokat.
+
+#### Mezők:
+- `user_id` (Elsődleges kulcs)
+- `username` (Egyedi)
+- `email` (Egyedi)
+- `password_hash`
+- `bio`
+- `profile_picture_url`
+- `created_at` (Dátum)
+
+#### Kapcsolatok:
+- Egy felhasználó több blogbejegyzést hozhat létre.
+- Egy felhasználó több bejegyzést is kedvelhet.
+- Egy felhasználó több bejegyzéshez is hozzászólhat.
+- Egy felhasználó követhet más felhasználókat (önhivatkozó kapcsolat).
+
 
 
 
