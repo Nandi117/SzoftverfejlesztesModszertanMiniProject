@@ -5,145 +5,10 @@
 # Funkcionális Terv
 
 
-
-# Tesztterv
-
-
-
 # Fizikai Környezet
 
 
 
-
-## 2. Architekturális Terv
-A rendszer architektúráját ismertető fejezet. A rendszer felépítését ismerteti architektúrális szinten.
-### 2.1 Áttekintés
-A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
-* Felhasználói felület (User Interface)
-* API (Application Programming Interface)
-* Adatbázis
-
-Az egyes komponensek további részegységekre lesznek bonthatók, melyeknek feladatait, jelentőségét lenteebb 
-részletesebben áttekintjük.
-#### 2.1.1 Architektúrális diagramm:
-![alt text](assets/arch_overview.drawio.png)
-
-### 2.2 Rétegek és felelősségek áttekintése
-### 2.2.1 Prezentációs réteg (Felhasználó felület - User Interface)
-- Interaktív kapcsolatot tart felhasználó és a rendszer között
-- Kizárólag adatok felvitelének, módosításának és a lekérdezett adatok megjelenítésenek szolgáltat interaktív felhasználói felületet
-- Reszponzivitás biztosítása annak érdekében, hogy többfajta eszközön is megfelelő interaktív felületet biztosítson a felhasznááló számára
-
-### 2.2.2 API réteg
-- Meghatározott formátumú beérkező kérések fogadása és kezelése, adatok továbbítása az üzleti logikáért felelős réteg felé
-- Válaszok formázása a kérést küldő alkalmazása számára
-- Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
-- **Fő komponensek**:
-  - Felhasználó kezelés végpontok
-  - Blogok kezelése végpontok
-  - Hozzászólások kezelése végpontok
-- Az egyes komponensek definiálják a négy alapműveletet (CRUD), emellett tetszőlegesen kibővíthetőek
-- Az adatovábbítással járó műveletekhez adattranszfer objektumok használata
-- A kérésekben elküldött adatok formátuma JSON
-
-### 2.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
-- Üzleti szabályok megvalósítása és betartása
-- **API** illetve **Adathozzáférési rétegből** származó adatok feldolgozása, ez magában hordozza az adatok érvényesítését, átalakítását
-- Komplex üzleti folyamatok kezelése és megvalósítása
-- Döntések meghozatala a beérkező adatok alapján
-- Esetleges számítások elvégzése a beérkező adatok alapján
-- Egyéb szolgáltatások nyújtása:
-  - Értesítés kezelése és küldése
-  - Integráció más rendszerekkel
-
-- **Fő komponensek**: 
-  - Felhasználó kezelés üzleti réteg
-  - Blogbejegyzések kezelése üzleti réteg
-  - Hozzászólások kezelése üzleti
-  - **Kommunikáció**:
-    - Minden réteg interfészen kereesztül kommunikál az egyéb réteggekkel
-
-
-### 2.2.4 Adathozzáférési réteg (Data Access Layer - DAL)
-Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
-- Kapcsolatot tart az **Adatbázis** illetve az **Üzleti logikáért** felelős réteg között
-- Adatok lekérdezése az adatbázisból
-  - Az alkalmazás kérésére lekérdezi az adatok az adatbázisból a kapott paraméterek függvényében
-- Adatok módosítása az adatbázisban
-  - Az alkalmazás kérésére módosítja az adatokat a kapott új adatok alapján 
-- Adatok mentése az adatbázisba
-  - Az alkalmazás kérésére menti a kapott adatokat az adatbázisba 
-- Adatok törlése az adatbázisból
-  - Az alkalmazás kérésére törli az adatokat az adátbázisból - **Logikai törlés**
-- Adatok érvényesítése
-  - Ellenőrzi, hogy az adatok megfelelnek-e az adatbázisban érvényes korlátozásoknak
-- Adatbázis-függetlenség biztosítása
-
-
-### 2.2.5 Adatbázis réteg
-- Adatok tárolása
-  - Az alkalmazás összes adatát struktúráltan tárolja
-- Adatvédelem
-  - Adatok biztonságának biztosítása, illektéktelen hozzáférések megakadályozása
-  - Adatok elvesztésének megakadályozása
-- Adat integritás
-  - Adatok konzisztenciájának és pontosságának fenntartása
-- Adatlekérdezés
-  - Lehetővé teszi az adatok gyors és hatékony lekérdezését
-
-
-### 2.2.6 Szerver oldali rétegek felépítése és rétegek közötti kapcsolatok:
-![alt text](assets/server_layers.drawio.png)
-
-
-### 2.3 Technológiai áttekintés
-Alkalmazandó technológiák és jelentőségüknek áttikentése
-
-- #### 1. Felhasználói felület technológiák
-    - **React**:
-        - Össszetett felhasználói felületek létrehozására alkalmas nyílt Javascript könyvtár
-        - Dinamikus felületek létrehozása
-        - Modularitást és újrafelhasználhatóságot biztosít
-    - **Redux**:
-        - Állapotkezelés: Központi tároló hely biztosítása az alkalmazása teljes állapotának tárolására
-        - Komponensek közötti kommunikáció: Adatok egyszerű átadása és elérhetőség biztosítása más komponsek számára
-        - Tesztelhetőség: Elősegíti az alkalmazás egyes részeinek tesztelését
-    - **Tailwind**:
-        - Utility-first CSS keretrendszer
-        - Beépített és testreszabható komponensek
-        - Gyors fejlesztés
-        - Rugalmasság
-
-- #### 2. Szerver oldali technológiák
-    - **Express.js**: 
-      - Minimalista és rugalmas Node.js keretrendszer
-      - Nagy teljesítmény
-      - Rugalmasság
-
-- #### 3. Adatbázis technológiák
-  - **MongoDB**:
-    - Nyilt forráskódú, NoSQL adatbázis, amelyet a rugalmassága és a dokumentum-orientált adatszerkezet miatt széles körben alkalmaznak
-    - Hagyományos relációs adatbázisoktól eltérően nem táblákban hanem dokumentumokban tárolja az adatokat, amelyek JSON szerű objektumok
-    - Egyszerű integrálhatóság Javascript alapú technológiákhoz
-    - Nagy teljesítmény
-    - Skálázhatóság: Könnyen skálázható
-
-
-### 2.4 Függőségek
-A rendszer függőséiget és azok elmaradása esetén lehetséges következmények bemutatása.
-
-| Függőség             | Cél                                         | Megjegyzés                                                                 | Elmaradás esetén következmények |
-|----------------------|---------------------------------------------|----------------------------------------------------------------------------|---------------------------------|
-| **react**            | Felhasználói felület létrehozása            | Megbízható, gyors Javascript könyvtár UI-k építéséhez.                     | Az alkalmazásnak nem lesz interaktív felhasználói felülete.|
-| **redux**            | Állapotkezelés                              | A React alkalmazások állapotának kezelésére szolgál.                       |  Az alkalmazás állapota nem lesz centralizáltan kezelve, ami bonyolulttá teheti a fejlesztést.|
-| **react-router-dom** | Útvonalak kezelése                          | A React alkalmazásokban az oldalak közötti navigációt teszi lehetővé.      | Az alkalmazás különböző oldalakra nem lesz navigálható.|
-| **tailwind**         | Vonzó felhasználói felület, reszponnzív oldalak kialakítása | X | A felhasználó felület nem lesz reszponzív és vonnzó, viszont natúr CSS technológia segítségével ez pótolható nagyobb energia befektetéssel|
-| **axios**            | HTTP kérések küldése                        | A szerver felé HTTP küldésére szolgál.                                     | Az alkalmazás nem tud kommunikálni a szerverrel.|
-| **node.js**          | Javascript runtime evironment               | A JavaScript kódot a szerveren futtatja.                                   | Az alkalmazás szervere nem fog működni. |
-| **express**          | Web framework                               | A Node.js-hez tartozó web framework, amely segít a HTTP kérések kezelésében. | A backend nem tudja kezelni a HTTP kéréseket.|
-| **mongoose**         | MongoDB ODM                                 | A MongoDB adatbázishoz való kapcsolódást és a dokumentumok kezelését teszi lehetővé. | Az alkalmazás nem tud adatokat tárolni a MongoDB-ben.|
-| **cors**             | Cross-Origin Resource Sharing engedélyezése | A különböző domain-ek közötti kommunikációt teszi lehetővé.                | A frontend nem tud kommunikálni a szerverrel, ha különböző domain-eken futnak.|
-| **jsonwebtoken**     | JSON Web Tokens kezelése                    |  Az autentikációhoz és az autorizációhoz használható.| Az alkalmazás nem tudja hitelesíteni a felhasználókat.|
 
 ## 1. Biztonsági Funkciók
 
@@ -189,6 +54,10 @@ A rendszer függőséiget és azok elmaradása esetén lehetséges következmén
 - A rendszer egy microservices architektúrán alapul, amely lehetővé teszi, hogy az egyes szolgáltatások különálló komponensként működjenek. Így a fejlesztők könnyedén hozzáadhatnak új szolgáltatásokat anélkül, hogy a meglévő szolgáltatások működését befolyásolnák.
 - Az egyes szolgáltatások külön-külön skálázhatók és frissíthetők, ami biztosítja a rendszer rugalmasságát és könnyű bővíthetőségét.
 
+
+
+
+
 ## 3. Fejlesztői eszközök
 
 ### 3.1. Verziókezelés - Git
@@ -222,3 +91,137 @@ A rendszer függőséiget és azok elmaradása esetén lehetséges következmén
 ### 3.8. Verziókezelési szabályok
 - Minden commit üzenet és branch név követi az egységes nevezéktant. A commit üzeneteknek egyértelműnek és informatívnak kell lenniük, míg a branchek neveinek utalniuk kell a kapcsolódó feladatra (pl. `feat/login-page`).
 - Minden kódrészlet átmegy code review-n, amit egy másik fejlesztő validál.
+
+
+
+## 4. Architekturális Terv
+A rendszer architektúráját ismertető fejezet. A rendszer felépítését ismerteti architektúrális szinten.
+### 4.1 Áttekintés
+A rendszer architektúráját tekintve három fő komponensről beszélhetünk:
+* Felhasználói felület (User Interface)
+* API (Application Programming Interface)
+* Adatbázis
+
+Az egyes komponensek további részegységekre lesznek bonthatók, melyeknek feladatait, jelentőségét lenteebb
+részletesebben áttekintjük.
+#### 4.1.1 Architektúrális diagramm:
+![alt text](assets/arch_overview.drawio.png)
+
+### 4.2 Rétegek és felelősségek áttekintése
+### 4.2.1 Prezentációs réteg (Felhasználó felület - User Interface)
+- Interaktív kapcsolatot tart felhasználó és a rendszer között
+- Kizárólag adatok felvitelének, módosításának és a lekérdezett adatok megjelenítésenek szolgáltat interaktív felhasználói felületet
+- Reszponzivitás biztosítása annak érdekében, hogy többfajta eszközön is megfelelő interaktív felületet biztosítson a felhasznááló számára
+
+### 4.2.2 API réteg
+- Meghatározott formátumú beérkező kérések fogadása és kezelése, adatok továbbítása az üzleti logikáért felelős réteg felé
+- Válaszok formázása a kérést küldő alkalmazása számára
+- Hitelesítés és jogosultság kezelés: ellenőrzi hogy az adott jogosultsággal a műveletet végre lehet e hajtani vagy sem
+- **Fő komponensek**:
+    - Felhasználó kezelés végpontok
+    - Blogok kezelése végpontok
+    - Hozzászólások kezelése végpontok
+- Az egyes komponensek definiálják a négy alapműveletet (CRUD), emellett tetszőlegesen kibővíthetőek
+- Az adatovábbítással járó műveletekhez adattranszfer objektumok használata
+- A kérésekben elküldött adatok formátuma JSON
+
+### 4.2.3 Üzleti logikáért felelős réteg (Business Logic Layer - BLL )
+- Üzleti szabályok megvalósítása és betartása
+- **API** illetve **Adathozzáférési rétegből** származó adatok feldolgozása, ez magában hordozza az adatok érvényesítését, átalakítását
+- Komplex üzleti folyamatok kezelése és megvalósítása
+- Döntések meghozatala a beérkező adatok alapján
+- Esetleges számítások elvégzése a beérkező adatok alapján
+- Egyéb szolgáltatások nyújtása:
+    - Értesítés kezelése és küldése
+    - Integráció más rendszerekkel
+
+- **Fő komponensek**:
+    - Felhasználó kezelés üzleti réteg
+    - Blogbejegyzések kezelése üzleti réteg
+    - Hozzászólások kezelése üzleti
+    - **Kommunikáció**:
+        - Minden réteg interfészen kereesztül kommunikál az egyéb réteggekkel
+
+
+### 4.2.4 Adathozzáférési réteg (Data Access Layer - DAL)
+Az alkalmazás és az adatbázis közötti kommunikációért felelős réteg
+- Kapcsolatot tart az **Adatbázis** illetve az **Üzleti logikáért** felelős réteg között
+- Adatok lekérdezése az adatbázisból
+    - Az alkalmazás kérésére lekérdezi az adatok az adatbázisból a kapott paraméterek függvényében
+- Adatok módosítása az adatbázisban
+    - Az alkalmazás kérésére módosítja az adatokat a kapott új adatok alapján
+- Adatok mentése az adatbázisba
+    - Az alkalmazás kérésére menti a kapott adatokat az adatbázisba
+- Adatok törlése az adatbázisból
+    - Az alkalmazás kérésére törli az adatokat az adátbázisból - **Logikai törlés**
+- Adatok érvényesítése
+    - Ellenőrzi, hogy az adatok megfelelnek-e az adatbázisban érvényes korlátozásoknak
+- Adatbázis-függetlenség biztosítása
+
+
+### 4.2.5 Adatbázis réteg
+- Adatok tárolása
+    - Az alkalmazás összes adatát struktúráltan tárolja
+- Adatvédelem
+    - Adatok biztonságának biztosítása, illektéktelen hozzáférések megakadályozása
+    - Adatok elvesztésének megakadályozása
+- Adat integritás
+    - Adatok konzisztenciájának és pontosságának fenntartása
+- Adatlekérdezés
+    - Lehetővé teszi az adatok gyors és hatékony lekérdezését
+
+
+### 4.2.6 Szerver oldali rétegek felépítése és rétegek közötti kapcsolatok:
+![alt text](assets/server_layers.drawio.png)
+
+
+### 4.3 Technológiai áttekintés
+Alkalmazandó technológiák és jelentőségüknek áttikentése
+
+- #### 1. Felhasználói felület technológiák
+    - **React**:
+        - Össszetett felhasználói felületek létrehozására alkalmas nyílt Javascript könyvtár
+        - Dinamikus felületek létrehozása
+        - Modularitást és újrafelhasználhatóságot biztosít
+    - **Redux**:
+        - Állapotkezelés: Központi tároló hely biztosítása az alkalmazása teljes állapotának tárolására
+        - Komponensek közötti kommunikáció: Adatok egyszerű átadása és elérhetőség biztosítása más komponsek számára
+        - Tesztelhetőség: Elősegíti az alkalmazás egyes részeinek tesztelését
+    - **Tailwind**:
+        - Utility-first CSS keretrendszer
+        - Beépített és testreszabható komponensek
+        - Gyors fejlesztés
+        - Rugalmasság
+
+- #### 2. Szerver oldali technológiák
+    - **Express.js**:
+        - Minimalista és rugalmas Node.js keretrendszer
+        - Nagy teljesítmény
+        - Rugalmasság
+
+- #### 3. Adatbázis technológiák
+    - **MongoDB**:
+        - Nyilt forráskódú, NoSQL adatbázis, amelyet a rugalmassága és a dokumentum-orientált adatszerkezet miatt széles körben alkalmaznak
+        - Hagyományos relációs adatbázisoktól eltérően nem táblákban hanem dokumentumokban tárolja az adatokat, amelyek JSON szerű objektumok
+        - Egyszerű integrálhatóság Javascript alapú technológiákhoz
+        - Nagy teljesítmény
+        - Skálázhatóság: Könnyen skálázható
+
+
+### 4.4 Függőségek
+A rendszer függőséiget és azok elmaradása esetén lehetséges következmények bemutatása.
+
+| Függőség             | Cél                                         | Megjegyzés                                                                 | Elmaradás esetén következmények |
+|----------------------|---------------------------------------------|----------------------------------------------------------------------------|---------------------------------|
+| **react**            | Felhasználói felület létrehozása            | Megbízható, gyors Javascript könyvtár UI-k építéséhez.                     | Az alkalmazásnak nem lesz interaktív felhasználói felülete.|
+| **redux**            | Állapotkezelés                              | A React alkalmazások állapotának kezelésére szolgál.                       |  Az alkalmazás állapota nem lesz centralizáltan kezelve, ami bonyolulttá teheti a fejlesztést.|
+| **react-router-dom** | Útvonalak kezelése                          | A React alkalmazásokban az oldalak közötti navigációt teszi lehetővé.      | Az alkalmazás különböző oldalakra nem lesz navigálható.|
+| **tailwind**         | Vonzó felhasználói felület, reszponnzív oldalak kialakítása | X | A felhasználó felület nem lesz reszponzív és vonnzó, viszont natúr CSS technológia segítségével ez pótolható nagyobb energia befektetéssel|
+| **axios**            | HTTP kérések küldése                        | A szerver felé HTTP küldésére szolgál.                                     | Az alkalmazás nem tud kommunikálni a szerverrel.|
+| **node.js**          | Javascript runtime evironment               | A JavaScript kódot a szerveren futtatja.                                   | Az alkalmazás szervere nem fog működni. |
+| **express**          | Web framework                               | A Node.js-hez tartozó web framework, amely segít a HTTP kérések kezelésében. | A backend nem tudja kezelni a HTTP kéréseket.|
+| **mongoose**         | MongoDB ODM                                 | A MongoDB adatbázishoz való kapcsolódást és a dokumentumok kezelését teszi lehetővé. | Az alkalmazás nem tud adatokat tárolni a MongoDB-ben.|
+| **cors**             | Cross-Origin Resource Sharing engedélyezése | A különböző domain-ek közötti kommunikációt teszi lehetővé.                | A frontend nem tud kommunikálni a szerverrel, ha különböző domain-eken futnak.|
+| **jsonwebtoken**     | JSON Web Tokens kezelése                    |  Az autentikációhoz és az autorizációhoz használható.| Az alkalmazás nem tudja hitelesíteni a felhasználókat.|
+
+
