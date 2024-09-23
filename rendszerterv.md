@@ -133,6 +133,29 @@ A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
 ### 4.2. Tartalom moderálása
 
 - Az adminisztrátorok módosíthatják vagy törölhetik a felhasználók által létrehozott blogbejegyzéseket és kommenteket, ha azok nem felelnek meg az oldal irányelveinek.
+## 5. Értesítések
+
+### 5.1. Új követő értesítése
+
+- A felhasználók értesítést kapnak, ha valaki elkezdte követni őket.
+### 5.2. Új komment értesítése
+
+- Értesítést kapnak, ha valaki kommentet fűzött a blogbejegyzésükhöz.
+### 5.3. Új kedvelés értesítése
+
+- A felhasználók értesítést kapnak, ha valaki kedvelte a blogbejegyzésüket.
+## 6. Biztonsági funkciók
+
+### 6.1. Autentikáció és jogosultságkezelés
+
+- A felhasználók jelszavait bcrypt-tel titkosítjuk.
+- Az adminisztrátorok számára kétfaktoros hitelesítés áll rendelkezésre.
+### 6.2. HTTPS támogatás
+
+- Az összes adatforgalom titkosítva zajlik HTTPS protokollon keresztül, védve a felhasználói adatokat.
+### 6.3. Adatmentés
+
+- Heti adatmentés történik az adatbázisról, melyek visszaállíthatók hiba vagy adatvesztés esetén.
 
 # Fizikai Környezet
 
