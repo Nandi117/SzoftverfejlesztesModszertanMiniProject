@@ -20,6 +20,6 @@ export const BaseEntity = {
     },
     creatorUserId:{
         type:String,
-        require:true,
+        required:true,
     }
 }
