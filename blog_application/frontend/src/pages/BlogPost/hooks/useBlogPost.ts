@@ -1,13 +1,14 @@
 import {useCallback, useEffect, useState} from "react";
 import {getApi} from "../../../config/api.ts";
 import {useParams} from "react-router-dom";
+import {DefaultPostType} from "../../../@types/blogPost.type.ts";
 
 
 export const useBlogPost = () =>{
 
 
     const {id} = useParams();
-    const [post, setPost] = useState<any>(null);
+    const [post, setPost] = useState<DefaultPostType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>({
         isError: false,
@@ -26,11 +27,11 @@ export const useBlogPost = () =>{
             })
         }
         finally {
-            setLoading(false);
+            timoutLoading();
         }
     },[id]);
 
-
+    const timoutLoading = () => setTimeout(()=>setLoading(false), 1000)
 
     useEffect(()=>{
         getBlogPost();
