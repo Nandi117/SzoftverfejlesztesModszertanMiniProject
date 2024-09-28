@@ -13,6 +13,11 @@ export const routes = {
     ownPosts:{
         main:"/ownPosts",
         new:"/ownPosts/new"
-    }
+    },
+    posts: "posts"
+
+
+
+
 
 }

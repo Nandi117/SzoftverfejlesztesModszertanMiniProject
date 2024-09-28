@@ -15,7 +15,7 @@ const initialState:DrawerState = {
 }
 
 const drawerSlice = createSlice({
-    name: 'counter',
+    name: 'drawer',
     initialState,
     reducers: {
         toggleDrawer(state){

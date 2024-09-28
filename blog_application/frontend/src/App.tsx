@@ -8,8 +8,10 @@ import {Layout} from "./components/Layout/Layout.tsx";
 import {store} from "./store/store.ts";
 
 
-const OwnBlogPosts = lazy(() => import("../src/pages/OwnBlogPosts/OwnBlogPosts.tsx"));
-const NewBlogPost = lazy(()=>import("../src/pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
+/*Lazy imports for optimizing page performance */
+const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"));
+const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
+const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
 function App() {
 
 
@@ -23,6 +25,9 @@ function App() {
                                 {/* Own blog posts */}
                                 <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
                                 <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
+
+                                {/* Common blog post */}
+                                <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                             </Route>
                         </Routes>
                     </Suspense>

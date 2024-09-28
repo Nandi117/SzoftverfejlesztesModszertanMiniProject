@@ -63,7 +63,12 @@ export const blogService = {
      * @return Blogbjegyzés egyedi azonosítója
      */
     delete: async (id:string)=>{
-        const deletedPost = await BlogPost.findByIdAndDelete(id);
+        const deletedPost = await BlogPost.findByIdAndUpdate(
+            id,
+            {
+                isActive:false
+            }
+        )
         if (!deletedPost) throw new Error("Blog post not found!");
         return id;
     }

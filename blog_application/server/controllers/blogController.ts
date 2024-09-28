@@ -28,7 +28,7 @@ router.get("/:id", async (req, res)=>{
     }
 })
 
-router.post("/insert", async (req, res)=>{
+router.post("", async (req, res)=>{
     try{
         const data = req.body;
         console.log(data);
@@ -56,7 +56,7 @@ router.put("", async (req, res)=>{
 router.delete("/:id", async (req, res)=>{
     try{
         const id = req.params.id;
-        const deletedId = blogService.delete(id);
+        const deletedId = await blogService.delete(id);
         Ok(res, deletedId);
     }
     catch (error){
