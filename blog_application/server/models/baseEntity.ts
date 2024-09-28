@@ -1,5 +1,4 @@
-
-
+import {Schema} from "mongoose";
 
 
 export const BaseEntity = {
@@ -19,7 +18,8 @@ export const BaseEntity = {
         default:null
     },
     creatorUserId:{
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref:"User",
         required:true,
     }
 }

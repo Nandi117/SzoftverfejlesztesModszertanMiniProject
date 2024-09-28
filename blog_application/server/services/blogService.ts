@@ -29,10 +29,10 @@ export const blogService = {
      * @return Blogbejegyzés entitás
      */
     findById: async (id:string) =>{
-        logger.debug(`Get post in the BLL layer by unique identifier. id=${id}`);
+        logger.info(`Get post in the BLL layer by unique identifier. id=${id}`);
         const blog = await BlogPost.findOne({
             _id:id,
-            active:true
+            isActive:true
         });
         if (!blog) throw new Error("Not found!");
         return blog;

@@ -41,6 +41,7 @@ router.get("/:id", async (req, res)=>{
         Ok(res, blog);
     }
     catch (error){
+        console.log(error);
         badRequest(res, error);
     }
 })

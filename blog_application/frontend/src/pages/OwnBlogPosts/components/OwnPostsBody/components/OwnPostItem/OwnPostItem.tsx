@@ -18,7 +18,6 @@ import {
     ModalFooter,
     ModalHeader,
     Spacer,
-    Text,
     useDisclosure
 } from "@chakra-ui/react";
 import {DeleteIcon, EditIcon, ViewIcon} from "@chakra-ui/icons";
@@ -27,6 +26,7 @@ import 'react-quill/dist/quill.snow.css';
 import {useOwnPostItem} from "./hooks/useOwnPostItem.ts";
 import parse from 'html-react-parser';
 import {OwnPostType} from "../../../../@types/ownPost.type.ts";
+import {CommentsModal} from "./CommentsModal.tsx";
 
 type OwnPostItemProps = {
     data: OwnPostType,
@@ -65,8 +65,7 @@ export const OwnPostItem = memo(({data}: OwnPostItemProps) => {
             <CardBody mx={1} overflow={"hidden"}>
                 { data.content ?  parse(data.content) : null}
             </CardBody>
-            <CardFooter justifyContent={"space-between"} alignItems={"center"}>
-                <Text>{data.author}</Text>
+            <CardFooter justifyContent={"end"} alignItems={"center"}>
                 <Button
                     aria-label={"View post button"}
                     leftIcon={<ViewIcon/>}
@@ -74,6 +73,7 @@ export const OwnPostItem = memo(({data}: OwnPostItemProps) => {
                     variant={"ghost"}
                     onClick={()=>viewPost(data._id)}
                     size={"sm"}>View</Button>
+                <CommentsModal postId={data._id}/>
             </CardFooter>
         </Card>
         <Modal size={"6xl"} isOpen={isOpen} onClose={onClose} >
