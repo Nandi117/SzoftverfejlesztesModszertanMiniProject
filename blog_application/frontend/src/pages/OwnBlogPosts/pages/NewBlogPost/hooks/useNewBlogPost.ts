@@ -2,6 +2,7 @@ import {useCallback, useRef, useState} from "react";
 import ReactQuill from "react-quill";
 import {useNavigate} from "react-router-dom";
 import {routes} from "../../../../../config/routes.ts";
+import {getApi} from "../../../../../config/api.ts";
 
 
 export const useNewBlogPost = () =>{
@@ -20,17 +21,14 @@ export const useNewBlogPost = () =>{
         setLoading(true);
         try{
             const titleValue = titleRef.current?.value;
-            const contentValue = quillEditorRef.current?.editor?.getText();
+            const contentValue = quillEditorRef.current?.value;
 
 
             const newBlogData = {
                 title:titleValue,
                 content:contentValue
             }
-            const response = await fetch("http://localhost:5000/api/blogs/insert", {
-                method:"POST",
-                body:JSON.stringify(newBlogData)
-            });
+            const response = await getApi().post("blogs", JSON.stringify(newBlogData));
 
             if (response.status === 200){
                 navigate(routes.ownPosts.main);
