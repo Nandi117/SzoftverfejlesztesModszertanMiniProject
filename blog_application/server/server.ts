@@ -5,6 +5,7 @@ import apiRouter from "./apiRouter";
 import {db} from "./config/db.config";
 import bodyParser from "body-parser";
 import cors from "cors";
+import authRoutes from './controllers/authController';
 dotenv.config();
 
 const app = express();
@@ -21,6 +22,9 @@ app.use(cors())
 
 
 app.use(bodyParser.json());
+
+app.use('/auth', authRoutes);
+
 app.use("/api", apiRouter);
 
 
