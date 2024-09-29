@@ -14,6 +14,7 @@ const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"))
 const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
 const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
 const LogInPage = lazy(()=>import("./pages/LogInPage/LogInPage.tsx"));
+const SignUpPage = lazy(()=>import("./pages/SignUpPage/SignUpPage"));
 function App() {
 
 
