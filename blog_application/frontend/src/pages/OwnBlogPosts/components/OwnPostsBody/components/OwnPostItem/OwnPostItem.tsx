@@ -15,12 +15,8 @@ type OwnPostItemProps = {
 
 export const OwnPostItem = memo(({data}: OwnPostItemProps) => {
 
-
-
-
     const {
         deleteOwnPost,
-        updateOwnPost,
     } = useOwnPostItem();
 
     return <div>

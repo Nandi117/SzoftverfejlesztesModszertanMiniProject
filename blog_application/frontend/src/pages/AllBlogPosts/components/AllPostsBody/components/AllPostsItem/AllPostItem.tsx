@@ -49,12 +49,6 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
                         {data.title}
                     </Heading>
                     <Spacer />
-                    <Flex>
-                        <IconButton aria-label={"Post edit button"} size={"sm"} icon={<EditIcon />}
-                            colorScheme='blue' variant={"ghost"} onClick={onOpen} />
-                        <IconButton aria-label={"Post delete button"} size={"sm"} icon={<DeleteIcon />} colorScheme='red'
-                            variant={"ghost"} onClick={() => deleteAllPost(data._id)} />
-                    </Flex>
                 </Flex>
             </CardHeader>
             <CardBody mx={1} overflow={"hidden"}>

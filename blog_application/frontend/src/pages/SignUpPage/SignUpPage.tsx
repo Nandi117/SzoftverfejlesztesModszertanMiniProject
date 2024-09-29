@@ -3,26 +3,47 @@ import {Alert, AlertIcon, Box, Button, Flex, FormControl, FormLabel, Heading, In
 import {LockIcon} from '@chakra-ui/icons';
 import {useNavigate} from "react-router-dom";
 import {routes} from "../../config/routes.ts";
+import {getApi} from "../../config/api.ts";
 
 const SignUpPage = () => {
 
     const navigate = useNavigate();
 
+    const [signupInProgress, setSignupInProgress] = useState<boolean>(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         if (!username || !email || !password || !confirmPassword) {
             setError('Please fill in all fields');
+            return;
         } else if (password !== confirmPassword) {
             setError('Passwords do not match');
-        } else {
-            setError('');
-            console.log('Signing up with', username, email, password);
+            return;
         }
+
+        setSignupInProgress(true);
+
+        const signupData = {
+            username:username,
+            email:email,
+            password:password
+        }
+
+        try{
+            const response = await getApi().post("auth/signup", JSON.stringify(signupData));
+            if (response.status === 201) navigate(routes.ownPosts.main);
+        }
+        catch (e){
+            setError("Sign up is failed! Try again!");
+        }
+        finally {
+            setSignupInProgress(false);
+        }
+
     };
 
     return (
@@ -70,7 +91,7 @@ const SignUpPage = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </FormControl>
-                    <Button leftIcon={<LockIcon />} colorScheme="teal" onClick={handleSignUp}>
+                    <Button leftIcon={<LockIcon />} isLoading={signupInProgress} colorScheme="teal" onClick={handleSignUp}>
                         Sign Up
                     </Button>
                     <Button variant={"ghost"} colorScheme={"purple"} onClick={()=>navigate(routes.login)}>Already have an account?</Button>

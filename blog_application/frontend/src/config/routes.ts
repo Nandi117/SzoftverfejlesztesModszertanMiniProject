@@ -16,11 +16,4 @@ export const routes = {
         new:"/ownPosts/new"
     },
     posts: "posts",
-
-
-
-
-
-
-
 }

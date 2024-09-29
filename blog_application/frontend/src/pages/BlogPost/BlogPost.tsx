@@ -15,7 +15,7 @@ const BlogPost = () => {
     if (loading) {
         return <>
             <Flex justifyContent={"center"}>
-                <Spinner color={"teal.500"} size={"xl"} mt={10}/>
+                <Spinner color={"teal.500"} size={"xl"} mt={10 }/>
             </Flex>
 
         </>
@@ -34,7 +34,7 @@ const BlogPost = () => {
 
     return <>
         <Flex flexDirection={"column"} alignItems={"center"}>
-            <Box width={""}>
+            <Box width={"50%"}>
                 <Heading as={"h5"}>{post?.title}</Heading>
                 <Box mt={5}>
                     {post?.content ? parse(post?.content || "") : null}
