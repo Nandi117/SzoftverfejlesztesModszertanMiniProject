@@ -16,13 +16,13 @@ import {UnlockIcon} from '@chakra-ui/icons';
 import {Link, useNavigate} from 'react-router-dom';
 import {getApi} from "../../config/api.ts";
 import {routes} from "../../config/routes.ts";
+import { use } from 'framer-motion/client';
 
 const LogInPage = () => {
 
 
     const navigate = useNavigate();
 
-    const [cookies, setCookies] = coo
     const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
