@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AllPostsType } from "../../pages/AllBlogPosts/@types/allPosts.type.ts";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {AllPostsType} from "../../pages/AllBlogPosts/@types/allPosts.type.ts";
 
 type AllPostsState = {
     posts: AllPostsType[],
@@ -13,11 +13,11 @@ const allPostsSlice = createSlice({
     name: 'allPosts',
     initialState,
     reducers: {
-        setAllPosts(state, { payload }: PayloadAction<AllPostsType[]>) {
+        setAllPosts(state, {payload}: PayloadAction<AllPostsType[]>) {
             state.posts = [...payload];
         },
 
-        deletePost(state, { payload }: PayloadAction<string>) {
+        deletePost(state, {payload}: PayloadAction<string>) {
             const filtered = state.posts.filter(x => x._id !== payload);
             state.posts = [...filtered];
         },
