@@ -3,7 +3,7 @@ import {getApi} from "../../../config/api.ts";
 import {useDispatch} from "react-redux";
 import {setOwnPosts} from "../../../store/ownPosts/ownPostsSlice.ts";
 
-export const useOwnBlogPosts = () => {
+export const useAllBlogPosts = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
     const [allPosts, setAllPosts] = useState<any[]>([]);
