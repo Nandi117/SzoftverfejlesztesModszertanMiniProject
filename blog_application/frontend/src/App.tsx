@@ -27,6 +27,9 @@ function App() {
                                 <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
                                 <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
 
+                                {/* All blog posts */}
+                                <Route path={routes.allPosts.main} element={<AllBlogPosts/>}/>
+
                                 {/* Common blog post */}
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                             </Route>
