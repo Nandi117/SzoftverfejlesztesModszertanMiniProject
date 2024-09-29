@@ -9,6 +9,7 @@ import {store} from "./store/store.ts";
 
 
 /*Lazy imports for optimizing page performance */
+const AllBlogPosts = lazy(() => import("./pages/AllBlogPosts/AllBlogPosts.tsx"));
 const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"));
 const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
 const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
@@ -26,6 +27,9 @@ function App() {
                                 {/* Own blog posts */}
                                 <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
                                 <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
+
+                                {/* All blog posts */}
+                                <Route path={routes.allPosts.main} element={<AllBlogPosts/>}/>
 
                                 {/* Common blog post */}
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
