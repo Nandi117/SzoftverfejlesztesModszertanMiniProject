@@ -10,7 +10,7 @@ import {setOwnPosts} from "../../../../store/ownPosts/ownPostsSlice.ts";
 
 
 
-export const OwnPostsHeader = () =>{
+export const AllPostsHeader = () =>{
 
 
     const navigate = useNavigate();
