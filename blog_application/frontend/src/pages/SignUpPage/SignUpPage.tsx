@@ -9,7 +9,16 @@ const SignUpPage = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-
+    const handleSignUp = () => {
+        if (!username || !email || !password || !confirmPassword) {
+            setError('Please fill in all fields');
+        } else if (password !== confirmPassword) {
+            setError('Passwords do not match');
+        } else {
+            setError('');
+            console.log('Signing up with', username, email, password);
+        }
+    };
 };
 
 export default SignUpPage;
