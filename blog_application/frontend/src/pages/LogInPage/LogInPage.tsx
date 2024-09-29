@@ -17,12 +17,13 @@ import {Link, useNavigate} from 'react-router-dom';
 import {getApi} from "../../config/api.ts";
 import {routes} from "../../config/routes.ts";
 
+
 const LogInPage = () => {
 
 
     const navigate = useNavigate();
 
-    const [cookies, setCookies] = coo
+
     const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -42,8 +43,10 @@ const LogInPage = () => {
 
         try{
             const response = await getApi().post("/auth/signin", JSON.stringify(loginData));
-            if (response.status === 200){
-
+            if (response.status === 201){
+                const data = response.data;
+                console.log(data)
+                setError("");
                 navigate(routes.ownPosts.main);
             }
         }
