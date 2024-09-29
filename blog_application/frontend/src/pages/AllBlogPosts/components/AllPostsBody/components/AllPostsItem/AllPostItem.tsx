@@ -23,7 +23,7 @@ import {
 import { DeleteIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useAllPostItem } from "./hooks/useAllPostItem.ts";
+import { useAllPostItem } from "./hooks/useAllPostItem";
 import parse from 'html-react-parser';
 import { AllPostsType } from "../../../../@types/allPosts.type.ts";
 import { CommentsModal } from "./CommentsModal.tsx";
