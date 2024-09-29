@@ -16,14 +16,15 @@ const BlogPostSchema = new Schema(
     Object.assign({}, BaseEntity, {
         title:{
             type:String,
-            require:true
-        },
-        author:{
-          type:String,
-          require:true
+            required:true
         },
         content:{
             type:String,
+            required:false
+        },
+        image:{
+            type:String,
+            required:false
         }
     })
 );

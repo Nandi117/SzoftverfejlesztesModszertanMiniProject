@@ -9,13 +9,6 @@ export const useOwnPostItem = () =>{
     const [delInProgress, setDelInProgress] = useState<boolean>(false);
     const dispacth = useDispatch();
 
-
-    const viewPost = (id:string) => window.open(`posts/${id}`);
-
-    const updateOwnPost = useCallback(()=>{
-
-    },[]);
-
     const deleteOwnPost = useCallback(async (id:string) =>{
         setDelInProgress(true);
         try{
@@ -36,8 +29,6 @@ export const useOwnPostItem = () =>{
 
     return {
         deleteOwnPost,
-        updateOwnPost,
-        viewPost,
         delInProgress
     }
 }

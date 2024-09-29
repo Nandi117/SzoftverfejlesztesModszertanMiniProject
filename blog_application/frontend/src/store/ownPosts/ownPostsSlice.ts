@@ -31,6 +31,16 @@ const ownPostsSlice = createSlice({
             state.posts = [...filtered];
         },
 
+        updatePost(state, {payload}:PayloadAction<OwnPostType>){
+            state.posts = state.posts.map((post)=>{
+                if (post._id === payload._id){
+                    return {...payload}
+                }
+                return post;
+            });
+
+        }
+
     }
 });
 
@@ -38,7 +48,8 @@ const ownPostsSlice = createSlice({
 
 export const {
     setOwnPosts,
-    deletePost
+    deletePost,
+    updatePost
 } = ownPostsSlice.actions;
 export const ownPostsReducer = ownPostsSlice.reducer;
 

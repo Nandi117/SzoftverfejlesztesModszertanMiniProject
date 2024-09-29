@@ -1,13 +1,11 @@
-
 import {Box, Button, Flex, Heading, Input} from '@chakra-ui/react'
-import {PlusSquareIcon, SearchIcon} from "@chakra-ui/icons";
+import {PlusSquareIcon} from "@chakra-ui/icons";
 import {useNavigate} from "react-router-dom";
 import {routes} from "../../../../config/routes.ts";
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useRef} from "react";
 import {getApi} from "../../../../config/api.ts";
 import {useDispatch} from "react-redux";
 import {setOwnPosts} from "../../../../store/ownPosts/ownPostsSlice.ts";
-
 
 
 export const OwnPostsHeader = () =>{
