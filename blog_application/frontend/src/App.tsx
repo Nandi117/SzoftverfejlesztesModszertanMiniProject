@@ -21,7 +21,7 @@ function App() {
         <StoreProvider store={store}>
             <ChakraProvider>
                 <Router>
-                    <Suspense>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
                             <Route path={"/"} element={<Layout/>}>
                                 {/* Own blog posts */}
