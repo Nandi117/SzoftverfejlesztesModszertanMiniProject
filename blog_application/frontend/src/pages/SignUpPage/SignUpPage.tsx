@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, Alert, AlertIcon, Flex } from '@chakra-ui/react';
-import { LockIcon } from '@chakra-ui/icons';
+import {useState} from 'react';
+import {Alert, AlertIcon, Box, Button, Flex, FormControl, FormLabel, Heading, Input, VStack} from '@chakra-ui/react';
+import {LockIcon} from '@chakra-ui/icons';
+import {useNavigate} from "react-router-dom";
+import {routes} from "../../config/routes.ts";
 
 const SignUpPage = () => {
+
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -68,13 +73,7 @@ const SignUpPage = () => {
                     <Button leftIcon={<LockIcon />} colorScheme="teal" onClick={handleSignUp}>
                         Sign Up
                     </Button>
-
-                    <Text align="center">
-                        Already have an account?{' '}
-                        <Link to="/login" style={{ color: 'teal', textDecoration: 'underline' }}>
-                            Log in
-                        </Link>
-                    </Text>
+                    <Button variant={"ghost"} colorScheme={"purple"} onClick={()=>navigate(routes.login)}>Already have an account?</Button>
                 </VStack>
             </Box>
         </Flex>
