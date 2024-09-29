@@ -12,6 +12,7 @@ import {store} from "./store/store.ts";
 const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"));
 const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
 const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
+const LogInPage = lazy(()=>import("./pages/LogInPage/LogInPage.tsx"));
 function App() {
 
 
@@ -29,6 +30,9 @@ function App() {
                                 {/* Common blog post */}
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                             </Route>
+
+                                {/* Log in page */}
+                                <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}
                         </Routes>
                     </Suspense>
 
