@@ -7,17 +7,13 @@
 export const routes = {
 
 
-    allPosts:{
-      main: "/allPosts"
-    },
+    login:"/login",
+    signUp:"/signup",
+
+    allPosts: "/",
     ownPosts:{
         main:"/ownPosts",
         new:"/ownPosts/new"
     },
-    posts: "posts"
-
-
-
-
-
+    posts: "posts",
 }

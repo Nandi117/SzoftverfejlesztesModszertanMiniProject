@@ -6,6 +6,7 @@ import {db} from "./config/db.config";
 import bodyParser from "body-parser";
 import cors from "cors";
 import authRoutes from './controllers/authController';
+import requireAuth from "./middlewares/requireAuth";
 dotenv.config();
 
 const app = express();
@@ -19,7 +20,6 @@ db.init().catch((error)=>{
 
 /*CORS engedélyezése */
 app.use(cors())
-
 
 app.use(bodyParser.json());
 

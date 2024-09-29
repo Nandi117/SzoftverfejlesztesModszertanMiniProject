@@ -1,13 +1,9 @@
-
-import {Box, Button, Flex, Heading, Input} from '@chakra-ui/react'
-import {PlusSquareIcon, SearchIcon} from "@chakra-ui/icons";
+import {Box, Flex, Heading, Input} from '@chakra-ui/react'
 import {useNavigate} from "react-router-dom";
-import {routes} from "../../../../config/routes.ts";
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useRef} from "react";
 import {getApi} from "../../../../config/api.ts";
 import {useDispatch} from "react-redux";
 import {setOwnPosts} from "../../../../store/ownPosts/ownPostsSlice.ts";
-
 
 
 export const AllPostsHeader = () =>{
@@ -40,10 +36,9 @@ export const AllPostsHeader = () =>{
 
 
     return  <Box width={"50%"}>
-        <Heading as={"h4"} textAlign={"center"}>Own posts</Heading>
+        <Heading as={"h4"} textAlign={"center"}>All posts</Heading>
         <Flex mt={4} gap={2} width={"100%"} flexGrow={"1"}>
             <Input ref={searchInputRef} placeholder={"Search posts..."} onChange={onSearchExpValueChange}/>
-            <Button leftIcon={<PlusSquareIcon/>} colorScheme={"teal"} onClick={()=>navigate(routes.ownPosts.new)}>New post</Button>
         </Flex>
     </Box>
 

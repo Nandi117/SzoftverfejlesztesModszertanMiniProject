@@ -1,15 +1,4 @@
-import {
-    Alert,
-    AlertDescription,
-    AlertIcon,
-    AlertTitle,
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input
-} from "@chakra-ui/react";
+import {Button, Flex, FormControl, FormLabel, Heading, Input} from "@chakra-ui/react";
 import ReactQuill from "react-quill";
 import {CheckIcon} from "@chakra-ui/icons";
 import {useNewBlogPost} from "./hooks/useNewBlogPost.ts";
@@ -23,7 +12,7 @@ const NewBlogPost = () => {
         loading,
         titleRef,
         quillEditorRef,
-        error
+        fileUploaderRef
     } = useNewBlogPost();
 
     return <>
@@ -31,6 +20,8 @@ const NewBlogPost = () => {
 
             <Heading as={"h5"}>New Post</Heading>
             <FormControl>
+                <FormLabel>Cover image</FormLabel>
+                <Input type={"file"} ref={fileUploaderRef}/>
                 <FormLabel>Title</FormLabel>
                 <Input type='text' ref={titleRef}/>
             </FormControl>

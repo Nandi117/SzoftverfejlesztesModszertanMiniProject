@@ -14,7 +14,7 @@ export const menuItems:MenuItemType[] = [
     {
         id:1,
         displayText:"All posts",
-        route:routes.allPosts.main
+        route:routes.allPosts
     },
 
     {

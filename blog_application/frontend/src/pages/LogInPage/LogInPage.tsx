@@ -1,21 +1,62 @@
-import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, Alert, AlertIcon, Flex, Text } from '@chakra-ui/react';
-import { UnlockIcon } from '@chakra-ui/icons';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import {
+    Alert,
+    AlertIcon,
+    Box,
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    Heading,
+    Input,
+    Text,
+    VStack
+} from '@chakra-ui/react';
+import {UnlockIcon} from '@chakra-ui/icons';
+import {Link, useNavigate} from 'react-router-dom';
+import {getApi} from "../../config/api.ts";
+import {routes} from "../../config/routes.ts";
 
 const LogInPage = () => {
+
+
+    const navigate = useNavigate();
+
+    const [cookies, setCookies] = coo
+    const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
+
         if (!email || !password) {
             setError('Please fill in both fields');
-        } else {
-            setError('');
-            console.log('Logging in with', email, password);
+            return;
         }
-    };
+        setLoginInProgress(true)
+        const loginData = {
+            email:email,
+            password:password
+        }
+
+        try{
+            const response = await getApi().post("/auth/signin", JSON.stringify(loginData));
+            if (response.status === 200){
+
+                navigate(routes.ownPosts.main);
+            }
+        }
+        catch (e){
+            setError("Invalid email or password!")
+        }
+        finally {
+            setLoginInProgress(false)
+        }
+
+
+
+    }
 
     return (
         <Flex height={"100vh"} alignItems={"center"} justifyContent={"center"}>
@@ -46,7 +87,7 @@ const LogInPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </FormControl>
-                    <Button leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
+                    <Button isLoading={loginInProgress} leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
                         Log In
                     </Button>
 

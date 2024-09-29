@@ -62,6 +62,7 @@ router.post("/", async (req, res)=>{
 router.put("/", async (req, res)=>{
    try{
         const data = req.body;
+        logger.debug(`Update blog post in the API layer. ModifiedData=${JSON.stringify(data)}`);
         const updatedBlog = await blogService.put(data);
         Ok(res, updatedBlog);
    }

@@ -20,6 +20,10 @@ export const Navbar = () => {
         navigate("/login");
     }
 
+    const handleSignUpClick = () => {
+        navigate("/signup");
+    }
+
 
     return <Flex p={"4"}>
         <Box>
@@ -29,7 +33,7 @@ export const Navbar = () => {
         <Flex gap={2} width={"300px"}>
             <IconButton aria-label={"Theme change button"} icon={colorMode === "light" ? <SunIcon/> : <MoonIcon/>} variant={"ghost"} onClick={toggleColorMode}/>
             <Button leftIcon={<UnlockIcon/>} colorScheme={"teal"} onClick={handleSignInClick}>Sign In</Button>
-            <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} variant='outline'>Sign Up</Button>
+            <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} onClick={handleSignUpClick()} variant='outline'>Sign Up</Button>
             <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov'/>
         </Flex>
 

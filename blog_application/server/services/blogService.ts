@@ -47,7 +47,7 @@ export const blogService = {
     post: async (newPostData:any) =>{
         logger.debug(`Create post in the BLL layer: newPost=${JSON.stringify(newPostData)}`);
 
-        const newPost = new BlogPost({...newPostData});
+        const newPost = new BlogPost({...newPostData, creatorUserId:"66f829769ad9b61ef387493c"});
         const savedPost = await newPost.save();
         return savedPost;
     },
@@ -58,10 +58,10 @@ export const blogService = {
      * @return Módosított blogbejegyzés entitás
      */
     put: async (updatePostData:any)=>{
-        logger.debug(`Update post in the BLL layer: id=${updatePostData.id}`);
+        logger.debug(`Update post in the BLL layer: id=${updatePostData._id}`);
 
         const updatedPost = await BlogPost.findByIdAndUpdate(
-            updatePostData.id,
+            updatePostData._id,
             ...updatePostData,
             { new:true }
         );
