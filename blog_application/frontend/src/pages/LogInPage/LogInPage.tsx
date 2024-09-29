@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, Alert, AlertIcon } from '@chakra-ui/react';
+import { UnlockIcon } from '@chakra-ui/icons';
 
 const LogInPage = () => {
     const [email, setEmail] = useState('');
@@ -7,12 +8,10 @@ const LogInPage = () => {
     const [error, setError] = useState('');
 
     const handleLogin = () => {
-        // Add your authentication logic here
         if (!email || !password) {
             setError('Please fill in both fields');
         } else {
             setError('');
-            // Proceed with login logic
             console.log('Logging in with', email, password);
         }
     };
@@ -45,7 +44,7 @@ const LogInPage = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </FormControl>
-                <Button colorScheme="teal" onClick={handleLogin}>
+                <Button leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
                     Log In
                 </Button>
             </VStack>
