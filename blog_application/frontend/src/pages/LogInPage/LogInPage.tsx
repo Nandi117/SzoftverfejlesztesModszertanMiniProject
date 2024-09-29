@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, Alert, AlertIcon, Flex } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, Alert, AlertIcon, Flex, Text } from '@chakra-ui/react';
 import { UnlockIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
 const LogInPage = () => {
     const [email, setEmail] = useState('');
@@ -48,6 +49,13 @@ const LogInPage = () => {
                     <Button leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
                         Log In
                     </Button>
+
+                    <Text align="center">
+                        Don't have an account?{' '}
+                        <Link to="/signup" style={{ color: 'teal', textDecoration: 'underline' }}>
+                            Sign Up
+                        </Link>
+                    </Text>
                 </VStack>
             </Box>
         </Flex>
