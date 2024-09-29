@@ -1,12 +1,11 @@
-import {OwnPostsWrapper} from "./components/OwnPostsWrapper/OwnPostsWrapper.tsx";
+import { AllPostsWrapper } from "./components/AllPostsWrapper/AllPostsWrapper.tsx";
 
-const OwnBlogPosts = () => {
+const AllBlogPosts = () => {
+    return (
+        <>
+            <AllPostsWrapper />
+        </>
+    );
+};
 
-
-    return <>
-        <OwnPostsWrapper/>
-    </>
-}
-
-
-export default OwnBlogPosts;
+export default AllBlogPosts;
