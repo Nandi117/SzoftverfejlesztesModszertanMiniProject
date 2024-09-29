@@ -37,6 +37,9 @@ function App() {
 
                                 {/* Log in page */}
                                 <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}
+
+                                {/* Sign in page */}
+                            <Route path="/signup" element={<SignUpPage/>}/>  {/*signup route*/}
                         </Routes>
                     </Suspense>
 
