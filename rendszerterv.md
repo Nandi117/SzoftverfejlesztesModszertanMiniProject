@@ -1,22 +1,24 @@
 # Adatbázis Terv
+
 ## 1. Áttekintés
-A blog webalkalmazás lehetővé teszi a felhasználók számára blogbejegyzések létrehozását, olvasását, frissítését és törlését, valamint kommentek hozzáadását az egyes bejegyzésekhez.
+A blog webalkalmazás lehetővé teszi a felhasználók számára, hogy blogbejegyzéseket hozzanak létre, olvassanak, frissítsenek és töröljenek, valamint kommenteket fűzzenek az egyes bejegyzésekhez.
+
 ## 2. Adatbázis típus
-A projekthez relációs adatbázist (pl. MySQL, PostgreSQL) használunk, mivel ez jól alkalmazható strukturált adatok kezelésére, meghatározott kapcsolatokkal. Alternatívaként egy NoSQL adatbázis (pl. MongoDB) is fontolóra vehető, ha az alkalmazásnak skálázódnia kell
-## 3. Entitások és Táblák
+MongoDB NoSQL adatbázist használunk, amely az adatokat kollekciókban és dokumentumokban tárolja.
 
-### 3.1 Users
+## 3. Entitások és Kollekciók
 
-A `Users` tábla az összes regisztrált felhasználót fogja tárolni, beleértve a profiljukhoz tartozó adatokat.
+### 3.1 Users kollekció
+A `Users` kollekció az összes regisztrált felhasználó adatait tárolja, beleértve a profiljukhoz kapcsolódó információkat.
 
 #### Mezők:
-- `user_id` (Elsődleges kulcs)
-- `username` (Egyedi)
-- `email` (Egyedi)
-- `password_hash`
-- `bio`
-- `profile_picture_url`
-- `created_at` (Dátum)
+- `_id`: Automatikusan generált egyedi azonosító (MongoDB elsődleges kulcs)
+- `username`: Egyedi felhasználónév
+- `email`: Egyedi email cím
+- `password_hash`: Jelszó hash
+- `bio`: Rövid bemutatkozó szöveg
+- `profile_picture_url`: Profilkép URL
+- `created_at`: Létrehozás dátuma
 
 #### Kapcsolatok:
 - Egy felhasználó több blogbejegyzést hozhat létre.
@@ -24,44 +26,41 @@ A `Users` tábla az összes regisztrált felhasználót fogja tárolni, beleért
 - Egy felhasználó több bejegyzéshez is hozzászólhat.
 - Egy felhasználó követhet más felhasználókat (önhivatkozó kapcsolat).
 
-### 3.2 BlogPosts
-
-A `BlogPosts` tábla a felhasználók által létrehozott blogbejegyzések részleteit tárolja.
+### 3.2 BlogPosts kollekció
+A `BlogPosts` kollekció a felhasználók által létrehozott blogbejegyzések részleteit tárolja.
 
 #### Mezők:
-- `post_id` (Elsődleges kulcs)
-- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
-- `title`
-- `content`
-- `image_url`
-- `created_at` (Dátum)
-- `updated_at` (Dátum)
+- `_id`: Automatikusan generált egyedi azonosító
+- `user_id`: Hivatkozás a felhasználóra (a `Users` kollekció `_id` mezőjére)
+- `title`: Bejegyzés címe
+- `content`: Bejegyzés tartalma
+- `image_url`: Bejegyzéshez kapcsolódó kép URL
+- `created_at`: Létrehozás dátuma
+- `updated_at`: Módosítás dátuma
 
 #### Kapcsolatok:
 - Egy bejegyzéshez több komment is tartozhat.
 - Egy bejegyzést több felhasználó is kedvelhet.
 
-### 3.3 Comments
-
-A `Comments` tábla a blogbejegyzésekhez fűzött felhasználói kommenteket tárolja.
+### 3.3 Comments kollekció
+A `Comments` kollekció a blogbejegyzésekhez fűzött felhasználói kommenteket tárolja.
 
 #### Mezők:
-- `comment_id` (Elsődleges kulcs)
-- `post_id` (Külső kulcs hivatkozva a `BlogPosts` táblára)
-- `user_id` (Külső kulcs hivatkozva a `Users` táblára)
-- `content`
-- `created_at` (Dátum)
+- `_id`: Automatikusan generált egyedi azonosító
+- `post_id`: Hivatkozás a blogbejegyzésre (a `BlogPosts` kollekció `_id` mezőjére)
+- `user_id`: Hivatkozás a felhasználóra (a `Users` kollekció `_id` mezőjére)
+- `content`: Komment tartalma
+- `created_at`: Létrehozás dátuma
 
 #### Kapcsolatok:
 - Egy komment egy blogbejegyzéshez kapcsolódik.
 - Egy komment egy felhasználóhoz kapcsolódik.
 
+## 4. Kapcsolatok a Kollekciók Között
 
-## 4. Kapcsolatok a Táblák Között
+A MongoDB-ben a kapcsolatok nem külső kulcsokkal vannak meghatározva, hanem referenciák vagy beágyazott dokumentumok segítségével:
 
-A táblák közötti kapcsolatok külső kulcsokkal lesznek meghatározva:
-
-- **1-to-many** kapcsolat a `Users` és a `BlogPosts`, `Comments` táblák között.
+- **1-to-many** kapcsolat a `Users` és a `BlogPosts`, valamint a `Comments` kollekciók között.
 
 
 # Funkcionális Terv
