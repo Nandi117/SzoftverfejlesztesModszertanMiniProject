@@ -68,6 +68,13 @@ const SignUpPage = () => {
                     <Button leftIcon={<LockIcon />} colorScheme="teal" onClick={handleSignUp}>
                         Sign Up
                     </Button>
+
+                    <Text align="center">
+                        Already have an account?{' '}
+                        <Link to="/login" style={{ color: 'teal', textDecoration: 'underline' }}>
+                            Log in
+                        </Link>
+                    </Text>
                 </VStack>
             </Box>
         </Flex>
