@@ -9,6 +9,7 @@ import {store} from "./store/store.ts";
 
 
 /*Lazy imports for optimizing page performance */
+const AllBlogPosts = lazy(() => import("./pages/AllBlogPosts/AllBlogPosts.tsx"));
 const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"));
 const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
 const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
