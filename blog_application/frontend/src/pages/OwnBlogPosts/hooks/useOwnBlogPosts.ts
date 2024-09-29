@@ -1,38 +1,31 @@
 import {useCallback, useEffect, useState} from "react";
 import {getApi} from "../../../config/api.ts";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setOwnPosts} from "../../../store/ownPosts/ownPostsSlice.ts";
 
-
-export const useOwnBlogPosts = () =>{
-
-
+export const useOwnBlogPosts = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
-    const posts = useSelector(state=>state.ownPosts.posts);
+    const [allPosts, setAllPosts] = useState<any[]>([]);
 
-    const getOwnPosts = useCallback(async () =>{
-        try{
+    const getOwnPosts = useCallback(async () => {
+        try {
             const response = await getApi().get("blogs");
-            dispatch(setOwnPosts(response.data))
-        }
-        catch (e){
-
-        }
-        finally {
+            setAllPosts(response.data); 
+            dispatch(setOwnPosts(response.data)); 
+        } catch (e) {
+            console.error(e);
+        } finally {
             setLoading(false);
         }
-    },[]);
+    }, [dispatch]);
 
-
-    useEffect(()=>{
+    useEffect(() => {
         getOwnPosts();
-    },[]);
-
+    }, [getOwnPosts]);
 
     return {
-        posts,
+        posts: allPosts, 
         loading,
-    }
-
-}
+    };
+};
