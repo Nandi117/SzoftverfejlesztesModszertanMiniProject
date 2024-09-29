@@ -9,9 +9,12 @@ import {store} from "./store/store.ts";
 
 
 /*Lazy imports for optimizing page performance */
+const AllBlogPosts = lazy(() => import("./pages/AllBlogPosts/AllBlogPosts.tsx"));
 const OwnBlogPosts = lazy(() => import("./pages/OwnBlogPosts/OwnBlogPosts.tsx"));
 const NewBlogPost = lazy(()=>import("./pages/OwnBlogPosts/pages/NewBlogPost/NewBlogPost.tsx"));
 const BlogPost = lazy(()=>import("./pages/BlogPost/BlogPost.tsx"));
+const LogInPage = lazy(()=>import("./pages/LogInPage/LogInPage.tsx"));
+const SignUpPage = lazy(()=>import("./pages/SignUpPage/SignUpPage"));
 function App() {
 
 
@@ -19,16 +22,25 @@ function App() {
         <StoreProvider store={store}>
             <ChakraProvider>
                 <Router>
-                    <Suspense>
+                    <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
                             <Route path={"/"} element={<Layout/>}>
                                 {/* Own blog posts */}
                                 <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
                                 <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
 
+                                {/* All blog posts */}
+                                <Route path={routes.allPosts.main} element={<AllBlogPosts/>}/>
+
                                 {/* Common blog post */}
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                             </Route>
+
+                                {/* Log in page */}
+                                <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}
+
+                                {/* Sign in page */}
+                            <Route path="/signup" element={<SignUpPage/>}/>  {/*signup route*/}
                         </Routes>
                     </Suspense>
 

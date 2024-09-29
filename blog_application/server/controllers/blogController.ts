@@ -49,6 +49,7 @@ router.get("/:id", async (req, res)=>{
 router.post("/", async (req, res)=>{
     try{
         const data = req.body;
+        console.log(data);
         const newBlog = await blogService.post(data);
         Ok(res, JSON.stringify(newBlog));
     }

@@ -8,7 +8,7 @@ export const routes = {
 
 
     allPosts:{
-      main:"/"
+      main: "/allPosts"
     },
     ownPosts:{
         main:"/ownPosts",
