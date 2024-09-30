@@ -125,6 +125,23 @@ export const blogService = {
         logger.debug(`Hit post list count. ${posts.length} elements`);
 
         return posts;
+    },
+
+
+    searchByUser: async (searchExpression:any, user:IUser) =>{
+        logger.debug(`Search posts in the BLL layer by user. SearchExpression=${searchExpression}, UserId=${user._id}`);
+
+        if (searchExpression === null) throw new Error("Search expression is null!");
+
+        const posts = await BlogPost.find({
+            title: {$regex: new RegExp(searchExpression)},
+            isActive:true,
+            creatorUserId:user._id
+        });
+
+        logger.debug(`Hit post list count. ${posts.length} elements`);
+
+        return posts;
     }
 
 }

@@ -8,12 +8,26 @@ const router = Router();
 
 
 
-router.get("/search", authMiddleware, async (req, res)=>{
+router.get("/search", async (req, res)=>{
     try{
         const searchExpression = req.query.searchExpression;
         logger.info(`Search posts in the API layer. searchExpression=${searchExpression}`);
 
         const posts = await blogService.search(searchExpression);
+        Ok(res, posts);
+    }
+    catch (error){
+        badRequest(res, error);
+    }
+});
+
+router.get("/own/search", authMiddleware, async (req:AuthenticatedRequest, res)=>{
+    try{
+        const searchExpression = req.query.searchExpression;
+        const {user} = req;
+        logger.info(`Search posts by user in the API layer. searchExpression=${searchExpression}`);
+
+        const posts = await blogService.searchByUser(searchExpression, user!);
         Ok(res, posts);
     }
     catch (error){

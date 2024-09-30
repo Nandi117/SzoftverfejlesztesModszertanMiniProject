@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useCallback, useRef} from "react";
 import {getApi} from "../../../../config/api.ts";
 import {useDispatch} from "react-redux";
-import {setOwnPosts} from "../../../../store/ownPosts/ownPostsSlice.ts";
+import {setAllPosts} from "../../../../store/allPosts/allPostsSlice.ts";
 
 
 export const AllPostsHeader = () =>{
@@ -20,7 +20,7 @@ export const AllPostsHeader = () =>{
 
         try{
             const response = await getApi().get(`blogs/search?searchExpression=${searchExpression}`);
-            dispatch(setOwnPosts(response.data));
+            dispatch(setAllPosts(response.data));
         }
         catch (e){
 
