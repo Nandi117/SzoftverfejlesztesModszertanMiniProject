@@ -23,8 +23,6 @@ function App() {
 
     const {token} = useAuth();
 
-    console.log(!!token)
-
     return (
         <StoreProvider store={store}>
             <ChakraProvider>
@@ -37,16 +35,16 @@ function App() {
                                 <Route element={<PrivateRoutes/>}>
                                     <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
                                     <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
-
                                 </Route>
-
+                                {/* All blog posts */}
+                                <Route path={routes.allPosts} element={<AllBlogPosts/>}/>
+                                {/* Common blog post */}
+                                <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                             </Route>
 
-                            {/* All blog posts */}
-                            <Route path={routes.allPosts} element={<AllBlogPosts/>}/>
 
-                            {/* Common blog post */}
-                            <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
+
+
 
                             {/* Log in page */}
                             <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}

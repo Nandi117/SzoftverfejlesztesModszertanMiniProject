@@ -51,7 +51,7 @@ export const CommentsModal = memo(({postId}: CommentsModalProps) => {
     const handleCommentSubmit = async () => {
         const newCommentData = {
             postId,
-            comment: newComment,
+            content: newComment,
         };
 
         try {
@@ -83,7 +83,7 @@ export const CommentsModal = memo(({postId}: CommentsModalProps) => {
                     {
                         error.isError === true ? error.errorMessage :
                             comments?.map((comment) => {
-                                return <Comment key={comment._id} data={comment} setComments={setComments}/>
+                                return <Comment readOnly={true} key={comment._id} data={comment} setComments={setComments}/>
                             })
                     }
                     <Textarea

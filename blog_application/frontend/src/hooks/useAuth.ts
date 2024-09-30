@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {useCookies} from "react-cookie";
-import axios from "axios";
+
+import {apiInstance, getApi} from "../config/api.ts";
 
 
 export const useAuth = () =>{
@@ -9,12 +10,9 @@ export const useAuth = () =>{
     const token = cookies.AUTH_TOKEN;
 
     useEffect(()=>{
-        console.log("lefutok")
-        if (!cookies.AUTH_TOKEN){
-            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-        }
-        else{
-            delete axios.defaults.headers.common["Authorization"];
+        console.log(token);
+        if (cookies.AUTH_TOKEN){
+            apiInstance.defaults.headers["Authorization"] = "Bearer " + token;
         }
 
     },[cookies])

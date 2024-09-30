@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
 import {OwnPostType} from "../../../../@types/ownPost.type.ts";
 import {CommentsModal} from "./CommentsModal.tsx";
 import {EditModal} from "./EditModal.tsx";
+import {postBackgroundImages} from "../../../../../../config/postBackgroundImages.ts";
 
 type OwnPostItemProps = {
     data: OwnPostType,
@@ -19,12 +20,14 @@ export const OwnPostItem = memo(({data}: OwnPostItemProps) => {
         deleteOwnPost,
     } = useOwnPostItem();
 
+    const random = Math.floor(Math.random() * 4);
+
     return <div>
         <Card height={300}>
             <CardHeader
                 height={100}
                 borderTopRadius={5}
-                backgroundImage={data.image || "https://blogs.windows.com/wp-content/uploads/prod/sites/2/2021/10/Windows-11-Bloom-Screensaver-Dark-scaled.jpg"}
+                backgroundImage={postBackgroundImages[random]}
                 objectFit={"cover"}
                 backgroundPosition={"center"}
             >

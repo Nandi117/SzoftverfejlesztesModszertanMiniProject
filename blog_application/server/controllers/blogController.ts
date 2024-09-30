@@ -2,12 +2,13 @@ import {Router} from "express";
 import {badRequest, Ok} from "../helpers/response.helper";
 import {blogService} from "../services/blogService";
 import {logger} from "../config/logger";
+import authMiddleware, {AuthenticatedRequest} from "../middlewares/requireAuth";
 
 const router = Router();
 
 
 
-router.get("/search", async (req, res)=>{
+router.get("/search", authMiddleware, async (req, res)=>{
     try{
         const searchExpression = req.query.searchExpression;
         logger.info(`Search posts in the API layer. searchExpression=${searchExpression}`);
@@ -20,8 +21,6 @@ router.get("/search", async (req, res)=>{
     }
 });
 
-
-
 router.get("/", async (req, res)=>{
     try{
         const blogs = await blogService.findActives()
@@ -33,7 +32,22 @@ router.get("/", async (req, res)=>{
 });
 
 
-router.get("/:id", async (req, res)=>{
+
+router.get("/own", authMiddleware, async (req:AuthenticatedRequest, res)=>{
+    try{
+        const {user} = req;
+        const blogs = await blogService.findActivesByUser(user!);
+        Ok(res, blogs);
+    }
+    catch (error){
+        badRequest(res, error);
+    }
+});
+
+
+
+
+router.get("/:id", authMiddleware,  async (req, res)=>{
     try{
 
         const id = req.params.id;
@@ -46,11 +60,11 @@ router.get("/:id", async (req, res)=>{
     }
 })
 
-router.post("/", async (req, res)=>{
+router.post("/", authMiddleware, async (req:AuthenticatedRequest, res)=>{
     try{
         const data = req.body;
-        console.log(data);
-        const newBlog = await blogService.post(data);
+        const {user} = req;
+        const newBlog = await blogService.post(data, user!);
         Ok(res, JSON.stringify(newBlog));
     }
     catch (error){
@@ -59,7 +73,7 @@ router.post("/", async (req, res)=>{
 });
 
 
-router.put("/", async (req, res)=>{
+router.put("/", authMiddleware, async (req, res)=>{
    try{
         const data = req.body;
         logger.debug(`Update blog post in the API layer. ModifiedData=${JSON.stringify(data)}`);
@@ -72,7 +86,7 @@ router.put("/", async (req, res)=>{
 });
 
 
-router.delete("/:id", async (req, res)=>{
+router.delete("/:id", authMiddleware, async (req, res)=>{
     try{
         const id = req.params.id;
         const deletedId = await blogService.delete(id);

@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import User, { IUser } from '../models/user'; 
 
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user?: IUser; // Extend the Request interface to include 'auth'
 }
 
@@ -25,7 +25,7 @@ const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunc
     try {
       const user = await User.findById(userId);
       if (!user) {
-        return res.status(404).send({ error: 'User not found.' });
+        return res.status(401).send({ error: 'User not found.' });
       }
 
       req.user = user; // Assign the auth to the request object

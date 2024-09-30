@@ -19,6 +19,7 @@ import {routes} from "../../config/routes.ts";
 import { use } from 'framer-motion/client';
 import {useDispatch} from "react-redux";
 import {setUser} from "../../store/auth/auth.slice.ts";
+import axios from "axios";
 
 
 const LogInPage = () => {
@@ -26,6 +27,7 @@ const LogInPage = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
 
     const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
     const [email, setEmail] = useState('');
@@ -50,8 +52,9 @@ const LogInPage = () => {
                 const data = response.data;
                 dispatch(setUser(data));
                 setError("");
-                navigate(routes.ownPosts.main);
-
+                setTimeout(()=>{
+                    navigate(routes.ownPosts.main);
+                }, 100);
             }
         }
         catch (e){

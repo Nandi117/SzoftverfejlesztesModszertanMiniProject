@@ -2,10 +2,14 @@ import {Router} from "express";
 import {badRequest, Ok} from "../helpers/response.helper";
 import {logger} from "../config/logger";
 import {commentService} from "../services/commentService";
+import authMiddleware, {AuthenticatedRequest} from "../middlewares/requireAuth";
 
 const router = Router();
 
-router.get("/:postId", async (req, res)=>{
+/**
+ * Kommentek lekérdezése poszt egyedi azonosítója alapján
+ */
+router.get("/:postId", authMiddleware, async (req:AuthenticatedRequest, res)=>{
     try{
         const postId = req.params.postId
         logger.debug(`Find all comments in the API layer by post unique identifier. postId=${postId}`);
@@ -13,18 +17,19 @@ router.get("/:postId", async (req, res)=>{
         Ok(res, comments);
     }
     catch (error){
-
+        badRequest(res, error);
     }
 });
 
 /**
  * Komment hozzadaása egy meglévő blogbejegyzéshez
  */
-router.post("/", async (req, res)=>{
+router.post("/", authMiddleware, async (req:AuthenticatedRequest, res)=>{
     try{
         const newCommentData = req.body;
+        const {user} = req;
         logger.debug(`Create new comment in the API layer. ${JSON.stringify(newCommentData)}`);
-        const newComment = await commentService.post(newCommentData);
+        const newComment = await commentService.post(newCommentData, user!);
         Ok(res, JSON.stringify(newComment));
     }
     catch (error){
@@ -35,7 +40,7 @@ router.post("/", async (req, res)=>{
 /**
  * Komment törlése egyedi azonosító alapján
  */
-router.delete("/:id", async (req, res)=>{
+router.delete("/:id", authMiddleware, async (req, res)=>{
     try{
         const id = req.params.id;
         logger.info(`Delete comment in the API layer by unique identifier. id=${id}`);

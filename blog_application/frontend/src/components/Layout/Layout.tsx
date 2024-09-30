@@ -32,8 +32,6 @@ export const Layout = () => {
             placement={"left"}
             onClose={handleClose}
         >
-
-            {opened ? <DrawerOverlay  /> : null}
             <DrawerContent>
                 <DrawerCloseButton />
                 <DrawerHeader></DrawerHeader>

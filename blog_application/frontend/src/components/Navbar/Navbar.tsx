@@ -9,6 +9,7 @@ export const Navbar = () => {
 
     const dispatch = useDispatch();
     const user = useSelector((state: any) => state.auth.user);
+    console.log(user)
 
     const {toggleColorMode, colorMode} = useColorMode()
     const navigate = useNavigate();

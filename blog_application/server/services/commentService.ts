@@ -1,6 +1,7 @@
 import {logger} from "../config/logger";
 import Comment from "../models/comment";
 import {Error} from "mongoose";
+import {IUser} from "../models/user";
 
 /**
  * Kommentek üzleti logika (BLL)
@@ -22,7 +23,10 @@ export const commentService = {
         const comments = await Comment.find({
             postId:postId,
             isActive:true
-        }).populate("creatorUserId");
+        }).populate({
+            path:"creatorUserId",
+            select:"_id username"
+        });
         logger.debug(`Comment list contains ${comments.length} elements.`);
         return comments;
 
@@ -33,9 +37,10 @@ export const commentService = {
      * @param newCommentData Új komment adatai
      * @return Új komment dokumentum
      */
-    post:async (newCommentData:any)=>{
+    post:async (newCommentData:any, user:IUser)=>{
         logger.debug(`Create new comment in the API layer. ${JSON.stringify(newCommentData)}`);
-        const up = {...newCommentData, creatorUserId: "66f829769ad9b61ef387493c"};
+
+        const up = {...newCommentData, userId:user._id, creatorUserId: user._id};
         const newComment = new Comment({...up});
         const savedComment = await newComment.save();
         return savedComment;

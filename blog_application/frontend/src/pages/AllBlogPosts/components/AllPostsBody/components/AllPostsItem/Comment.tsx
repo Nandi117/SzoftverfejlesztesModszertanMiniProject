@@ -7,10 +7,11 @@ import {getApi} from "../../../../../../config/api.ts";
 
 type CommentProps = {
     data: CommentType,
-    setComments: any
+    setComments: any,
+    readOnly:boolean
 }
 
-export const Comment = memo(({data, setComments}: CommentProps) => {
+export const Comment = memo(({data, setComments, readOnly}: CommentProps) => {
 
 
     const deleteComment = useCallback(async () => {
@@ -35,13 +36,15 @@ export const Comment = memo(({data, setComments}: CommentProps) => {
             <Text ml={10} fontWeight={300}>{data.content}</Text>
         </Flex>
 
+        {
+            readOnly ? null : <IconButton
+                aria-label={"Comment delete button"}
+                icon={<DeleteIcon/>}
+                variant={"ghost"}
+                colorScheme={"red"}
+                onClick={deleteComment}/>
+        }
 
-        <IconButton
-            aria-label={"Comment delete button"}
-            icon={<DeleteIcon/>}
-            variant={"ghost"}
-            colorScheme={"red"}
-            onClick={deleteComment}/>
     </Flex>
 
 
