@@ -33,7 +33,7 @@ const BlogPost = () => {
 
 
     return <>
-        <Flex flexDirection={"column"} alignItems={"center"}>
+        <Flex flexDirection={"column"} alignItems={"center"} mt={10}>
             <Box width={"50%"}>
                 <Heading as={"h5"}>{post?.title}</Heading>
                 <Box mt={5}>

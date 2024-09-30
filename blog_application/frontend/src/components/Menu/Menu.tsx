@@ -1,7 +1,7 @@
 import {Box, Button, Flex, Spacer} from "@chakra-ui/react";
 import {menuItems} from "../../config/menu.ts";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {closeDrawer} from "../../store/drawer/drawer.slice.ts";
 
 

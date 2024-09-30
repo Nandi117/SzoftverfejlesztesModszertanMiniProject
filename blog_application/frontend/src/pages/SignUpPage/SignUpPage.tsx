@@ -4,10 +4,13 @@ import {LockIcon} from '@chakra-ui/icons';
 import {useNavigate} from "react-router-dom";
 import {routes} from "../../config/routes.ts";
 import {getApi} from "../../config/api.ts";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../store/auth/auth.slice.ts";
 
 const SignUpPage = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [signupInProgress, setSignupInProgress] = useState<boolean>(false);
     const [username, setUsername] = useState('');
@@ -35,7 +38,10 @@ const SignUpPage = () => {
 
         try{
             const response = await getApi().post("auth/signup", JSON.stringify(signupData));
-            if (response.status === 201) navigate(routes.ownPosts.main);
+            if (response.status === 201){
+                dispatch(setUser(response.data));
+                navigate(routes.ownPosts.main);
+            }
         }
         catch (e){
             setError("Sign up is failed! Try again!");

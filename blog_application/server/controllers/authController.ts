@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
             sameSite: 'lax'
         });
 
-        res.status(201).send({ message:"Sign up was successfull"});
+        res.status(201).send({username:user.username, email:user.email});
     } catch (err) {
         // Cast `err` to `any` to access `code`
         console.error(err); // Log the error for debugging
@@ -65,9 +65,10 @@ router.post('/signin', async (req, res) => {
         res.cookie("AUTH_TOKEN", token, {
             httpOnly: false,
             maxAge: 60 * 60 * 1000,
-            sameSite: 'lax'
+            sameSite: 'lax',
         });
-        res.status(201).send({ message:"Sign in was successfull!"});
+
+        res.status(201).send({username:user.username, email:user.email});
     } catch (err) {
         logger.debug(`Error occured: ${err}`)
         return res.status(422).send({ error: 'Invalid email or password' });

@@ -6,6 +6,8 @@ import {ChakraProvider} from "@chakra-ui/react";
 import {routes} from "./config/routes.ts";
 import {Layout} from "./components/Layout/Layout.tsx";
 import {store} from "./store/store.ts";
+import {PrivateRoutes} from "./components/PrivateRoutes/PrivateRoutes.tsx";
+import {useAuth} from "./hooks/useAuth.ts";
 
 
 /*Lazy imports for optimizing page performance */
@@ -19,24 +21,32 @@ const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage.tsx"));
 function App() {
 
 
+    const {token} = useAuth();
+
+    console.log(!!token)
+
     return (
         <StoreProvider store={store}>
             <ChakraProvider>
                 <Router>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
+
                             <Route path={"/"} element={<Layout/>}>
                                 {/* Own blog posts */}
-                                <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
-                                <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
+                                <Route element={<PrivateRoutes/>}>
+                                    <Route path={routes.ownPosts.main} element={<OwnBlogPosts/>}/>
+                                    <Route path={routes.ownPosts.new} element={<NewBlogPost/>}/>
 
-                                {/* All blog posts */}
-                                <Route path={routes.allPosts} element={<AllBlogPosts/>}/>
-
-                                {/* Common blog post */}
-                                <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
+                                </Route>
 
                             </Route>
+
+                            {/* All blog posts */}
+                            <Route path={routes.allPosts} element={<AllBlogPosts/>}/>
+
+                            {/* Common blog post */}
+                            <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
 
                             {/* Log in page */}
                             <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}

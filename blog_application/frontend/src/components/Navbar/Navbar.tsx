@@ -1,13 +1,14 @@
-import {Avatar, Box, Button, Flex, IconButton, Spacer, useColorMode,} from "@chakra-ui/react";
+import {Box, Button, Flex, IconButton, Spacer, useColorMode,} from "@chakra-ui/react";
 import {ArrowForwardIcon, HamburgerIcon, MoonIcon, SunIcon, UnlockIcon} from '@chakra-ui/icons';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {toggleDrawer} from "../../store/drawer/drawer.slice.ts";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {UserInfoPanel} from "../UserInfoPanel/UserInfoPanel.tsx";
 
 export const Navbar = () => {
 
     const dispatch = useDispatch();
-
+    const user = useSelector((state: any) => state.auth.user);
 
     const {toggleColorMode, colorMode} = useColorMode()
     const navigate = useNavigate();
@@ -25,16 +26,31 @@ export const Navbar = () => {
     }
 
 
-    return <Flex p={"4"}>
-        <Box>
-            <IconButton aria-label={"Toggle menu"} icon={<HamburgerIcon/>} onClick={handleBurgerClick}/>
-        </Box>
+    return <Flex py={2} px={10}>
+
+        {
+            user ? <Box>
+                <IconButton aria-label={"Toggle menu"} icon={<HamburgerIcon/>} onClick={handleBurgerClick}/>
+            </Box> : null
+        }
+
         <Spacer/>
-        <Flex gap={2} width={"300px"}>
-            <IconButton aria-label={"Theme change button"} icon={colorMode === "light" ? <SunIcon/> : <MoonIcon/>} variant={"ghost"} onClick={toggleColorMode}/>
-            <Button leftIcon={<UnlockIcon/>} colorScheme={"teal"} onClick={handleSignInClick}>Sign In</Button>
-            <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} onClick={handleSignUpClick} variant='outline'>Sign Up</Button>
-            <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov'/>
+        <Flex gap={2} width={"300px"} justifyContent={"end"}>
+
+
+            <IconButton aria-label={"Theme change button"} icon={colorMode === "light" ? <MoonIcon/> : <SunIcon/>}
+                        variant={"ghost"} onClick={toggleColorMode}/>
+
+            {
+                user ? null :
+                    <Button leftIcon={<UnlockIcon/>} colorScheme={"teal"} onClick={handleSignInClick}>Sign In</Button>
+            }
+            {
+                user ? null : <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} onClick={handleSignUpClick}
+                                      variant='outline'>Sign Up</Button>
+            }
+
+            <UserInfoPanel/>
         </Flex>
 
     </Flex>

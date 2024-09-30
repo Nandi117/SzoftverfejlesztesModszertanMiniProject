@@ -16,13 +16,15 @@ import {UnlockIcon} from '@chakra-ui/icons';
 import {Link, useNavigate} from 'react-router-dom';
 import {getApi} from "../../config/api.ts";
 import {routes} from "../../config/routes.ts";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../store/auth/auth.slice.ts";
 
 
 const LogInPage = () => {
 
 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     const [loginInProgress, setLoginInProgress] = useState<boolean>(false);
     const [email, setEmail] = useState('');
@@ -45,9 +47,10 @@ const LogInPage = () => {
             const response = await getApi().post("/auth/signin", JSON.stringify(loginData));
             if (response.status === 201){
                 const data = response.data;
-                console.log(data)
+                dispatch(setUser(data));
                 setError("");
                 navigate(routes.ownPosts.main);
+
             }
         }
         catch (e){

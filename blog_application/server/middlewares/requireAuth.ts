@@ -3,7 +3,7 @@ import jwt, { VerifyErrors } from 'jsonwebtoken';
 import User, { IUser } from '../models/user'; 
 
 interface AuthenticatedRequest extends Request {
-  user?: IUser; // Extend the Request interface to include 'user'
+  user?: IUser; // Extend the Request interface to include 'auth'
 }
 
 const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
@@ -28,7 +28,7 @@ const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunc
         return res.status(404).send({ error: 'User not found.' });
       }
 
-      req.user = user; // Assign the user to the request object
+      req.user = user; // Assign the auth to the request object
       next(); // Call next to continue to the next middleware or route handler
     } catch (error) {
       return res.status(500).send({ error: 'Internal server error.' });

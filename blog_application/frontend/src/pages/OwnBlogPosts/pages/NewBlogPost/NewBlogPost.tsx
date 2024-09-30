@@ -20,9 +20,9 @@ const NewBlogPost = () => {
 
             <Heading as={"h5"}>New Post</Heading>
             <FormControl>
-                <FormLabel>Cover image</FormLabel>
+                {/*<FormLabel>Cover image</FormLabel>
                 <Input type={"file"} ref={fileUploaderRef}/>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Title</FormLabel>*/}
                 <Input type='text' ref={titleRef}/>
             </FormControl>
 

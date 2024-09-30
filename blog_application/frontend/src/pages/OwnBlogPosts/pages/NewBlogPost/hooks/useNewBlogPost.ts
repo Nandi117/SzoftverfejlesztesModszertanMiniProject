@@ -26,6 +26,19 @@ export const useNewBlogPost = () => {
             const contentValue = quillEditorRef.current?.value;
             const fileList = fileUploaderRef.current?.files;
 
+            const newBlogData = {
+                title:titleValue,
+                content:contentValue,
+                image:""
+            }
+
+            if (!fileList || fileList.length === 0){
+                const response = await getApi().post("blogs", JSON.stringify(newBlogData));
+                if (response.status === 200){
+                    navigate(routes.ownPosts.main);
+                }
+            }
+
 
 
             if (fileList) {
