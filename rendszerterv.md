@@ -62,6 +62,8 @@ A MongoDB-ben a kapcsolatok nem külső kulcsokkal vannak meghatározva, hanem r
 
 - **1-to-many** kapcsolat a `Users` és a `BlogPosts`, valamint a `Comments` kollekciók között.
 
+![alt text](assets/database.drawio.png)
+
 
 # Funkcionális Terv
 
