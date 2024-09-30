@@ -43,6 +43,10 @@ export const commentService = {
         const up = {...newCommentData, userId:user._id, creatorUserId: user._id};
         const newComment = new Comment({...up});
         const savedComment = await newComment.save();
+        await savedComment.populate({
+            path:"creatorUserId",
+            select:"_id username"
+        })
         return savedComment;
     },
 

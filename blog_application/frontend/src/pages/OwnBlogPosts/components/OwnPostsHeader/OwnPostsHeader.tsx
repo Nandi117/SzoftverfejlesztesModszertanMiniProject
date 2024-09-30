@@ -21,7 +21,7 @@ export const OwnPostsHeader = () =>{
         const searchExpression = searchInputRef.current?.value;
 
         try{
-            const response = await getApi().get(`blogs/search?searchExpression=${searchExpression}`);
+            const response = await getApi().get(`blogs/own/search?searchExpression=${searchExpression}`);
             dispatch(setOwnPosts(response.data));
         }
         catch (e){
