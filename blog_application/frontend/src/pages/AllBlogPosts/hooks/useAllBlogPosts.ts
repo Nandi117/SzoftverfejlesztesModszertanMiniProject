@@ -1,18 +1,20 @@
-import {useCallback, useEffect, useState} from "react";
-import {getApi} from "../../../config/api.ts";
-import {useDispatch, useSelector} from "react-redux";
-import {setAllPosts} from "../../../store/allPosts/allPostsSlice.ts";
+import { useCallback, useEffect, useState } from "react";
+import { getApi } from "../../../config/api.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllPosts } from "../../../store/allPosts/allPostsSlice.ts";
 
 export const useAllBlogPosts = () => {
     const [loading, setLoading] = useState<boolean>(true);
-    const posts = useSelector((state:any)=>state.allPosts.posts);
-    const dispatch = useDispatch();
+    const [allPosts, setAllPosts] = useState<any[]>([]);
 
     const getAllPosts = useCallback(async () => {
         try {
             const response = await getApi().get("blogs");
-
-            dispatch(setAllPosts(response.data)); // Set the response data to allPosts state
+            const postsWithSuperlikes = response.data.map(post => ({
+                ...post,
+                superlikes: post.superlikes || 0
+            }));
+            setAllPosts(postsWithSuperlikes);
         } catch (e) {
             console.error(e);
         } finally {
@@ -25,7 +27,7 @@ export const useAllBlogPosts = () => {
     }, [getAllPosts]);
 
     return {
-        posts,
+        posts: allPosts,
         loading,
     };
 };
