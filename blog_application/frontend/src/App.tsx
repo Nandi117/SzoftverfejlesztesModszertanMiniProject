@@ -21,7 +21,7 @@ const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage.tsx"));
 function App() {
 
 
-    const {token} = useAuth();
+    const {} = useAuth();
 
     return (
         <StoreProvider store={store}>
