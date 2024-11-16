@@ -5,11 +5,13 @@ import {BaseEntity} from "./baseEntity";
 
 
 interface BlogPost extends Document {
+    _id:string,
     title:string
     author:string,
     content?:string
     createdAt:Date,
     updatedAt:Date,
+    creatorUserId:string
 }
 
 const BlogPostSchema = new Schema(

@@ -87,11 +87,12 @@ router.post("/", authMiddleware, async (req:AuthenticatedRequest, res)=>{
 });
 
 
-router.put("/", authMiddleware, async (req, res)=>{
+router.put("/", authMiddleware, async (req:AuthenticatedRequest, res)=>{
    try{
         const data = req.body;
+        const {user} = req;
         logger.debug(`Update blog post in the API layer. ModifiedData=${JSON.stringify(data)}`);
-        const updatedBlog = await blogService.put(data);
+        const updatedBlog = await blogService.put(data, user);
         Ok(res, updatedBlog);
    }
    catch (error){
@@ -100,10 +101,11 @@ router.put("/", authMiddleware, async (req, res)=>{
 });
 
 
-router.delete("/:id", authMiddleware, async (req, res)=>{
+router.delete("/:id", authMiddleware, async (req:AuthenticatedRequest, res)=>{
     try{
         const id = req.params.id;
-        const deletedId = await blogService.delete(id);
+        const {user} = req;
+        const deletedId = await blogService.delete(id, user);
         Ok(res, deletedId);
     }
     catch (error){
