@@ -2,7 +2,7 @@ import { useBlogPost } from "./hooks/useBlogPost.ts";
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Flex, Heading, Spinner, Button } from "@chakra-ui/react";
 import {errorMessages} from "../../config/messages.ts";
 import parse from "html-react-parser";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ThumbsUp, ThumbsDown } from 'lucide-react';
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import {RepeatIcon} from "@chakra-ui/icons";
@@ -100,7 +100,6 @@ const BlogPost = () => {
                     </Tooltip>
                     <Box>{dislikes}</Box>
                 </Flex>
-            </Box>
         </Flex>
     </>
 };
