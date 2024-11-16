@@ -1,5 +1,5 @@
 import axios from "axios";
-import {BASE_API_URL} from "./globals.ts";
+import {BASE_API_URL, TRANSLATOR_API_URL} from "./globals.ts";
 
 
 export const apiInstance = axios.create({
@@ -12,7 +12,18 @@ export const apiInstance = axios.create({
 });
 
 export const getApi = () =>{
-
     return apiInstance;
+}
 
+
+
+const translatorApiInstance = axios.create({
+    baseURL:TRANSLATOR_API_URL,
+    headers:{
+        "Content-Type" : "application/json"
+    }
+})
+
+export const getTranslatorApi = () =>{
+    return translatorApiInstance;
 }
