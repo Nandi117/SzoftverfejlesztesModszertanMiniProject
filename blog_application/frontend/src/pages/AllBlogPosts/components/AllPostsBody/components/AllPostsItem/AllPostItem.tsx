@@ -15,7 +15,7 @@ import {
 import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { AllPostsType } from "../../../../@types/allPosts.type.ts";
-import { superlikePost } from "../../../store/allPosts/allPostsSlice.ts";
+import { superlikePost } from "../../../../../../store/allPosts/allPostsSlice.ts";
 
 type AllPostItemProps = {
     data: AllPostsType,
