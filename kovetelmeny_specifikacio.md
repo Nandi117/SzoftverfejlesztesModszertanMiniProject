@@ -17,6 +17,7 @@
 - Igények és felmerülő kérdések összeállítása, rendszerezése a webapplikációval kapcsolatban
 - Agilis egyeztetés a kivitelezővel a felmerülő igények tisztázása végett
 
+
 ### Igényelt üzleti folyamatok
 **Regisztráció**:
 - Kötelező adatok megadása &rarr; Megadott adatok validálása &rarr; Új felhasználó felvétele a rendszerbe.
@@ -86,3 +87,7 @@
 - **Keresési funkció**: Olyan lehetőség, amely blogbejegyzések cím alapján történő keresését teszi lehetővé.
 - **Agilis módszertan**: Rugalmas, iteratív fejlesztési folyamat, rendszeres visszajelzésekkel.
 - **Felhasználói felület (UI)**: Az applikáció azon része, amelyet a felhasználók látnak és használnak.
+
+
+
+
