@@ -10,7 +10,7 @@ export const useAllBlogPosts = () => {
     const getAllPosts = useCallback(async () => {
         try {
             const response = await getApi().get("blogs");
-            const postsWithSuperlikes = response.data.map(post => ({
+            const postsWithSuperlikes = response.data.map((post: { superlikes: any; }) => ({
                 ...post,
                 superlikes: post.superlikes || 0
             }));

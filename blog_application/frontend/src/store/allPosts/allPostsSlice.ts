@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AllPostType } from "../../pages/AllBlogPosts/@types/allPost.type.ts";
+import { AllPostsType } from "../../pages/AllBlogPosts/@types/allPosts.type.ts";
 
 type AllPostsState = {
-    posts: AllPostType[],
+    posts: AllPostsType[],
 }
 
 const initialState: AllPostsState = {
@@ -13,7 +13,7 @@ const allPostsSlice = createSlice({
     name: 'allPosts',
     initialState,
     reducers: {
-        setAllPosts(state, { payload }: PayloadAction<AllPostType[]>) {
+        setAllPosts(state, { payload }: PayloadAction<AllPostsType[]>) {
             state.posts = [...payload];
         },
 
