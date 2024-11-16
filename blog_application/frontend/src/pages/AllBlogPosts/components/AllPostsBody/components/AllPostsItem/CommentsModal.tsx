@@ -1,4 +1,4 @@
-import {memo, useCallback, useState} from "react";
+import { memo, useCallback, useState } from "react";
 import {
     Badge,
     Button, Flex,
@@ -12,16 +12,16 @@ import {
     Textarea,
     useDisclosure
 } from "@chakra-ui/react";
-import {getApi} from "../../../../../../config/api.ts";
-import {CommentType} from "../../../../../../@types/comment.type.ts";
-import {Comment} from "./Comment.tsx";
+import { getApi } from "../../../../../../config/api.ts";
+import { CommentType } from "../../../../../../@types/comment.type.ts";
+import { Comment } from "./Comment.tsx";
 
 type CommentsModalProps = {
     postId: string
 }
 
-export const CommentsModal = memo(({postId}: CommentsModalProps) => {
-    const {isOpen, onOpen, onClose} = useDisclosure();
+export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [comments, setComments] = useState<CommentType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -37,11 +37,11 @@ export const CommentsModal = memo(({postId}: CommentsModalProps) => {
             const response = await getApi().get(`blogs/comments/${postId}`);
             setComments(response.data);
             setError((prevState: any) => {
-                return {...prevState, isError: false};
+                return { ...prevState, isError: false };
             });
         } catch (e) {
             setError((prevState: any) => {
-                return {...prevState, isError: true};
+                return { ...prevState, isError: true };
             });
         } finally {
             setLoading(false);
@@ -51,7 +51,7 @@ export const CommentsModal = memo(({postId}: CommentsModalProps) => {
     const handleCommentSubmit = async () => {
         const newCommentData = {
             postId,
-            content: newComment,
+            comment: newComment,
         };
 
         try {
@@ -78,12 +78,12 @@ export const CommentsModal = memo(({postId}: CommentsModalProps) => {
                         <Badge colorScheme='purple'>{comments.length}</Badge>
                     </Flex>
                 </ModalHeader>
-                <ModalCloseButton/>
+                <ModalCloseButton />
                 <ModalBody>
                     {
                         error.isError === true ? error.errorMessage :
                             comments?.map((comment) => {
-                                return <Comment readOnly={true} key={comment._id} data={comment} setComments={setComments}/>
+                                return <Comment key={comment._id} data={comment} setComments={setComments} />
                             })
                     }
                     <Textarea

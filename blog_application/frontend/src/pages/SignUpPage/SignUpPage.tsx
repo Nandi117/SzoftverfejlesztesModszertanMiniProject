@@ -44,7 +44,7 @@ const SignUpPage = () => {
             }
         }
         catch (e){
-            setError("Sign up is failed! Try again!");
+            setError("Sign up failed! Try again!");
         }
         finally {
             setSignupInProgress(false);

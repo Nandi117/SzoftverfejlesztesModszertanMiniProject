@@ -6,83 +6,49 @@ import {
     CardFooter,
     CardHeader,
     Flex,
-    FormControl,
-    FormLabel,
     Heading,
     IconButton,
-    Input,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
     Spacer,
+    Text,
     useDisclosure
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { useAllPostItem } from "./hooks/useAllPostItem";
-import parse from 'html-react-parser';
-import { AllPostsType } from "../../../../@types/allPosts.type.ts";
-import { CommentsModal } from "./CommentsModal.tsx";
+import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
+import { useDispatch } from "react-redux";
+import { superlikePost } from "../../../../store/allPosts/allPostsSlice.ts";
+import { AllPostType } from "../../../../@types/allPost.type.ts";
 
 type AllPostItemProps = {
-    data: AllPostsType,
+    data: AllPostType,
 }
 
 export const AllPostItem = memo(({ data }: AllPostItemProps) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const dispatch = useDispatch();
 
-    const {
-        deleteAllPost,
-        updateAllPost,
-        viewPost,
-    } = useAllPostItem();
+    const handleSuperlike = () => {
+        dispatch(superlikePost(data._id));
+    };
 
-    return <div>
-        <Card height={300}>
+    return (
+        <Card>
             <CardHeader>
                 <Flex alignItems={"center"}>
                     <Heading as={"h5"} size='sm'>
                         {data.title}
                     </Heading>
                     <Spacer />
+                    <Flex>
+                        <IconButton aria-label={"Post edit button"} size={"sm"} icon={<EditIcon />} colorScheme='blue' variant={"ghost"} />
+                        <IconButton aria-label={"Post delete button"} size={"sm"} icon={<DeleteIcon />} colorScheme='red' variant={"ghost"} />
+                        <IconButton aria-label={"Post superlike button"} size={"sm"} icon={<StarIcon />} colorScheme='yellow' variant={"ghost"} onClick={handleSuperlike} />
+                    </Flex>
                 </Flex>
             </CardHeader>
-            <CardBody mx={1} overflow={"hidden"}>
-                {data.content ? parse(data.content) : null}
+            <CardBody>
+                <Text>{data.content}</Text>
             </CardBody>
-            <CardFooter justifyContent={"end"} alignItems={"center"}>
-                <Button
-                    aria-label={"View post button"}
-                    leftIcon={<ViewIcon />}
-                    colorScheme={"teal"}
-                    variant={"ghost"}
-                    onClick={() => viewPost(data._id)}
-                    size={"sm"}>View</Button>
-                <CommentsModal postId={data._id} />
+            <CardFooter>
+                <Text>Superlikes: {data.superlikes || 0}</Text>
             </CardFooter>
         </Card>
-        <Modal size={"6xl"} isOpen={isOpen} onClose={onClose} >
-            <ModalContent>
-                <ModalHeader>Edit {data.title}</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                    <FormControl>
-                        <FormLabel>Title</FormLabel>
-                        <Input type='text' defaultValue={data.title} />
-                    </FormControl>
-                    <ReactQuill theme="snow" value={data.content} style={{ height: 800, marginTop: "1em" }} />
-                </ModalBody>
-                <ModalFooter gap={2} mt={10}>
-                    <Button colorScheme={"teal"} onClick={updateAllPost}>Update post</Button>
-                    <Button colorScheme='blue' variant='ghost' mr={3} onClick={onClose}>
-                        Close
-                    </Button>
-                </ModalFooter>
-            </ModalContent>
-        </Modal>
-    </div>
+    );
 });

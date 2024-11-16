@@ -1,12 +1,13 @@
-import {useBlogPost} from "./hooks/useBlogPost.ts";
-import {Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Heading, Spinner} from "@chakra-ui/react";
+import { useBlogPost } from "./hooks/useBlogPost.ts";
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Flex, Heading, Spinner, Button } from "@chakra-ui/react";
 import {errorMessages} from "../../config/messages.ts";
 import parse from "html-react-parser";
+import React, { useState } from 'react';
+import { ThumbsUp, ThumbsDown } from 'lucide-react';
+import { IconButton, Tooltip } from '@chakra-ui/react';
 import {RepeatIcon} from "@chakra-ui/icons";
 
 const BlogPost = () => {
-
-
     const {
         loading,
         error,
@@ -16,6 +17,17 @@ const BlogPost = () => {
         translateBlogPost,
         translationError
     } = useBlogPost();
+
+    const [likes, setLikes] = useState(0);
+    const [dislikes, setDislikes] = useState(0);
+
+    const handleLike = () => {
+        setLikes(likes + 1);
+    };
+
+    const handleDislike = () => {
+        setDislikes(dislikes + 1);
+    };
 
     if (loading) {
         return <>
@@ -35,6 +47,7 @@ const BlogPost = () => {
             </Alert>
         </>
     }
+
 
     return <>
         <Flex flexDirection={"column"} alignItems={"center"} mt={10}>
@@ -65,11 +78,31 @@ const BlogPost = () => {
 
             </Flex>
 
+                <Flex gap={4} mt={4}>
+                    <Tooltip label="Like">
+                        <IconButton
+                            aria-label="Like"
+                            icon={<ThumbsUp />}
+                            colorScheme="teal"
+                            variant="solid"
+                            onClick={handleLike}
+                        />
+                    </Tooltip>
+                    <Box>{likes}</Box>
+                    <Tooltip label="Dislike">
+                        <IconButton
+                            aria-label="Dislike"
+                            icon={<ThumbsDown />}
+                            colorScheme="red"
+                            variant="solid"
+                            onClick={handleDislike}
+                        />
+                    </Tooltip>
+                    <Box>{dislikes}</Box>
+                </Flex>
+            </Box>
         </Flex>
     </>
-
-
-}
-
+};
 
 export default BlogPost;
