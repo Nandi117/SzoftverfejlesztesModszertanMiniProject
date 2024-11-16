@@ -14,11 +14,11 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
-import { superlikePost } from "../../../../store/allPosts/allPostsSlice.ts";
-import { AllPostType } from "../../../../@types/allPost.type.ts";
+import { AllPostsType } from "../../../../@types/allPosts.type.ts";
+import { superlikePost } from "../../../store/allPosts/allPostsSlice.ts";
 
 type AllPostItemProps = {
-    data: AllPostType,
+    data: AllPostsType,
 }
 
 export const AllPostItem = memo(({ data }: AllPostItemProps) => {
