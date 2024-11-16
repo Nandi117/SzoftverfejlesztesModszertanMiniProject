@@ -1,4 +1,4 @@
-import { memo } from "react";
+import {memo} from "react";
 import {
     Button,
     Card,
@@ -10,15 +10,15 @@ import {
     IconButton,
     Spacer,
     Text,
-    useDisclosure
 } from "@chakra-ui/react";
-import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
-import { superlikePost } from "../../../../store/allPosts/allPostsSlice.ts";
-import { AllPostType } from "../../../../@types/allPost.type.ts";
+import {StarIcon, ViewIcon} from "@chakra-ui/icons";
+import {useDispatch} from "react-redux";
+import {superlikePost} from "../../../../../../store/allPosts/allPostsSlice.ts";
+import {AllPostsType} from "../../../../@types/allPosts.type.ts";
+import {CommentsModal} from "./CommentsModal.tsx";
 
 type AllPostItemProps = {
-    data: AllPostType,
+    data: AllPostsType
 }
 
 export const AllPostItem = memo(({ data }: AllPostItemProps) => {
@@ -29,7 +29,7 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
     };
 
     return (
-        <Card>
+        <Card height={300} width={"100%"}>
             <CardHeader>
                 <Flex alignItems={"center"}>
                     <Heading as={"h5"} size='sm'>
@@ -37,17 +37,23 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
                     </Heading>
                     <Spacer />
                     <Flex>
-                        <IconButton aria-label={"Post edit button"} size={"sm"} icon={<EditIcon />} colorScheme='blue' variant={"ghost"} />
-                        <IconButton aria-label={"Post delete button"} size={"sm"} icon={<DeleteIcon />} colorScheme='red' variant={"ghost"} />
                         <IconButton aria-label={"Post superlike button"} size={"sm"} icon={<StarIcon />} colorScheme='yellow' variant={"ghost"} onClick={handleSuperlike} />
                     </Flex>
                 </Flex>
             </CardHeader>
-            <CardBody>
+            <CardBody maxHeight={200} overflow={"hidden"}>
                 <Text>{data.content}</Text>
             </CardBody>
-            <CardFooter>
+            <CardFooter display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
                 <Text>Superlikes: {data.superlikes || 0}</Text>
+                <Button
+                    aria-label={"View post button"}
+                    leftIcon={<ViewIcon/>}
+                    colorScheme={"teal"}
+                    variant={"ghost"}
+                    onClick={() => window.open(`posts/${data._id}`)}
+                    size={"sm"}>View</Button>
+                <CommentsModal postId={data._id}/>
             </CardFooter>
         </Card>
     );
