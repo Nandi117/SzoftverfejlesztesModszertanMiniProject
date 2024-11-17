@@ -37,3 +37,27 @@ A blog webapplikáció 2.0.0 verziója az alábbi új funkciókat tartalmazza:
   3. A felhasználók megtekinthetik a követési listájukat, és egy "Leállítás" gombbal megszüntethetik a kapcsolatot.
 - **Jogosultságok**:
   - A felhasználók csak saját követési listájukat kezelhetik.
+  
+  ---
+
+### 2.3. Visszajelzési funkciók (Dislike és Superlike)
+- **Leírás**: A blogbejegyzésekhez a felhasználók pozitív ("Superlike") vagy negatív ("Dislike") visszajelzést adhatnak.
+- **Folyamat**:
+  1. A blogbejegyzéseknél két új gomb jelenik meg: "Dislike" és "Superlike".
+  2. A felhasználó kattintásával a visszajelzés rögzítésre kerül az adatbázisban.
+  3. A rendszer összesíti a visszajelzéseket, és megjeleníti az egyes bejegyzéseknél.
+- **Korlátozások**:
+  - Egy felhasználó egy blogbejegyzéshez csak egy típusú visszajelzést adhat.
+
+---
+
+### 2.4. Tevékenységnapló
+- **Leírás**: A felhasználók tevékenységeinek követése és megjelenítése.
+- **Folyamat**:
+  1. Minden felhasználói művelet rögzítésre kerül az adatbázisban.
+  2. A "Tevékenységnapló" menüpontra kattintva a felhasználó megtekintheti saját tevékenységeit időrendi sorrendben.
+  3. A felhasználók szabályozhatják, hogy mely tevékenységek legyenek láthatóak.
+- **Adattípusok**:
+  - Blogbejegyzések létrehozása, szerkesztése, törlése.
+  - Követési kapcsolatok létrehozása és megszüntetése.
+  - Visszajelzések adása.
