@@ -77,3 +77,23 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
    - `profile_picture_url`, `username`, `email`, `password_hash`, `created_at`.
 
 ---
+
+### 5. Folyamatok leírása
+#### 5.1. Blogfordítás folyamata
+1. A felhasználó a "Fordítás" gombra kattint.
+2. Az API hívást küld a fordítási szolgáltatás felé.
+3. A fordítási eredmény megjelenik az oldalon.
+
+#### 5.2. Követési folyamat
+1. Felhasználói profil megtekintése.
+2. "Követés" gomb aktiválása.
+3. A kapcsolat rögzítése az adatbázisban.
+
+#### 5.3. Visszajelzés folyamata
+1. A felhasználó a "Dislike" vagy "Superlike" gombra kattint.
+2. A visszajelzés mentése az adatbázisba.
+
+#### 5.4. Tevékenységnapló működése
+1. Minden művelet rögzítése az adatbázisban.
+2. A tevékenységek megjelenítése egy dedikált oldalon.
+3. Láthatósági beállítások kezelése.
