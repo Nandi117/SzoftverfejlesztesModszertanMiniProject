@@ -26,3 +26,14 @@ A blog webapplikáció 2.0.0 verziója az alábbi új funkciókat tartalmazza:
 - **Korlátozások**:
   - Csak a támogatott nyelvek között történhet a fordítás.
   - A fordítás minősége az API által biztosított eredmény függvénye.
+
+---
+
+### 2.2. Követési funkcionalitás
+- **Leírás**: A felhasználók más felhasználókat követhetnek, és láthatják az általuk létrehozott tartalmakat.
+- **Folyamat**:
+  1. A felhasználó megnyit egy másik felhasználói profilt, ahol megjelenik a "Követés" gomb.
+  2. A gomb megnyomásával a rendszer rögzíti a kapcsolatot az adatbázisban.
+  3. A felhasználók megtekinthetik a követési listájukat, és egy "Leállítás" gombbal megszüntethetik a kapcsolatot.
+- **Jogosultságok**:
+  - A felhasználók csak saját követési listájukat kezelhetik.
