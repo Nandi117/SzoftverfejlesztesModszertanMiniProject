@@ -111,3 +111,9 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 
 #### 6.3. Visszajelzés gombok
 - Jól látható "Dislike" és "Superlike" gombok minden blogbejegyzés mellett.
+
+---
+
+### 7. Rendszerintegráció
+- Az új funkciók implementálása a meglévő rendszermag módosítása nélkül.
+- A visszafelé kompatibilitás biztosítása a jelenlegi funkcionalitással.
