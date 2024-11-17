@@ -37,5 +37,26 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 6. **Verzióinformáció megjelenítése**:
    - Az alkalmazás aktuális verzióinak és fejlesztési naplóinak megtekinthetősége.
 
+---
+
+### 3. Rendszerarchitektúra
+#### 3.1. Alkalmazási rétegek
+1. **Kliensoldal**:
+   - Reszponzív, felhasználóbarát felület modern technológiák felhasználásával (React, Vue.js vagy Angular).
+   - Az új funkciók API integrációjának biztosítása.
+
+2. **Szerveroldal**:
+   - Node.js vagy Python alapú REST API az új funkciók támogatására.
+   - Feladat-specifikus végpontok fejlesztése.
+
+3. **Adatbázis réteg**:
+   - PostgreSQL vagy MongoDB.
+   - Új táblák a követés, visszajelzések és tevékenységnapló tárolására.
+
+#### 3.2. Integrációk
+- **Fordítás**: Google Translate API vagy hasonló nyelvi fordítási megoldások.
+- **Verziókövetés**: Git és GitHub repository a verziók nyomon követésére.
+
+---
 
 
