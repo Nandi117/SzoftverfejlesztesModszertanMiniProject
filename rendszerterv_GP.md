@@ -97,3 +97,17 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 1. Minden művelet rögzítése az adatbázisban.
 2. A tevékenységek megjelenítése egy dedikált oldalon.
 3. Láthatósági beállítások kezelése.
+
+---
+
+### 6. UI/UX terv
+#### 6.1. Fordítási funkció
+- Fordítási gomb az egyes bejegyzéseknél.
+- Az eredeti és fordított szöveg párhuzamos megjelenítése.
+
+#### 6.2. Profilkezelés
+- Tetszetős profiloldal modern dizájnnal.
+- Egyszerű és intuitív kép- és jelszómódosítási funkciók.
+
+#### 6.3. Visszajelzés gombok
+- Jól látható "Dislike" és "Superlike" gombok minden blogbejegyzés mellett.
