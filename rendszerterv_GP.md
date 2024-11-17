@@ -59,4 +59,21 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 
 ---
 
+### 4. Adatmodell
+#### 4.1. Új adattáblák
+1. **Fordítások**:
+   - `translation_id`, `blog_id`, `original_text`, `translated_text`, `target_language`, `created_at`.
 
+2. **Követések**:
+   - `follower_id`, `followed_id`, `follow_date`.
+
+3. **Visszajelzések**:
+   - `feedback_id`, `blog_id`, `user_id`, `feedback_type` (dislike/superlike), `created_at`.
+
+4. **Tevékenységnapló**:
+   - `activity_id`, `user_id`, `action_type`, `action_details`, `timestamp`.
+
+5. **Felhasználói profil**:
+   - `profile_picture_url`, `username`, `email`, `password_hash`, `created_at`.
+
+---
