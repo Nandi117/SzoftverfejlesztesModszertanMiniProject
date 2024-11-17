@@ -127,3 +127,10 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
    - A fordítási folyamat sebességének tesztelése különböző nyelveken.
 3. **Biztonsági tesztek**:
    - Adatvédelmi szabályok és jelszókezelés tesztelése.
+
+---
+
+### 9. Kockázatelemzés
+- **Nyelvi fordítás pontossága**: A külső API esetleges hibás működése.
+- **Adatbázis teljesítmény**: Nagy mennyiségű követés vagy tevékenységnapló tárolása lassíthatja a rendszert.
+- **UI túlterhelés**: Az új funkciók bonyolultsága ronthatja a felhasználói élményt.
