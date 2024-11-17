@@ -117,3 +117,13 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 ### 7. Rendszerintegráció
 - Az új funkciók implementálása a meglévő rendszermag módosítása nélkül.
 - A visszafelé kompatibilitás biztosítása a jelenlegi funkcionalitással.
+
+---
+
+### 8. Tesztelési terv
+1. **Funkcionális tesztek**:
+   - Az új funkciók helyes működésének ellenőrzése.
+2. **Teljesítménytesztek**:
+   - A fordítási folyamat sebességének tesztelése különböző nyelveken.
+3. **Biztonsági tesztek**:
+   - Adatvédelmi szabályok és jelszókezelés tesztelése.
