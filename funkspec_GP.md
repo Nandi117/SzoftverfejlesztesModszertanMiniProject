@@ -61,3 +61,28 @@ A blog webapplikáció 2.0.0 verziója az alábbi új funkciókat tartalmazza:
   - Blogbejegyzések létrehozása, szerkesztése, törlése.
   - Követési kapcsolatok létrehozása és megszüntetése.
   - Visszajelzések adása.
+  
+  ---
+
+### 2.5. Felhasználói profil továbbfejlesztése
+- **Leírás**: A felhasználók profiloldala új funkciókkal bővül, és esztétikusabb megjelenést kap.
+- **Funkciók**:
+  - Profilkép feltöltése és cseréje.
+  - Jelszó módosítása.
+  - Felhasználói adatok modern és letisztult megjelenítése.
+- **Folyamat**:
+  1. A profiloldalon megjelenik egy "Profilkép módosítása" gomb.
+  2. A felhasználó egy fájlt tölthet fel, amelyet a rendszer elment és megjelenít.
+  3. Jelszó módosítása során a régi jelszó megadása szükséges az új jelszó érvényesítéséhez.
+
+---
+
+### 2.6. Verzióinformációk megjelenítése
+- **Leírás**: A felhasználók megtekinthetik a rendszer verzióit és a hozzájuk tartozó fejlesztési naplókat.
+- **Folyamat**:
+  1. A főoldalon egy "Verzióinformációk" szekció található.
+  2. A szekció tartalmazza a verziószámot, a kiadás dátumát, és a főbb változásokat.
+- **Korlátozások**:
+  - Csak a publikus verziók információi jelennek meg.
+
+---
