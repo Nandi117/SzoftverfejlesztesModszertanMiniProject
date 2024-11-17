@@ -134,3 +134,14 @@ A blog webapplikáció 1.0.0 verziójának továbbfejlesztése a követelmény s
 - **Nyelvi fordítás pontossága**: A külső API esetleges hibás működése.
 - **Adatbázis teljesítmény**: Nagy mennyiségű követés vagy tevékenységnapló tárolása lassíthatja a rendszert.
 - **UI túlterhelés**: Az új funkciók bonyolultsága ronthatja a felhasználói élményt.
+
+---
+
+### 10. Fejlesztési ütemterv
+1. Funkcióspecifikációk részletezése: 1 hét.
+2. Backend fejlesztés: 2 hét.
+3. Frontend fejlesztés: 2 hét.
+4. Tesztelés és hibajavítás: 1 hét.
+5. Telepítés és végső átadás: 1 hét.
+
+---
