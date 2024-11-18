@@ -1,0 +1,30 @@
+
+
+.background-template:hover{
+    transform: scale(1.1);
+}
+
+.background-template{
+    transition: 0.1s ease-in;
+    cursor: pointer;
+}
+
+.background-template-wrapper{
+    transition: 0.1s ease-in-out;
+}
+
+.background-template-wrapper.active{
+    border-radius: 0.4em;
+    padding: 1em;
+    transform: scale(1.1);
+
+}
+
+.background-template-wrapper.active > .background-template{
+    box-shadow: 3px 3px 6px 2px rgba(44, 44, 44, 0.15);
+}
+
+
+.background-template-wrapper.active > .bg-template-text{
+    font-weight: bold;
+}

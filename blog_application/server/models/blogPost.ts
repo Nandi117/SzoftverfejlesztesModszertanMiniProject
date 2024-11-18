@@ -27,6 +27,11 @@ const BlogPostSchema = new Schema(
         image:{
             type:String,
             required:false
+        },
+        backgroundTemplate:{
+            type:String,
+            required:false,
+            default:"linear-gradient(135deg, #a2d9ff, #79c8ff, #4fb8ff, #1aa8ff)"
         }
     })
 );

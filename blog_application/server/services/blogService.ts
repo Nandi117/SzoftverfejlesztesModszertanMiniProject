@@ -175,7 +175,7 @@ export const blogService = {
             title: {$regex: new RegExp(searchExpression)},
             isActive:true,
             creatorUserId:user._id
-        });
+        });3
 
         logger.debug(`Hit post list count. ${posts.length} elements`);
 
