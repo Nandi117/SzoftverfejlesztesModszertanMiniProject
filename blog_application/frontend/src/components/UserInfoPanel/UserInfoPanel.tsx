@@ -7,12 +7,25 @@ import {
     PopoverContent,
     PopoverHeader,
     PopoverTrigger,
-    Text
+    Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    FormControl,
+    FormLabel,
+    Input,
+    useDisclosure,
+    useToast,
 } from "@chakra-ui/react";
-import {memo} from "react";
+import {memo, useState} from "react";
 import {useSelector} from "react-redux";
 import {ArrowForwardIcon, InfoOutlineIcon} from "@chakra-ui/icons";
 import {useCookies} from "react-cookie";
+import { changePassword } from "../../hooks/handleChangePassword";
 
 
 export const UserInfoPanel = memo(() =>{
