@@ -3,23 +3,35 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Flex, Heading, Spi
 import {errorMessages} from "../../config/messages.ts";
 import parse from "html-react-parser";
 import { useState } from 'react';
-import { ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Star } from 'lucide-react';
 import { IconButton, Tooltip } from '@chakra-ui/react';
 import {RepeatIcon} from "@chakra-ui/icons";
+import { useDispatch } from "react-redux";
+import { superlikePost } from "../../store/allPosts/allPostsSlice.ts";
 
-const BlogPost = () => {
+interface Post {
+    _id: string;
+    title: string;
+    content: string;
+    likes: number;
+    dislikes: number;
+    superlikes: number;
+}
+
+const BlogPost = ({ post }: { post: Post }) => {
     const {
         loading,
         error,
-        post,
         translatedText,
         translate,
         translateBlogPost,
         translationError
     } = useBlogPost();
 
-    const [likes, setLikes] = useState(0);
-    const [dislikes, setDislikes] = useState(0);
+    const dispatch = useDispatch();
+    const [likes, setLikes] = useState(post.likes);
+    const [dislikes, setDislikes] = useState(post.dislikes);
+    const [superlikes, setSuperlikes] = useState(post.superlikes);
 
     const handleLike = () => {
         setLikes(likes + 1);
@@ -27,6 +39,11 @@ const BlogPost = () => {
 
     const handleDislike = () => {
         setDislikes(dislikes + 1);
+    };
+
+    const handleSuperlike = () => {
+        dispatch(superlikePost(post._id));
+        setSuperlikes(superlikes + 1);
     };
 
     if (loading) {
@@ -69,37 +86,44 @@ const BlogPost = () => {
                 <Box mt={5}>
                     {post?.content ? parse(post?.content || "") : null}
                 </Box>
-
                 {
                     translatedText ? <Box mt={5} alignSelf={"start"} color={"red"}>
                         {parse(translatedText)}
                     </Box> : null
                 }
-
             </Flex>
-
-                <Flex gap={4} mt={4}>
-                    <Tooltip label="Like">
-                        <IconButton
-                            aria-label="Like"
-                            icon={<ThumbsUp />}
-                            colorScheme="teal"
-                            variant="solid"
-                            onClick={handleLike}
-                        />
-                    </Tooltip>
-                    <Box>{likes}</Box>
-                    <Tooltip label="Dislike">
-                        <IconButton
-                            aria-label="Dislike"
-                            icon={<ThumbsDown />}
-                            colorScheme="red"
-                            variant="solid"
-                            onClick={handleDislike}
-                        />
-                    </Tooltip>
-                    <Box>{dislikes}</Box>
-                </Flex>
+            <Flex gap={4} mt={4}>
+                <Tooltip label="Superlike">
+                    <IconButton
+                        aria-label="Superlike"
+                        icon={<Star />}
+                        colorScheme="yellow"
+                        variant="solid"
+                        onClick={handleSuperlike}
+                    />
+                </Tooltip>
+                <Box>{superlikes}</Box>
+                <Tooltip label="Like">
+                    <IconButton
+                        aria-label="Like"
+                        icon={<ThumbsUp />}
+                        colorScheme="teal"
+                        variant="solid"
+                        onClick={handleLike}
+                    />
+                </Tooltip>
+                <Box>{likes}</Box>
+                <Tooltip label="Dislike">
+                    <IconButton
+                        aria-label="Dislike"
+                        icon={<ThumbsDown />}
+                        colorScheme="red"
+                        variant="solid"
+                        onClick={handleDislike}
+                    />
+                </Tooltip>
+                <Box>{dislikes}</Box>
+            </Flex>
         </Flex>
     </>
 };
