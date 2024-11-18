@@ -1,4 +1,4 @@
-import {Box, Grid, GridItem, Spinner} from "@chakra-ui/react";
+import {Box, Flex, Spinner} from "@chakra-ui/react";
 import {AllPostItem} from "./components/AllPostsItem/AllPostItem.tsx";
 import {useAllBlogPosts} from "../../hooks/useAllBlogPosts.ts";
 import {AllPostsType} from "../../@types/allPosts.type.ts";
@@ -14,13 +14,13 @@ export const AllPostsBody = () => {
         );
     }
 
-    return (<Grid templateColumns="repeat(4, 1fr)" gap={6} mt={5} width={"50%"}>
+    return (<Flex wrap={"wrap"} flexDirection={"column"} alignItems={"center"} gap={4} mt={4} width={"45%"}>
             {posts.map((item: AllPostsType) => (
-                <GridItem key={item._id} width={"100%"}>
-                    <AllPostItem data={item}/>
-                </GridItem>
+
+                <AllPostItem data={item}/>
+
             ))}
-        </Grid>
+        </Flex>
 
 
     );

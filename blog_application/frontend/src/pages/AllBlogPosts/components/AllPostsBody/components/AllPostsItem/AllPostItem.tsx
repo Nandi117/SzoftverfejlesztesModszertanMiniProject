@@ -16,6 +16,7 @@ import {useDispatch} from "react-redux";
 import {superlikePost} from "../../../../../../store/allPosts/allPostsSlice.ts";
 import {AllPostsType} from "../../../../@types/allPosts.type.ts";
 import {CommentsModal} from "./CommentsModal.tsx";
+import parse from "html-react-parser";
 
 type AllPostItemProps = {
     data: AllPostsType
@@ -29,7 +30,7 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
     };
 
     return (
-        <Card>
+        <Card variant={"elevated"} height={300} width={"100%"} boxShadow={"2px 3px 2px rgba(0,0,0,0.15)"}>
             <CardHeader>
                 <Flex alignItems={"center"}>
                     <Heading as={"h5"} size='sm'>
@@ -42,7 +43,7 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
                 </Flex>
             </CardHeader>
             <CardBody maxHeight={200} overflow={"hidden"}>
-                <Text>{data.content}</Text>
+                <Text>{parse(data.content)}</Text>
             </CardBody>
             <CardFooter display={"flex"} alignItems={"center"} justifyContent={"space-between"}>
                 <Text>Superlikes: {data.superlikes || 0}</Text>
