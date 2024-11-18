@@ -83,7 +83,7 @@ export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
                     {
                         error.isError === true ? error.errorMessage :
                             comments?.map((comment) => {
-                                return <Comment key={comment._id} data={comment} setComments={setComments} />
+                                return <Comment key={comment._id} data={comment} setComments={setComments} readOnly={false} />
                             })
                     }
                     <Textarea

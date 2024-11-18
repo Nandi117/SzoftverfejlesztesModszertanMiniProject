@@ -64,10 +64,32 @@ Ez magában foglalja a tevekénység láthatóságának korlátozást is.
   * Jelszó megváltoztása: Új jelszó megadása -> Jelszó módosítása az adatbázisban
   * Felhasználói adatok tetszetős megjelenítése -> UI/UIX
 
-
+---
 
 ### Rendszerre vonatkozó szabályok
 
+- Minden új funkció a jelenlegi rendszerbe integrálva kerül kifejlesztésre, kompatibilitást biztosítva a már meglévő funkciókkal.
+- A nyelvi fordítás csak a bejelentkezett felhasználók számára érhető el.
+- A követési funkció csak kölcsönös követés esetén küld értesítést.
+- A tevékenységnapló adatait csak az adatvédelmi beállításoknak megfelelően lehet megjeleníteni más felhasználók számára.
 
+---
 
 ### Fogalomszótár
+
+- **Fordítás**: A blogbejegyzés tartalmának más nyelvre történő automatikus vagy manuális átalakítása, különböző nyelveken történő megjelenítése.
+- **Követés**: Egy másik felhasználó tartalmainak (blogbejegyzések) rendszeres megtekintésének lehetősége, amely lehetővé teszi, hogy a felhasználók értesítéseket kapjanak az általuk követett személyek új bejegyzéseiről.
+- **Superlike**: Egy kiemelten pozitív visszajelzés, amely egy blogbejegyzés iránti rendkívüli tetszést fejezi ki. A "Superlike" gomb megnyomásával a felhasználó a bejegyzést a legjobb tartalmak közé sorolja.
+- **Dislike**: Egy negatív visszajelzés, amely lehetőséget ad a felhasználóknak arra, hogy kifejezzék nemtetszésüket egy adott bejegyzés iránt.
+- **Tevékenységnapló**: A felhasználó által végzett összes művelet (például blogírás, kommentelés, kedvelés, követés) nyilvántartása, amely a felhasználó számára egy napló formájában elérhető, és amelyet a felhasználó láthatósági beállításokkal védhet.
+- **Verzióinformáció**: A rendszer különböző verzióiban történt változások és új funkciók összefoglalása, amely megmutatja, hogy milyen fejlesztések történtek az egyes verziókban.
+- **Felhasználói profil**: A felhasználó személyes adatainak összegyűjtése és tárolása, beleértve a profilképet, a felhasználói nevet, az e-mail címet és egyéb adatokat, amelyek a felhasználó számára elérhetők és módosíthatók.
+- **Követési lista**: A felhasználó által követett más felhasználók listája, amely lehetővé teszi a felhasználó számára, hogy könnyen megtekinthesse a követett személyek legújabb bejegyzéseit.
+- **UI/UX (User Interface / User Experience)**: A felhasználói felület és a felhasználói élmény kialakítása, amely az applikáció vizuális megjelenésére, navigációjára és a felhasználók által tapasztalt élményre vonatkozik.
+- **Regisztráció**: A felhasználók új fiók létrehozása a rendszerben, amely során a felhasználó megadja személyes adatait, például az e-mail címét és jelszavát.
+- **Bejelentkezés**: A felhasználók számára elérhető folyamat, amellyel hozzáférhetnek a saját fiókjukhoz az e-mail címük és a jelszavuk megadásával.
+- **Profilkép**: A felhasználó által feltöltött személyes kép, amely a felhasználói profil részeként jelenik meg és vizuálisan reprezentálja őt a rendszerben.
+- **Hozzászólás (Komment)**: A felhasználók által írt válaszok vagy visszajelzések, amelyek egy blogbejegyzéshez kapcsolódnak. A kommentek lehetővé teszik a párbeszédet és interakciót a felhasználók között.
+- **Moderálás**: A rendszerben történő tartalom-ellenőrzés, amely biztosítja, hogy a felhasználói által feltöltött bejegyzések és kommentek megfeleljenek a közösségi irányelveknek.
+- **Automatikus nyelvi detektálás**: A rendszer képessége arra, hogy felismerje a blogbejegyzések nyelvét és szükség esetén automatikusan fordítja azt a felhasználó preferenciái szerint.
+- **Kategória**: A blogbejegyzések szervezésére szolgáló címkék vagy csoportosítási lehetőségek, amelyek segítenek a felhasználóknak könnyebben navigálni a különböző tartalmak között.

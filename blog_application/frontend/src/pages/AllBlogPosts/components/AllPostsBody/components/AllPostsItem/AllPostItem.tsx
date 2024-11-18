@@ -1,4 +1,4 @@
-import {memo} from "react";
+import { memo } from "react";
 import {
     Button,
     Card,
@@ -29,7 +29,7 @@ export const AllPostItem = memo(({ data }: AllPostItemProps) => {
     };
 
     return (
-        <Card height={300} width={"100%"}>
+        <Card>
             <CardHeader>
                 <Flex alignItems={"center"}>
                     <Heading as={"h5"} size='sm'>

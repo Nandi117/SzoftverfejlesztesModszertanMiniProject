@@ -8,7 +8,7 @@ import {Layout} from "./components/Layout/Layout.tsx";
 import {store} from "./store/store.ts";
 import {PrivateRoutes} from "./components/PrivateRoutes/PrivateRoutes.tsx";
 import {useAuth} from "./hooks/useAuth.ts";
-
+import VersionInformation from "./pages/VersionInformation/VersionInformation.tsx";
 
 /*Lazy imports for optimizing page performance */
 const AllBlogPosts = lazy(() => import("./pages/AllBlogPosts/AllBlogPosts.tsx"));
@@ -40,11 +40,9 @@ function App() {
                                 <Route path={routes.allPosts} element={<AllBlogPosts/>}/>
                                 {/* Common blog post */}
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
+                                {/* Version Information */}
+                                <Route path="/version-information" element={<VersionInformation/>}/>
                             </Route>
-
-
-
-
 
                             {/* Log in page */}
                             <Route path="/login" element={<LogInPage/>}/> {/* New Login route */}
