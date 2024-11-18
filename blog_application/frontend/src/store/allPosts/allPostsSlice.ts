@@ -23,10 +23,12 @@ const allPostsSlice = createSlice({
         },
 
         superlikePost(state, { payload }: PayloadAction<string>) {
-            const post = state.posts.find(x => x._id === payload);
-            if (post) {
+            console.log(payload)
+            const post = state.posts.find(x => x._id == payload);
+            console.log(post)
+            /*if (post) {
                 post.superlikes = (post.superlikes || 0) + 1;
-            }
+            }*/
         },
     }
 });

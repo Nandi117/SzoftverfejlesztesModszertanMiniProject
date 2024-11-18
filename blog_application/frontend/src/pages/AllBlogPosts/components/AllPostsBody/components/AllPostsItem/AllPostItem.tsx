@@ -24,21 +24,27 @@ type AllPostItemProps = {
 
 export const AllPostItem = memo(({ data }: AllPostItemProps) => {
     const dispatch = useDispatch();
-
+    console.log(data)
     const handleSuperlike = () => {
         dispatch(superlikePost(data._id));
     };
 
     return (
         <Card variant={"elevated"} height={300} width={"100%"} boxShadow={"2px 3px 2px rgba(0,0,0,0.15)"}>
-            <CardHeader>
-                <Flex alignItems={"center"}>
+            <CardHeader background={data.backgroundTemplate} borderTopRadius={"0.5em"}>
+                <Flex alignItems={"center"} >
                     <Heading as={"h5"} size='sm'>
                         {data.title}
                     </Heading>
                     <Spacer />
                     <Flex>
-                        <IconButton aria-label={"Post superlike button"} size={"sm"} icon={<StarIcon />} colorScheme='yellow' variant={"ghost"} onClick={handleSuperlike} />
+                        <IconButton
+                            aria-label={"Post superlike button"}
+                            size={"sm"}
+                            icon={<StarIcon />}
+                            colorScheme='yellow'
+                            variant={"ghost"}
+                            onClick={handleSuperlike} />
                     </Flex>
                 </Flex>
             </CardHeader>
