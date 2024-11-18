@@ -8,5 +8,5 @@ export type AllPostsType  = {
     title:string,
     content:string,
     author:string,
-    superlikes:number,
+    superlikes:number
 }

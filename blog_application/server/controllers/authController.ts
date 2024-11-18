@@ -47,7 +47,7 @@ router.post('/signin', async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    logger.debug(`User to log in: username=${user.username}, email=${user.email}`);
+    logger.debug(`User to log in: username=${user?.username}, email=${user?.email}`);
     if (!user) {
         return res.status(422).send({ error: 'Invalid email or password' });
     }
