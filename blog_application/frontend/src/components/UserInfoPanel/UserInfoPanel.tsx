@@ -33,11 +33,44 @@ export const UserInfoPanel = memo(() =>{
     const user = useSelector((state:any)=>state.auth.user);
 
     const [cookies, setCookies, removeCookies] = useCookies(["AUTH_TOKEN"]);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const toast = useToast();
 
     const logout = () =>{
         removeCookies("AUTH_TOKEN");
         localStorage.removeItem("UserInfo")
     }
+
+    const handleChangePassword = async () => {
+        try {
+            const token = cookies.AUTH_TOKEN;
+
+            const message = await changePassword(currentPassword, newPassword, token);
+
+            toast({
+                title: "Password Changed",
+                description: message,
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+            });
+
+            // Clear the modal fields and close the modal
+            setCurrentPassword("");
+            setNewPassword("");
+            onClose();
+        } catch (err: any) {
+            toast({
+                title: "Error",
+                description: err.response?.data?.error || "Failed to change password.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+    };
 
 
 
