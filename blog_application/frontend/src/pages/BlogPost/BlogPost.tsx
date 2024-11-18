@@ -1,11 +1,11 @@
 import { useBlogPost } from "./hooks/useBlogPost.ts";
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Flex, Heading, Spinner, Button } from "@chakra-ui/react";
-import {errorMessages} from "../../config/messages.ts";
+import { errorMessages } from "../../config/messages.ts";
 import parse from "html-react-parser";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThumbsUp, ThumbsDown, Star } from 'lucide-react';
 import { IconButton, Tooltip } from '@chakra-ui/react';
-import {RepeatIcon} from "@chakra-ui/icons";
+import { RepeatIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { superlikePost } from "../../store/allPosts/allPostsSlice.ts";
 
@@ -32,6 +32,15 @@ const BlogPost = ({ post }: { post: Post }) => {
     const [likes, setLikes] = useState(post.likes);
     const [dislikes, setDislikes] = useState(post.dislikes);
     const [superlikes, setSuperlikes] = useState(post.superlikes);
+    const [hasSuperliked, setHasSuperliked] = useState(false);
+
+    useEffect(() => {
+        const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
+        const today = new Date().toISOString().split('T')[0];
+        if (superlikeData[post._id] === today) {
+            setHasSuperliked(true);
+        }
+    }, [post._id]);
 
     const handleLike = () => {
         setLikes(likes + 1);
@@ -42,6 +51,11 @@ const BlogPost = ({ post }: { post: Post }) => {
     };
 
     const handleSuperlike = () => {
+        const today = new Date().toISOString().split('T')[0];
+        const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
+        superlikeData[post._id] = today;
+        localStorage.setItem("superlikeData", JSON.stringify(superlikeData));
+        setHasSuperliked(true);
         dispatch(superlikePost(post._id));
         setSuperlikes(superlikes + 1);
     };
@@ -49,29 +63,27 @@ const BlogPost = ({ post }: { post: Post }) => {
     if (loading) {
         return <>
             <Flex justifyContent={"center"}>
-                <Spinner color={"teal.500"} size={"xl"} mt={10 }/>
+                <Spinner color={"teal.500"} size={"xl"} mt={10} />
             </Flex>
-
         </>
     }
 
     if (error.isError) {
         return <>
             <Alert status={"error"} mx={"auto"} width={"50%"} rounded={"md"}>
-                <AlertIcon/>
+                <AlertIcon />
                 <AlertTitle>{errorMessages.messageTitle}</AlertTitle>
                 <AlertDescription>{errorMessages.messageDescription}</AlertDescription>
             </Alert>
         </>
     }
 
-
     return <>
         <Flex flexDirection={"column"} alignItems={"center"} mt={10}>
-            <Flex flexDirection={"column"} alignItems={"center"}  width={"50%"}>
+            <Flex flexDirection={"column"} alignItems={"center"} width={"50%"}>
 
                 <Button
-                    leftIcon={<RepeatIcon/>}
+                    leftIcon={<RepeatIcon />}
                     isLoading={translate}
                     title={"Translate this post"}
                     alignSelf={"end"}
@@ -100,6 +112,7 @@ const BlogPost = ({ post }: { post: Post }) => {
                         colorScheme="yellow"
                         variant="solid"
                         onClick={handleSuperlike}
+                        isDisabled={hasSuperliked}
                     />
                 </Tooltip>
                 <Box>{superlikes}</Box>
