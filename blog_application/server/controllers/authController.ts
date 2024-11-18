@@ -74,6 +74,9 @@ router.post('/signin', async (req, res) => {
         logger.debug(`Error occured: ${err}`)
         return res.status(422).send({ error: 'Invalid email or password' });
     }
+
+    //change password
+
     router.post('/change-password', authMiddleware, async (req: AuthenticatedRequest, res) => {
         const { currentPassword, newPassword } = req.body;
       
