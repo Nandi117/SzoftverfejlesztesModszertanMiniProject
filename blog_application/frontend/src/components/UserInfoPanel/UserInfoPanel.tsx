@@ -16,6 +16,7 @@ export const UserInfoPanel = memo(() => {
     const [cookies, setCookies, removeCookies] = useCookies(["AUTH_TOKEN"]);
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState(''); // New state for confirm password
     const [changeInProgress, setChangeInProgress] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -27,8 +28,14 @@ export const UserInfoPanel = memo(() => {
     };
 
     const handleChangePassword = async () => {
-        if (!currentPassword || !newPassword) {
-            setError('Please fill in both fields');
+        if (!currentPassword || !newPassword || !confirmPassword) {
+            setError('Please fill in all fields');
+            setSuccess('');
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setError('New passwords do not match');
             setSuccess('');
             return;
         }
@@ -141,6 +148,14 @@ export const UserInfoPanel = memo(() => {
                                     type="password"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
+                                />
+                            </FormControl>
+                            <FormControl id="confirm-password">
+                                <FormLabel>Confirm New Password</FormLabel>
+                                <Input
+                                    type="password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
                             </FormControl>
                             <Button
