@@ -51,7 +51,7 @@ export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
     const handleCommentSubmit = async () => {
         const newCommentData = {
             postId,
-            comment: newComment,
+            content: newComment,
         };
 
         try {

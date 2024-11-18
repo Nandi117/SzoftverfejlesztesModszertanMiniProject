@@ -72,7 +72,7 @@ const BlogPost = () => {
 
                 {
                     translatedText ? <Box mt={5} alignSelf={"start"} color={"red"}>
-                        {translatedText}
+                        {parse(translatedText)}
                     </Box> : null
                 }
 

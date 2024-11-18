@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-import User, { IUser } from '../models/user'; 
+import User, { IUser } from '../models/user';
+import {logger} from "../config/logger";
 
 export interface AuthenticatedRequest extends Request {
   user?: IUser; // Extend the Request interface to include 'auth'
@@ -21,6 +22,9 @@ const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunc
     }
 
     const { userId } = payload;
+
+
+    logger.debug(`AuthMiddleware userId=${userId}`)
 
     try {
       const user = await User.findById(userId);

@@ -1,15 +1,16 @@
 import {useCallback, useRef, useState} from "react";
 import ReactQuill from "react-quill";
 import {useNavigate} from "react-router-dom";
-import {convertFileToBase64, extractBase64Data} from "../../../../../utils/fileToBase64.ts";
 import {getApi} from "../../../../../config/api.ts";
 import {routes} from "../../../../../config/routes.ts";
+import {gradients} from "../NewBlogPost.tsx";
 
 
 export const useNewBlogPost = () => {
 
 
     const [loading, setLoading] = useState<boolean>(false);
+    const [backgroundTemplate, setBackroundTemplate] = useState("oceanBreeze")
     const [error, setError] = useState<any>({
         isError: false,
         errorMessage: ""
@@ -21,47 +22,25 @@ export const useNewBlogPost = () => {
 
     const saveNewPost = useCallback(async () => {
         setLoading(true);
+
+        const titleValue = titleRef.current?.value;
+        const contentValue = quillEditorRef.current?.value;
+
+
+
+        const newBlogData = {
+            title: titleValue,
+            content: contentValue,
+            image: "",
+            backgroundTemplate: gradients.find((x:any)=>x.key === backgroundTemplate).value
+        }
+
+
         try {
-            const titleValue = titleRef.current?.value;
-            const contentValue = quillEditorRef.current?.value;
-            const fileList = fileUploaderRef.current?.files;
-
-            const newBlogData = {
-                title:titleValue,
-                content:contentValue,
-                image:""
+            const response = await getApi().post("blogs", JSON.stringify(newBlogData));
+            if (response.status === 200) {
+                navigate(routes.ownPosts.main);
             }
-
-            if (!fileList || fileList.length === 0){
-                const response = await getApi().post("blogs", JSON.stringify(newBlogData));
-                if (response.status === 200){
-                    navigate(routes.ownPosts.main);
-                }
-            }
-
-
-
-            if (fileList) {
-                convertFileToBase64(fileList[0])
-                    .then( async (base64String)=> {
-                        const newBlogData = {
-                            title:titleValue,
-                            content:contentValue,
-                            image:extractBase64Data(base64String)
-                        }
-
-                        const response = await getApi().post("blogs", JSON.stringify(newBlogData));
-                        if (response.status === 200){
-                            navigate(routes.ownPosts.main);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Hiba történt:', error);
-                    });
-            }
-
-
-
 
         } catch (e) {
             setError({
@@ -73,7 +52,7 @@ export const useNewBlogPost = () => {
 
         }
 
-    }, []);
+    }, [gradients, backgroundTemplate]);
 
     return {
         saveNewPost,
@@ -81,7 +60,9 @@ export const useNewBlogPost = () => {
         titleRef,
         quillEditorRef,
         error,
-        fileUploaderRef
+        fileUploaderRef,
+        backgroundTemplate,
+        setBackroundTemplate
     }
 
 }

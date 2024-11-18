@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { Error as MongooseError } from 'mongoose';
 import {logger} from "../config/logger"; // Import MongooseError
+import authMiddleware, {AuthenticatedRequest} from "../middlewares/requireAuth";
 
 const router = express.Router();
 
@@ -46,7 +47,7 @@ router.post('/signin', async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    logger.debug(`User to log in: username=${user.username}, email=${user.email}`);
+    logger.debug(`User to log in: username=${user?.username}, email=${user?.email}`);
     if (!user) {
         return res.status(422).send({ error: 'Invalid email or password' });
     }
@@ -73,6 +74,40 @@ router.post('/signin', async (req, res) => {
         logger.debug(`Error occured: ${err}`)
         return res.status(422).send({ error: 'Invalid email or password' });
     }
+
+    //change password
+
+    router.post('/change-password', authMiddleware, async (req: AuthenticatedRequest, res) => {
+        const { currentPassword, newPassword } = req.body;
+      
+        if (!currentPassword || !newPassword) {
+          return res.status(400).send({ error: 'Current and new passwords are required' });
+        }
+      
+        try {
+          const user = req.user; // Use the extended property
+      
+          if (!user) {
+            return res.status(401).send({ error: 'Unauthorized access' });
+          }
+      
+          const isMatch = await bcrypt.compare(currentPassword, user.password_hash);
+          if (!isMatch) {
+            return res.status(401).send({ error: 'Current password is incorrect' });
+          }
+      
+          const password_hash = await bcrypt.hash(newPassword, 10);
+          user.password_hash = password_hash;
+      
+          await user.save();
+      
+          logger.info(`Password changed for user ${user.email}`);
+          res.status(200).send({ message: 'Password changed successfully.' });
+        } catch (err) {
+          logger.error(`Error during password change: ${err}`);
+          res.status(500).send({ error: 'Internal server error.' });
+        }
+      });
 });
 
 export default router;

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {toggleDrawer} from "../../store/drawer/drawer.slice.ts";
 import {useNavigate} from "react-router-dom";
 import {UserInfoPanel} from "../UserInfoPanel/UserInfoPanel.tsx";
+import {Activity} from "../Activity/Activity.tsx";
 
 export const Navbar = () => {
 
@@ -38,6 +39,9 @@ export const Navbar = () => {
         <Spacer/>
         <Flex gap={2} width={"300px"} justifyContent={"end"}>
 
+            {
+                user ? <Activity/> : null
+            }
 
             <IconButton aria-label={"Theme change button"} icon={colorMode === "light" ? <MoonIcon/> : <SunIcon/>}
                         variant={"ghost"} onClick={toggleColorMode}/>
@@ -50,6 +54,9 @@ export const Navbar = () => {
                 user ? null : <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} onClick={handleSignUpClick}
                                       variant='outline'>Sign Up</Button>
             }
+
+
+
 
             <UserInfoPanel/>
         </Flex>

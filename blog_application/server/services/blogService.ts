@@ -1,16 +1,46 @@
-
 import BlogPost from "../models/blogPost";
 import {Error} from "mongoose";
 import {logger} from "../config/logger";
 import {IUser} from "../models/user";
+import {activityService} from "./activityService";
 
+
+const savedBPAct = "You created";
+const updatedBPAct = "You updated";
+const deletedBPAct = "You deleted";
 
 /***
  * Blog bejegyzések kezelése üzleti logika
  */
 export const blogService = {
 
-
+    activityHandler:async (operationType:string, data:BlogPost, user:IUser) =>{
+        let activity:any = {
+            referredObjectType:"BlogPost"
+        };
+        logger.debug(data.creatorUserId);
+        switch (operationType){
+            case "del":
+                activity.description = deletedBPAct + ` ${data.title}`;
+                activity.referredObjectId = data._id;
+                activity.referredObjectCreatorId = data.creatorUserId;
+                break;
+            case "po":
+                activity.description = savedBPAct + ` ${data.title}`;
+                activity.referredObjectContent = data.content?.slice(0,50);
+                activity.referredObjectId = data._id;
+                activity.referredObjectCreatorId = data.creatorUserId
+                break;
+            case "pu":
+                activity.description = updatedBPAct + ` ${data.title}`;
+                activity.referredObjectContent = data.content?.slice(0,50);
+                activity.referredObjectId = data._id;
+                activity.referredObjectCreatorId = data.creatorUserId;
+                break;
+        }
+        logger.debug(activity)
+        await activityService.save(activity, user);
+    },
 
     /***
      * Összes aktív blogbejegyzés lekérdezése
@@ -62,11 +92,14 @@ export const blogService = {
      * @param newPostData Új blogbejegyzés adatai
      * @return Új blogbjegyzés entitás
      */
-    post: async (newPostData:any, user:IUser) =>{
+    post: async (newPostData:any, user:IUser | undefined) =>{
         logger.debug(`Create post in the BLL layer: newPost=${JSON.stringify(newPostData)}`);
+        if (!user) throw new Error("User not authenticated.");
 
         const newPost = new BlogPost({...newPostData, creatorUserId:user._id});
         const savedPost = await newPost.save();
+
+        await blogService.activityHandler("po", savedPost, user);
         return savedPost;
     },
 
@@ -75,15 +108,18 @@ export const blogService = {
      * @param updatePostData Módosított bejegyzés adatai
      * @return Módosított blogbejegyzés entitás
      */
-    put: async (updatePostData:any)=>{
+    put: async (updatePostData:any, user:IUser | undefined)=>{
         logger.debug(`Update post in the BLL layer: id=${updatePostData._id}`);
 
+        if (!user) throw new Error("User not authenticated.");
         const updatedPost = await BlogPost.findByIdAndUpdate(
             updatePostData._id,
             ...updatePostData,
             { new:true }
         );
         if (!updatedPost) throw new Error("Blog post not found!");
+
+        await blogService.activityHandler("po", updatedPost, user);
         return updatedPost;
     },
 
@@ -93,9 +129,10 @@ export const blogService = {
      * @param id Blogbejegyzés egyedi azonosítója
      * @return Blogbjegyzés egyedi azonosítója
      */
-    delete: async (id:string)=>{
+    delete: async (id:string, user:IUser | undefined)=>{
         logger.debug(`Delete post in the BLL layer by unique identifier. id=${id}`);
 
+        if (!user) throw new Error("User not authenticated.");
         const deletedPost = await BlogPost.findByIdAndUpdate(
             id,
             {
@@ -103,6 +140,7 @@ export const blogService = {
             }
         )
         if (!deletedPost) throw new Error("Blog post not found!");
+        await blogService.activityHandler("del", deletedPost, user);
         return id;
     },
 
@@ -137,7 +175,7 @@ export const blogService = {
             title: {$regex: new RegExp(searchExpression)},
             isActive:true,
             creatorUserId:user._id
-        });
+        });3
 
         logger.debug(`Hit post list count. ${posts.length} elements`);
 
