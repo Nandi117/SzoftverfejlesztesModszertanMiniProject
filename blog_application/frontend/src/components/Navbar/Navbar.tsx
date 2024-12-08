@@ -37,7 +37,7 @@ export const Navbar = () => {
         alignItems={"center"}
         position={"fixed"}
         top={0}
-        background={"rgba(255, 255, 255, 0.16);"}
+        background={colorMode === "dark" ? "rgba(255, 255, 255, 0.16);" : " rgba(0, 0, 0, 0.16);"}
         zIndex={50}>
 
         {
