@@ -40,7 +40,9 @@ const SignUpPage = () => {
             const response = await getApi().post("auth/signup", JSON.stringify(signupData));
             if (response.status === 201){
                 dispatch(setUser(response.data));
-                navigate(routes.ownPosts.main);
+                setTimeout(()=>{
+                    navigate(routes.ownPosts.main);
+                }, 400);
             }
         }
         catch (e){
@@ -69,6 +71,7 @@ const SignUpPage = () => {
                         <FormLabel>Username</FormLabel>
                         <Input
                             type="text"
+                            data-testid={"username"}
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
@@ -77,6 +80,7 @@ const SignUpPage = () => {
                         <FormLabel>Email address</FormLabel>
                         <Input
                             type="email"
+                            data-testid={"email"}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -85,6 +89,7 @@ const SignUpPage = () => {
                         <FormLabel>Password</FormLabel>
                         <Input
                             type="password"
+                            data-testid={"password"}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -93,6 +98,7 @@ const SignUpPage = () => {
                         <FormLabel>Confirm Password</FormLabel>
                         <Input
                             type="password"
+                            data-testid={"confirm-password"}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
@@ -100,7 +106,7 @@ const SignUpPage = () => {
                     <Button leftIcon={<LockIcon />} isLoading={signupInProgress} colorScheme="teal" onClick={handleSignUp}>
                         Sign Up
                     </Button>
-                    <Button variant={"ghost"} colorScheme={"purple"} onClick={()=>navigate(routes.login)}>Already have an account?</Button>
+                    <Button data-testid={"register-btn"} variant={"ghost"} colorScheme={"purple"} onClick={()=>navigate(routes.login)}>Already have an account?</Button>
                 </VStack>
             </Box>
         </Flex>
