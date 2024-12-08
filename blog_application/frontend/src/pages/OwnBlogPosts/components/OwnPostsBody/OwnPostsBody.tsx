@@ -1,4 +1,4 @@
-import {Box, Grid, GridItem, Spinner} from "@chakra-ui/react";
+import {Box, Flex, Grid, GridItem, Spinner} from "@chakra-ui/react";
 import {OwnPostItem} from "./components/OwnPostItem/OwnPostItem.tsx";
 import {useOwnBlogPosts} from "../../hooks/useOwnBlogPosts.ts";
 import {OwnPostType} from "../../@types/ownPost.type.ts";
@@ -21,15 +21,14 @@ export const OwnPostsBody = () => {
     }
 
 
-    return <Grid templateColumns='repeat(5, 1fr)' gap={6} mt={5} width={"50%"}>
+    return <Flex flexDirection={"column"} gap={6} my={5} width={"40%"}>
         {
             posts.map((item:OwnPostType) => {
-                return <GridItem key={item._id} width={"100%"}>
-                    <OwnPostItem data={item}/>
-                </GridItem>
+                return <OwnPostItem data={item}/>
+
             })
         }
-    </Grid>
+    </Flex>
 
 
 }

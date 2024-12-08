@@ -27,16 +27,16 @@ export const OwnPostItem = memo(({data}: OwnPostItemProps) => {
             <CardHeader
                 height={100}
                 borderTopRadius={5}
-                backgroundImage={postBackgroundImages[random]}
+                background={data.backgroundTemplate || ""}
                 objectFit={"cover"}
                 backgroundPosition={"center"}
             >
-
-            </CardHeader>
-            <CardBody mx={1} overflow={"hidden"}>
                 <Heading as={"h4"} pb={1} size='sm'>
                     {data.title}
                 </Heading>
+            </CardHeader>
+            <CardBody mx={1} overflow={"hidden"}>
+
                 {data.content ? <Text mt={3} fontSize={"sm"}>{parse(data.content)}</Text> : null}
             </CardBody>
             <CardFooter justifyContent={"space-around"} alignItems={"center"}>

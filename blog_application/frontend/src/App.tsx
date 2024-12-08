@@ -8,7 +8,6 @@ import {Layout} from "./components/Layout/Layout.tsx";
 import {store} from "./store/store.ts";
 import {PrivateRoutes} from "./components/PrivateRoutes/PrivateRoutes.tsx";
 import {useAuth} from "./hooks/useAuth.ts";
-import VersionInformation from "./pages/VersionInformation/VersionInformation.tsx";
 
 /*Lazy imports for optimizing page performance */
 const AllBlogPosts = lazy(() => import("./pages/AllBlogPosts/AllBlogPosts.tsx"));
@@ -17,6 +16,9 @@ const NewBlogPost = lazy(() => import("./pages/OwnBlogPosts/pages/NewBlogPost/Ne
 const BlogPost = lazy(() => import("./pages/BlogPost/BlogPost.tsx"));
 const LogInPage = lazy(() => import("./pages/LogInPage/LogInPage.tsx"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage.tsx"));
+const Accounts = lazy(()=>import("./pages/Accounts/Accounts.tsx"));
+const VersionInformation = lazy(()=>import("./pages/VersionInformation/VersionInformation.tsx"));
+
 
 function App() {
 
@@ -42,6 +44,7 @@ function App() {
                                 <Route path={routes.posts + "/:id"} element={<BlogPost/>}/>
                                 {/* Version Information */}
                                 <Route path="/version-information" element={<VersionInformation/>}/>
+                                <Route path={routes.accounts} element={<Accounts/>}/>
                             </Route>
 
                             {/* Log in page */}
