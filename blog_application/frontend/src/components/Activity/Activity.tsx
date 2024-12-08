@@ -12,7 +12,7 @@ import {
     Spinner, Tab, TabList, TabPanel, TabPanels, Tabs,
     Text
 } from "@chakra-ui/react";
-import {CalendarIcon, Ey} from "@chakra-ui/icons";
+import {CalendarIcon} from "@chakra-ui/icons";
 import {ActivityCard} from "./ActivityCard.tsx";
 import {useActivities} from "./hooks/useActivities.ts";
 import {ActivityType} from "./@types/activity.type.ts";
@@ -20,8 +20,11 @@ import {ActivityType} from "./@types/activity.type.ts";
 
 export const Activity = () => {
 
-    const {getActivities, loading, activities} = useActivities();
+    const {getActivities, loading, activities, setActivities} = useActivities();
 
+
+    const hidden = activities.filter((x:ActivityType)=>!x.isActive);
+    const unhidden = activities.filter((x:ActivityType)=>x.isActive);
 
     return <Popover id={"activity-popover"} preventOverflow={true} placement={"left"} onOpen={getActivities}>
         <PopoverTrigger>
@@ -50,15 +53,15 @@ export const Activity = () => {
                         <TabPanels>
                             <TabPanel>
                                 <Flex mt={4} flexDirection={"column"} py={2} maxHeight={"80vh"} overflowX={"hidden"} gap={6}>
-                                    {activities.unhidden.map((e:ActivityType) => {
-                                        return <ActivityCard key={e._id} data={e}/>
+                                    {unhidden.map((e:ActivityType) => {
+                                        return <ActivityCard key={e._id} data={e} setActivities={setActivities}/>
                                     })}
                                 </Flex>
                             </TabPanel>
                             <TabPanel>
                                 <Flex mt={4} flexDirection={"column"} py={2} maxHeight={"80vh"} overflowX={"hidden"} gap={6}>
-                                    {activities.hidden.map((e:ActivityType) => {
-                                        return <ActivityCard key={e._id} data={e}/>
+                                    {hidden.map((e:ActivityType) => {
+                                        return <ActivityCard key={e._id} data={e} setActivities={setActivities}/>
                                     })}
                                 </Flex>
                             </TabPanel>

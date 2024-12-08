@@ -7,27 +7,52 @@ import {useCallback} from "react";
 import {getApi} from "../../config/api.ts";
 
 
+import { useToast } from "@chakra-ui/react";
+
+
+
 const routesForObject:{[key:string]:string} = {
     "BlogPost" : routes.posts,
     "User": ""
 }
 
 type ActivityCardProps = {
-    data:ActivityType
+    data:ActivityType,
+    setActivities:any
 }
-export const ActivityCard = ({data}:ActivityCardProps) => {
+export const ActivityCard = ({data, setActivities}:ActivityCardProps) => {
 
 
     const elementRoute = routesForObject[data.referredObjectType]
+
+    const toast = useToast();
+
 
 
     const hideActivity = useCallback(async ()=>{
         try{
             const response = await getApi().put("/activities/hide" + `?activityId=${data._id}`)
             const activityId = response.data;
+            setActivities((prevState:ActivityType[])=>{
+                return prevState.map((e:ActivityType)=>{
+                    if (e._id === activityId){
+                        return {...e, isActive:false}
+                    }
+                    return e;
+                })
+            });
+
+            toast({
+                title: "Action completed.",
+                description: "Activity is successfully hid.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position:"bottom-right"
+            })
         }
         catch (e){
-
+            console.error(e);
         }
     },[]);
 
@@ -35,7 +60,8 @@ export const ActivityCard = ({data}:ActivityCardProps) => {
 
     return <Card className={"activity-card"} variant={"elevated"} width={"100%"} mx={2} boxShadow={""}>
         <CardHeader display={"flex"} p={0}>
-            <Link href={elementRoute + "/" + data.referredObjectId} color={"blue.200"}>{data.description}</Link>
+            {elementRoute ?  <Link href={elementRoute + "/" + data.referredObjectId} color={"blue.200"}>{data.description}</Link> : <Text>{data.description}</Text>}
+
         </CardHeader>
         <CardBody p={0} pr={10} mt={1}>
             <Text fontSize={12} textAlign={"justify"}>
