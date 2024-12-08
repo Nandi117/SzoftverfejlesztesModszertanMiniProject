@@ -82,7 +82,7 @@ const BlogPost = () => {
     }
 
     return <>
-        <Flex flexDirection={"column"} alignItems={"center"} mt={10}>
+        <Flex flexDirection={"column"} alignItems={"center"} mt={"10vh"}>
             <Flex flexDirection={"column"} alignItems={"center"} width={"50%"}>
 
                 <Button

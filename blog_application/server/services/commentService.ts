@@ -4,8 +4,8 @@ import {Error} from "mongoose";
 import {IUser} from "../models/user";
 import {activityService} from "./activityService";
 
-const savedCommentAct = "You created";
-const deletedCommentAct = "You deleted";
+const savedCommentAct = "You commented ";
+const deletedCommentAct = "You deleted comment ";
 
 /**
  * Kommentek üzleti logika (BLL)

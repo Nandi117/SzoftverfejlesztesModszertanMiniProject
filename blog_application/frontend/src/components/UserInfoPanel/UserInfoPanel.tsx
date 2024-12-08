@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, {memo, useState} from "react";
 import {
-    Avatar, Button, Flex, Popover, PopoverArrow,
-    PopoverBody, PopoverCloseButton, PopoverContent, 
-    PopoverHeader, PopoverTrigger, Text, FormControl, 
-    FormLabel, Input, Alert, AlertIcon, VStack
+    Alert,
+    AlertIcon,
+    Avatar,
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    Input,
+    Popover,
+    PopoverArrow,
+    PopoverBody,
+    PopoverCloseButton,
+    PopoverContent,
+    PopoverHeader,
+    PopoverTrigger,
+    Text,
+    VStack
 } from "@chakra-ui/react";
-import { memo } from "react";
-import { useSelector } from "react-redux";
-import { ArrowForwardIcon, InfoOutlineIcon } from "@chakra-ui/icons";
-import { useCookies } from "react-cookie";
-import { getApi } from "../../config/api.ts"; // Adjust according to your project structure
+import {useSelector} from "react-redux";
+import {ArrowForwardIcon, InfoOutlineIcon} from "@chakra-ui/icons";
+import {useCookies} from "react-cookie";
+import {getApi} from "../../config/api.ts"; // Adjust according to your project structure
 
 export const UserInfoPanel = memo(() => {
     const user = useSelector((state: any) => state.auth.user);

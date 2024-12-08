@@ -7,7 +7,7 @@ export const OwnPostsWrapper = ()  =>{
 
 
 
-    return <Flex flexDirection={"column"} align={"center"} width={"100%"}>
+    return <Flex flexDirection={"column"} align={"center"} width={"100%"} mt={"5vh"}>
         <OwnPostsHeader/>
         <OwnPostsBody/>
     </Flex>
