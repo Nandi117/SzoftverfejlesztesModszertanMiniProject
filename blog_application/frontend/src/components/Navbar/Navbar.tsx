@@ -1,10 +1,11 @@
-import {Box, Button, Flex, IconButton, Spacer, useColorMode,} from "@chakra-ui/react";
+import {Box, Button, Flex, IconButton, Spacer, useColorMode} from "@chakra-ui/react";
 import {ArrowForwardIcon, HamburgerIcon, MoonIcon, SunIcon, UnlockIcon} from '@chakra-ui/icons';
 import {useDispatch, useSelector} from "react-redux";
 import {toggleDrawer} from "../../store/drawer/drawer.slice.ts";
 import {useNavigate} from "react-router-dom";
 import {UserInfoPanel} from "../UserInfoPanel/UserInfoPanel.tsx";
 import {Activity} from "../Activity/Activity.tsx";
+import {Logo} from "../Logo/Logo.tsx";
 
 export const Navbar = () => {
 
@@ -28,13 +29,26 @@ export const Navbar = () => {
     }
 
 
-    return <Flex py={2} px={10}>
+    return <Flex
+        py={2}
+        px={10}
+        gap={10}
+        width={"100%"}
+        alignItems={"center"}
+        position={"fixed"}
+        top={0}
+        background={"rgba(255, 255, 255, 0.16);"}
+        zIndex={50}>
 
         {
             user ? <Box>
                 <IconButton aria-label={"Toggle menu"} icon={<HamburgerIcon/>} onClick={handleBurgerClick}/>
             </Box> : null
         }
+        <Box>
+            <Logo/>
+        </Box>
+
 
         <Spacer/>
         <Flex gap={2} width={"300px"} justifyContent={"end"}>
@@ -54,8 +68,6 @@ export const Navbar = () => {
                 user ? null : <Button leftIcon={<ArrowForwardIcon/>} colorScheme={"teal"} onClick={handleSignUpClick}
                                       variant='outline'>Sign Up</Button>
             }
-
-
 
 
             <UserInfoPanel/>
