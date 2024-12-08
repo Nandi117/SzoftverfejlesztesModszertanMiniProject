@@ -22,5 +22,10 @@ export const menuItems:MenuItemType[] = [
         displayText:"Own posts",
         route:routes.ownPosts.main
     },
+    {
+        id:3,
+        displayText:"Accounts",
+        route:routes.accounts
+    }
 
 ]

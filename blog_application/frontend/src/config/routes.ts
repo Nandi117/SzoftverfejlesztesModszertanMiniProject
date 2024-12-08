@@ -1,9 +1,6 @@
 
 
 
-
-
-
 export const routes = {
 
 
@@ -16,4 +13,5 @@ export const routes = {
         new:"/ownPosts/new"
     },
     posts: "posts",
+    accounts:"accounts"
 }
