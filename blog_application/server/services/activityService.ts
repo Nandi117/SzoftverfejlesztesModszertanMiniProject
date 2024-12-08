@@ -19,7 +19,7 @@ export const activityService = {
         }).populate({
             path:"referredObjectCreatorId",
             select:"username image"
-        });
+        }).sort({createdAt:-1});
 
 
         logger.debug(`Activities count: ${activities.length}`);

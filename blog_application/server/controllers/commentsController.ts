@@ -40,12 +40,13 @@ router.post("/", authMiddleware, async (req:AuthenticatedRequest, res)=>{
 /**
  * Komment törlése egyedi azonosító alapján
  */
-router.delete("/:id", authMiddleware, async (req, res)=>{
+router.delete("/:id", authMiddleware, async (req:AuthenticatedRequest, res)=>{
     try{
         const id = req.params.id;
+        const {user} = req;
         logger.info(`Delete comment in the API layer by unique identifier. id=${id}`);
 
-        const deletedCommentId = await commentService.delete(id);
+        const deletedCommentId = await commentService.delete(id, user);
         Ok(res, deletedCommentId);
     }
     catch (error){

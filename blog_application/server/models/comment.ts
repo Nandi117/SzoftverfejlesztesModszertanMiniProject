@@ -5,9 +5,11 @@ import {BaseEntity} from "./baseEntity";
 
 
 interface Comment extends Document{
+    _id:string,
     postId:string,
     userId:string,
     content:string
+    creatorUserId:string,
 
 }
 

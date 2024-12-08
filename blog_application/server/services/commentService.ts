@@ -2,12 +2,41 @@ import {logger} from "../config/logger";
 import Comment from "../models/comment";
 import {Error} from "mongoose";
 import {IUser} from "../models/user";
+import {activityService} from "./activityService";
+
+const savedCommentAct = "You created";
+const deletedCommentAct = "You deleted";
 
 /**
  * Kommentek üzleti logika (BLL)
  * Üzleti folyamatok kezelése, adatok fogadása és továbbítása
  */
 export const commentService = {
+
+
+
+    activityHandler:async (operationType:string, data:Comment, user:IUser) =>{
+        let activity:any = {
+            referredObjectType:"Comment"
+        };
+        logger.debug(data.creatorUserId);
+        switch (operationType){
+            case "del":
+                activity.description = deletedCommentAct + ` ${data.content.slice(0,50)}`;
+                activity.referredObjectId = data._id;
+                activity.referredObjectCreatorId = data.creatorUserId;
+                break;
+            case "po":
+                activity.description = savedCommentAct + ` ${data.content.slice(0,50)}`;
+                activity.referredObjectContent = data.content.slice(0,50);
+                activity.referredObjectId = data._id;
+                activity.referredObjectCreatorId = data.creatorUserId
+                break;
+        }
+        logger.debug(activity)
+        await activityService.save(activity, user);
+    },
+
 
     /**
      * Adott blogbejegyzésekhez tartozó kommentek lekérdezése
@@ -47,6 +76,7 @@ export const commentService = {
             path:"creatorUserId",
             select:"_id username"
         })
+        await commentService.activityHandler("po", savedComment, user);
         return savedComment;
     },
 
@@ -56,15 +86,17 @@ export const commentService = {
      * @param id Komment egyedi azonosítója
      * @return Törölt komment egyedi azonosítója
      */
-    delete:async (id:string)=>{
+    delete:async (id:string, user:any)=>{
         logger.debug(`Delete comment in the API layer by unique identifier. id=${id}`);
         const deletedComment = await Comment.findByIdAndUpdate(
             id,
             {
                 isActive:false
             }
-        )
+        );
+
         if (!deletedComment) throw new Error("Blog post not found!");
+        await commentService.activityHandler("del", deletedComment, user);
         return id;
     }
 
