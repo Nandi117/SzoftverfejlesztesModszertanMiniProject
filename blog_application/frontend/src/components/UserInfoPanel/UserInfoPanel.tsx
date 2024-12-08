@@ -80,7 +80,7 @@ export const UserInfoPanel = memo(() => {
     return (
         <Popover placement="bottom">
             <PopoverTrigger>
-                <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+                <Avatar name={user?.username} />
             </PopoverTrigger>
             <PopoverContent>
                 <PopoverArrow />
@@ -93,7 +93,7 @@ export const UserInfoPanel = memo(() => {
                 </PopoverHeader>
                 <PopoverBody>
                     <Flex flexDirection={"column"} alignItems={"center"} gap={4}>
-                        <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+                        <Avatar size={"md"} name={user?.username} />
                         <Text fontWeight={600} fontSize={20}>
                             {user.username}
                         </Text>

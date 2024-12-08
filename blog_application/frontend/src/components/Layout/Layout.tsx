@@ -19,7 +19,6 @@ export const Layout = () => {
 
     const opened = useSelector((state:any)=>state.drawer.opened);
 
-
     const dispatch = useDispatch();
     const handleClose = () => dispatch(toggleDrawer())
 

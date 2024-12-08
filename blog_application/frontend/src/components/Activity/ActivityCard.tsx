@@ -1,4 +1,4 @@
-import {Avatar, Box, Card, CardBody, CardFooter, CardHeader, IconButton, Link, Text} from "@chakra-ui/react"
+import {Box, Card, CardBody, CardFooter, CardHeader, IconButton, Link, Text, Avatar} from "@chakra-ui/react"
 import {TimeIcon, ViewOffIcon} from "@chakra-ui/icons";
 import "./ActivityCard.css";
 import {ActivityType} from "./@types/activity.type.ts";
@@ -8,6 +8,7 @@ import {getApi} from "../../config/api.ts";
 
 
 import { useToast } from "@chakra-ui/react";
+import {useSelector} from "react-redux";
 
 
 
@@ -24,6 +25,7 @@ export const ActivityCard = ({data, setActivities}:ActivityCardProps) => {
 
 
     const elementRoute = routesForObject[data.referredObjectType]
+    const user = useSelector(state=>state.auth.user);
 
     const toast = useToast();
 
@@ -68,7 +70,7 @@ export const ActivityCard = ({data, setActivities}:ActivityCardProps) => {
                 {data.referredObjectContent}
             </Text>
             <Box display={"flex"} alignItems={"center"} mt={2} gap={2}>
-                <Avatar size={"sm"} src={"https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg"}/>
+                <Avatar size={"sm"} name={user?.username}/>
                 <Text fontWeight={"medium"}>{data.referredObjectCreatorId?.username}</Text>
             </Box>
 

@@ -7,7 +7,7 @@ const Accounts = () =>{
 
 
     return <>
-        <Flex mx={"auto"} width={"50vh"} alignItems={"center"} flexDirection={"column"}>
+        <Flex mx={"auto"} width={"50vh"} alignItems={"center"} flexDirection={"column"} pt={10}>
             <Card width={"100%"} p={"2em"}>
                 <Heading fontSize={24}>Accounts</Heading>
 
