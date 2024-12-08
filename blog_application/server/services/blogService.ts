@@ -114,7 +114,9 @@ export const blogService = {
         if (!user) throw new Error("User not authenticated.");
         const updatedPost = await BlogPost.findByIdAndUpdate(
             updatePostData._id,
-            ...updatePostData,
+            {
+                ...updatePostData,
+            },
             { new:true }
         );
         if (!updatedPost) throw new Error("Blog post not found!");
