@@ -12,6 +12,7 @@ import {Navbar} from "../Navbar/Navbar.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleDrawer} from "../../store/drawer/drawer.slice.ts";
 import {Menu} from "../Menu/Menu.tsx";
+import {ScrollTopBtn} from "../ScrollTopBtn/ScrollTopBtn.tsx";
 
 export const Layout = () => {
 
@@ -25,6 +26,7 @@ export const Layout = () => {
 
     return <>
         <Navbar/>
+        <ScrollTopBtn/>
         <Outlet/>
         <Drawer
             isOpen={opened}
