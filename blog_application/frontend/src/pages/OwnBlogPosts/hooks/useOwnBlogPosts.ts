@@ -16,17 +16,9 @@ export const useOwnBlogPosts = () =>{
     const getOwnPosts = useCallback(async () =>{
         try{
             const response = await getApi().get("blogs/own");
-            const mapped = response.data.map((post:OwnPostType)=>{
-                console.log(post)
-               return  {
-                    ...post,
-                    image:base64ToBlob(post.image)
-                }
-            })
-            dispatch(setOwnPosts(mapped));
 
+            dispatch(setOwnPosts(response.data));
 
-            console.log(mapped);
         }
         catch (e){
             console.log(e)
