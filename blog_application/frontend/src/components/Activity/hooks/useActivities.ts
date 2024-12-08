@@ -4,22 +4,14 @@ import {getApi} from "../../../config/api.ts";
 
 export const useActivities = () =>{
 
-    const [activities, setActivities] = useState<any>({
-        unhidden:[],
-        hidden:[]
-    });
+    const [activities, setActivities] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     const getActivities = useCallback(async ()=>{
         setLoading(true)
         try{
             const response = await getApi().get("/activities");
-            const hidden = response.data.filter((x:any)=>!x.isActive);
-            const unhidden = response.data.filter((x:any)=>x.isActive);
-            setActivities({
-                unhidden:unhidden,
-                hidden:hidden
-            });
+            setActivities(response.data)
         }
         catch (e){
             console.log(e)
@@ -33,6 +25,7 @@ export const useActivities = () =>{
     return {
         getActivities,
         loading,
-        activities
+        activities,
+        setActivities
     }
 }
