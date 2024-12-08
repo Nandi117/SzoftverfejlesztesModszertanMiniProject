@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import {
     Alert,
     AlertIcon,
@@ -16,10 +16,8 @@ import {UnlockIcon} from '@chakra-ui/icons';
 import {Link, useNavigate} from 'react-router-dom';
 import {getApi} from "../../config/api.ts";
 import {routes} from "../../config/routes.ts";
-import { use } from 'framer-motion/client';
 import {useDispatch} from "react-redux";
 import {setUser} from "../../store/auth/auth.slice.ts";
-import axios from "axios";
 
 
 const LogInPage = () => {
@@ -54,7 +52,7 @@ const LogInPage = () => {
                 setError("");
                 setTimeout(()=>{
                     navigate(routes.ownPosts.main);
-                }, 100);
+                }, 400);
             }
         }
         catch (e){
@@ -84,6 +82,7 @@ const LogInPage = () => {
                     <FormControl id="email">
                         <FormLabel>Email address</FormLabel>
                         <Input
+                            data-testid={"email"}
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -92,12 +91,13 @@ const LogInPage = () => {
                     <FormControl id="password">
                         <FormLabel>Password</FormLabel>
                         <Input
+                            data-testid={"password"}
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </FormControl>
-                    <Button isLoading={loginInProgress} leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
+                    <Button data-testid={"login-btn"} isLoading={loginInProgress} leftIcon={<UnlockIcon/>} colorScheme="teal" onClick={handleLogin}>
                         Log In
                     </Button>
 

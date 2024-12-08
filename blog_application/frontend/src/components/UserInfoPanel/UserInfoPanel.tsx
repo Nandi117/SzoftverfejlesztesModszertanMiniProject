@@ -23,6 +23,7 @@ export const UserInfoPanel = memo(() => {
     const [isChangingPassword, setIsChangingPassword] = useState(false); // To toggle the password change form
 
     const logout = () => {
+        console.log("lefutok")
         removeCookies("AUTH_TOKEN");
         localStorage.removeItem("UserInfo");
     };

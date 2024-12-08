@@ -8,4 +8,7 @@ export type DefaultPostType = {
     title:string,
     content?:string,
     created:Date,
+    likes?:number,
+    superlikes?:number,
+
 }

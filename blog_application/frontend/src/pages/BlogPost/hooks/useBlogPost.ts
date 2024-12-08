@@ -63,7 +63,7 @@ export const useBlogPost = () =>{
     },[]);
 
 
-
+    console.log(post)
     return {
         post,
         loading,

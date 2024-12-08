@@ -18,29 +18,30 @@ interface Post {
     superlikes: number;
 }
 
-const BlogPost = ({ post }: { post: Post }) => {
+const BlogPost = () => {
     const {
         loading,
         error,
         translatedText,
         translate,
         translateBlogPost,
-        translationError
+        translationError,
+        post
     } = useBlogPost();
 
     const dispatch = useDispatch();
-    const [likes, setLikes] = useState(post.likes);
-    const [dislikes, setDislikes] = useState(post.dislikes);
-    const [superlikes, setSuperlikes] = useState(post.superlikes);
+    const [likes, setLikes] = useState(post?.likes);
+    const [dislikes, setDislikes] = useState(post?.dislikes);
+    const [superlikes, setSuperlikes] = useState(post?.superlikes);
     const [hasSuperliked, setHasSuperliked] = useState(false);
 
     useEffect(() => {
         const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
         const today = new Date().toISOString().split('T')[0];
-        if (superlikeData[post._id] === today) {
+        if (superlikeData[post?._id] === today) {
             setHasSuperliked(true);
         }
-    }, [post._id]);
+    }, [post?._id]);
 
     const handleLike = () => {
         setLikes(likes + 1);
@@ -50,6 +51,8 @@ const BlogPost = ({ post }: { post: Post }) => {
         setDislikes(dislikes + 1);
     };
 
+
+    console.log(post)
     const handleSuperlike = () => {
         const today = new Date().toISOString().split('T')[0];
         const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
