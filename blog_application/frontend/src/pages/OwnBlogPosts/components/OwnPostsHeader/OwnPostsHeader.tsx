@@ -41,7 +41,7 @@ export const OwnPostsHeader = () =>{
         <Heading as={"h4"} textAlign={"center"}>Own posts</Heading>
         <Flex mt={4} gap={2} width={"100%"} flexGrow={"1"}>
             <Input ref={searchInputRef} placeholder={"Search posts..."} onChange={onSearchExpValueChange}/>
-            <Button leftIcon={<PlusSquareIcon/>} colorScheme={"teal"} onClick={()=>navigate(routes.ownPosts.new)}>New post</Button>
+            <Button leftIcon={<PlusSquareIcon/>} colorScheme={"teal"} data-testid={"add-post-btn"} onClick={()=>navigate(routes.ownPosts.new)}>New post</Button>
         </Flex>
     </Box>
 

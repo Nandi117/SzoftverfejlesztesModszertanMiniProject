@@ -92,7 +92,7 @@ export const Navbar = () => {
 
         {
             user ? <Box>
-                <IconButton aria-label={"Toggle menu"} icon={<HamburgerIcon/>} onClick={handleBurgerClick}/>
+                <IconButton data-testid={"menu-btn"} aria-label={"Toggle menu"} icon={<HamburgerIcon/>} onClick={handleBurgerClick}/>
             </Box> : null
         }
         <Box>

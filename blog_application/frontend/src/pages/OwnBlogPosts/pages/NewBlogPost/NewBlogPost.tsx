@@ -65,10 +65,10 @@ const NewBlogPost = () => {
 
             <Heading as={"h5"}>New Post</Heading>
             <FormControl>
-                <Input type='text' ref={titleRef} placeholder={"Enter title"}/>
+                <Input type='text' data-testid={"post-title"} ref={titleRef} placeholder={"Enter title"}/>
             </FormControl>
 
-            <ReactQuill ref={quillEditorRef} theme="snow" style={{height:600, marginTop:"1em", width:"100%"}}/>
+            <ReactQuill data-testid={"post-content"} ref={quillEditorRef} theme="snow" style={{height:600, marginTop:"1em", width:"100%"}}/>
 
             <Text alignSelf={"start"} fontWeight={"medium"} mt={20} >Select background template</Text>
             <Flex width={"100%"} height={200} justifyContent={"start"} gap={4} mt={2} wrap={"wrap"}>
@@ -84,7 +84,7 @@ const NewBlogPost = () => {
                 }
             </Flex>
 
-            <Button  isLoading={loading}  loadingText='Submitting' alignSelf={"end"} rightIcon={<CheckIcon/>} colorScheme={"teal"} onClick={saveNewPost}>Save</Button>
+            <Button data-testid={"save-post-btn"}  isLoading={loading}  loadingText='Submitting' alignSelf={"end"} rightIcon={<CheckIcon/>} colorScheme={"teal"} onClick={saveNewPost}>Save</Button>
 
         </Flex>
     </>
