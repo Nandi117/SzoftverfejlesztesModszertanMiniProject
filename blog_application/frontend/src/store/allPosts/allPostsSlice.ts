@@ -21,7 +21,11 @@ const allPostsSlice = createSlice({
         setAllPosts(state, { payload }: PayloadAction<AllPostsType[]>) {
             state.posts = [...payload];
         },
-
+/**
+ * Deletes a post from the state by its unique ID.
+ * @param state - The current state of the allPosts slice.
+ * @param payload - The ID of the post to be deleted.
+ */
         deletePost(state, { payload }: PayloadAction<string>) {
             const filtered = state.posts.filter(x => x._id !== payload);
             state.posts = [...filtered];
