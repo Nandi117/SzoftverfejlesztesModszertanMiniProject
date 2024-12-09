@@ -62,6 +62,12 @@ const BlogPost = () => {
     };
 
 
+/**
+ * Handles the logic for superliking a blog post.
+ * Updates local storage to prevent multiple superlikes on the same day,
+ * dispatches a superlike action, and increments the superlike count.
+ */
+
     console.log(post)
     const handleSuperlike = () => {
         const today = new Date().toISOString().split('T')[0];
