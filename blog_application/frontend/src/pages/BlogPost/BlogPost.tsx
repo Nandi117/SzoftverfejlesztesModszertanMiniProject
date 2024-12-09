@@ -35,6 +35,11 @@ const BlogPost = () => {
     const [superlikes, setSuperlikes] = useState(post?.superlikes);
     const [hasSuperliked, setHasSuperliked] = useState(false);
 
+/**
+ * Initializes the superlike status for the current post.
+ * Checks if the post was superliked on the current day by reading local storage.
+ */
+
     useEffect(() => {
         const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
         const today = new Date().toISOString().split('T')[0];
