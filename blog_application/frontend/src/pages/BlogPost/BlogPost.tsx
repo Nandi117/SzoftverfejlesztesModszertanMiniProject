@@ -52,6 +52,11 @@ const BlogPost = () => {
         setLikes(likes + 1);
     };
 
+/**
+ * Handles the logic for disliking a blog post.
+ * Increments the dislike count by 1 and updates the state.
+ */
+
     const handleDislike = () => {
         setDislikes(dislikes + 1);
     };
