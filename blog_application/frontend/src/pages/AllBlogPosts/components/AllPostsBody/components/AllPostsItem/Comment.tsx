@@ -85,7 +85,7 @@ export const Comment = memo(({data, setComments, readOnly}: CommentProps) => {
 
         <Flex flexDirection={"column"}>
             <Flex flexDirection={"row"} alignItems={"center"} gap={2}>
-                <Avatar size={"sm"} name='Dan Abrahmov' src='https://bit.ly/dan-abramov'/>
+                <Avatar name={data.creatorUserId.username}/>
                 <Text fontWeight={500}>{data.creatorUserId.username}</Text>
             </Flex>
             <Text ml={10} fontWeight={300}>{data.content}</Text>
