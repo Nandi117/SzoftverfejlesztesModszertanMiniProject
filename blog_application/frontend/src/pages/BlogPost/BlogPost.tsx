@@ -35,6 +35,11 @@ const BlogPost = () => {
     const [superlikes, setSuperlikes] = useState(post?.superlikes);
     const [hasSuperliked, setHasSuperliked] = useState(false);
 
+/**
+ * Initializes the superlike status for the current post.
+ * Checks if the post was superliked on the current day by reading local storage.
+ */
+
     useEffect(() => {
         const superlikeData = JSON.parse(localStorage.getItem("superlikeData") || "{}");
         const today = new Date().toISOString().split('T')[0];
@@ -43,14 +48,30 @@ const BlogPost = () => {
         }
     }, [post?._id]);
 
+    /**
+ * Handles the logic for liking a blog post.
+ * Increments the like count by 1 and updates the state.
+ */
+
     const handleLike = () => {
         setLikes(likes + 1);
     };
+
+/**
+ * Handles the logic for disliking a blog post.
+ * Increments the dislike count by 1 and updates the state.
+ */
 
     const handleDislike = () => {
         setDislikes(dislikes + 1);
     };
 
+
+/**
+ * Handles the logic for superliking a blog post.
+ * Updates local storage to prevent multiple superlikes on the same day,
+ * dispatches a superlike action, and increments the superlike count.
+ */
 
     console.log(post)
     const handleSuperlike = () => {
@@ -80,11 +101,15 @@ const BlogPost = () => {
             </Alert>
         </>
     }
+    /**
+ * Triggers the translation process for the current blog post.
+ * Calls the translateBlogPost function provided by the useBlogPost hook.
+ */
 
     return <>
         <Flex flexDirection={"column"} alignItems={"center"} mt={"10vh"}>
             <Flex flexDirection={"column"} alignItems={"center"} width={"50%"}>
-
+                
                 <Button
                     leftIcon={<RepeatIcon />}
                     isLoading={translate}

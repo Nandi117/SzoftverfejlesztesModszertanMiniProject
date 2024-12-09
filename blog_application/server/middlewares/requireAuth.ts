@@ -7,6 +7,13 @@ export interface AuthenticatedRequest extends Request {
   user?: IUser; // Extend the Request interface to include 'auth'
 }
 
+/**
+ * Middleware that chacks if the user is logged in. Checks if the token is present if not it logs out an error and not let other functions to run if they require authentication
+ * @param req The tokan which need to be checked
+ * @param res The response that is given if the user is not authenticated
+ * @param next Calls the function that requires authentication
+ * @returns 
+ */
 const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
 

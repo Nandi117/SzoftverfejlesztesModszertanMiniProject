@@ -23,6 +23,63 @@ import {ArrowForwardIcon, InfoOutlineIcon} from "@chakra-ui/icons";
 import {useCookies} from "react-cookie";
 import {getApi} from "../../config/api.ts"; // Adjust according to your project structure
 
+/**
+ * UserInfoPanel Component
+ *
+ * This component displays user account information and provides functionality for logging out and changing the password.
+ * It leverages Chakra UI for styling and Redux for accessing user data from the application state.
+ *
+ * Features:
+ * - Displays user avatar, username, and email.
+ * - Logout functionality to clear user session (cookies and localStorage).
+ * - Password change functionality with validation and feedback (success or error messages).
+ * - Responsive UI elements using Chakra UI components.
+ *
+ * Dependencies:
+ * - `react-redux`: Accesses the authenticated user state from Redux.
+ * - `react-cookie`: Handles cookies for retrieving the authentication token.
+ * - `react-router-dom`: Used for navigation in related components.
+ * - `@chakra-ui/react`: Provides styled UI components.
+ * - `getApi`: Axios instance for making authenticated API requests.
+ *
+ * Props:
+ * - None.
+ *
+ * State:
+ * - `currentPassword`: Stores the current password input by the user.
+ * - `newPassword`: Stores the new password input by the user.
+ * - `confirmPassword`: Ensures the new password matches during validation.
+ * - `changeInProgress`: Indicates whether the password change request is in progress.
+ * - `error`: Stores any error message to display during password change.
+ * - `success`: Stores the success message to display upon successful password change.
+ * - `isChangingPassword`: Toggles the visibility of the password change form.
+ *
+ * Behavior:
+ * - Displays a user avatar button in the navigation bar.
+ * - Clicking the avatar opens a popover with account information, logout button, and password change button.
+ * - Clicking "Change Password" displays a form with inputs for current and new passwords.
+ * - Validates the form:
+ *   - Ensures all fields are filled.
+ *   - Checks if new passwords match.
+ * - Sends an API request to update the password using the token stored in cookies.
+ * - Displays error or success messages based on the API response.
+ * - Logs out the user by removing cookies and clearing localStorage.
+ *
+ * Usage:
+ * - Include this component in the navigation bar or any UI section where account management is needed.
+ * - Example:
+ *   ```
+ *   import { UserInfoPanel } from './UserInfoPanel';
+ *   ...
+ *   <UserInfoPanel />
+ *   ```
+ *
+ * Notes:
+ * - Ensure the API endpoint `/auth/change-password` exists and follows the expected request/response structure.
+ * - Customize styles and messages as needed for your application.
+ */
+
+
 export const UserInfoPanel = memo(() => {
     const user = useSelector((state: any) => state.auth.user);
     const [cookies, setCookies, removeCookies] = useCookies(["AUTH_TOKEN"]);
