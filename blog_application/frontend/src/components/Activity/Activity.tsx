@@ -22,7 +22,47 @@ import {ActivityCard} from "./ActivityCard.tsx";
 import {useActivities} from "./hooks/useActivities.ts";
 import {ActivityType} from "./@types/activity.type.ts";
 
-
+/**
+ * Activity Component
+ *
+ * This component displays a user's activity in a popover. It uses Chakra UI for styling and 
+ * interactivity and integrates with the `useActivities` hook to fetch and manage activity data.
+ *
+ * Features:
+ * - Popover to show activities with a trigger button.
+ * - Filter options to view activities based on time periods (All, Today, 1 Week, 1 Month).
+ * - Tabs to separate unhidden and hidden activities.
+ * - Spinner to indicate loading state while fetching activities.
+ * - Displays activity details using the `ActivityCard` component.
+ *
+ * Dependencies:
+ * - `useActivities` hook for managing activity state and fetching data.
+ * - `ActivityCard` component for rendering individual activity items.
+ * - Chakra UI components for layout, styling, and interactivity.
+ *
+ * Usage:
+ * - This component is designed to be used wherever activity tracking or management is needed
+ *   within an application.
+ *
+ * Behavior:
+ * - On opening the popover, the `getActivities` function is called to fetch activity data.
+ * - Activities are filtered into two categories: hidden (`!isActive`) and unhidden (`isActive`).
+ * - The user can filter activities by time period using the dropdown (`Select`).
+ * - Activities are displayed in a scrollable `Flex` container with a tabbed interface.
+ *
+ * Structure:
+ * - Popover:
+ *   - Trigger: Button with "Activity" text and `CalendarIcon`.
+ *   - Content:
+ *     - Header: Displays a title with an icon.
+ *     - Body: Displays either a loading spinner or the filtered activity content.
+ * - Tabs:
+ *   - Unhidden Tab: Lists all unhidden activities.
+ *   - Hidden Tab: Lists all hidden activities.
+ *
+ * Props:
+ * - None. Data and behavior are managed via the `useActivities` hook.
+ */
 export const Activity = () => {
 
     const {
