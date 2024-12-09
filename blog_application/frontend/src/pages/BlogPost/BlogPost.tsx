@@ -43,6 +43,11 @@ const BlogPost = () => {
         }
     }, [post?._id]);
 
+    /**
+ * Handles the logic for liking a blog post.
+ * Increments the like count by 1 and updates the state.
+ */
+
     const handleLike = () => {
         setLikes(likes + 1);
     };
