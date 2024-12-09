@@ -35,7 +35,7 @@ export const AllPostsHeader = () =>{
     }
 
 
-    return  <Box width={"45%"}>
+    return  <Box width={"30%"}>
         <Heading as={"h4"} textAlign={"center"}>All posts</Heading>
         <Flex mt={4} gap={2} width={"100%"} flexGrow={"1"}>
             <Input ref={searchInputRef} placeholder={"Search posts..."} onChange={onSearchExpValueChange}/>

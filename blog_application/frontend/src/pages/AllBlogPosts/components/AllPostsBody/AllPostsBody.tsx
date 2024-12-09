@@ -14,7 +14,7 @@ export const AllPostsBody = () => {
         );
     }
 
-    return (<Flex wrap={"wrap"} flexDirection={"column"} alignItems={"center"} gap={4} my={4} width={"45%"}>
+    return (<Flex wrap={"wrap"} flexDirection={"column"} alignItems={"center"} gap={4} my={4} width={"30%"}>
             {posts.map((item: AllPostsType) => (
 
                 <AllPostItem data={item}/>
