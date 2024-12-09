@@ -20,6 +20,60 @@ type CommentsModalProps = {
     postId: string
 }
 
+/**
+ * CommentsModal Component
+ *
+ * This component displays a modal dialog for viewing and adding comments related to a post.
+ * It fetches existing comments, allows users to post new comments, and handles the display of any error messages.
+ *
+ * Features:
+ * - Displays a list of comments for a specific post.
+ * - Allows users to add new comments via a form.
+ * - Supports loading and error handling states for fetching and submitting comments.
+ * - Provides a button to open the modal and display the comments.
+ *
+ * Props:
+ * - `postId`: The unique identifier of the post whose comments are being managed.
+ *
+ * State:
+ * - `comments`: An array of `CommentType` objects representing the comments for the post.
+ * - `loading`: A boolean flag indicating if the comments are being loaded.
+ * - `error`: An object containing error details, with an `isError` flag and an error message.
+ * - `newComment`: A string representing the content of the new comment being added.
+ *
+ * Methods:
+ * 1. **getComments**:
+ *    - Fetches the comments for the specified post (`postId`) from the backend API.
+ *    - Sets the `comments` state with the fetched data.
+ *    - Sets error state in case of failure.
+ * 
+ * 2. **handleCommentSubmit**:
+ *    - Submits a new comment by sending a POST request to the backend API.
+ *    - If successful, appends the new comment to the `comments` state and resets the `newComment` state.
+ * 
+ * Usage:
+ * - The `CommentsModal` component can be used within a post to display and manage comments.
+ * 
+ * Example:
+ * ```tsx
+ * <CommentsModal postId="1234" />
+ * ```
+ * Where `postId` is the ID of the post to manage comments for.
+ *
+ * Notes:
+ * - The modal displays a loading state while fetching comments and an error message if fetching fails.
+ * - New comments are submitted by typing in a text area and clicking the "Submit Comment" button.
+ * - The `getApi` function is used to make API requests for fetching and posting comments.
+ * - Chakra UI components are used for styling the modal and buttons.
+ *
+ * Dependencies:
+ * - `@chakra-ui/react`: For modal, button, badge, and other UI components.
+ * - `../../../../../../config/api.ts`: For making API requests to fetch and submit comments.
+ * - `../../../../../../@types/comment.type.ts`: Defines the `CommentType` for comment data structure.
+ * - `./Comment.tsx`: For rendering individual comments inside the modal.
+ */
+
+
 export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
