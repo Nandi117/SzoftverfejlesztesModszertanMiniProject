@@ -4,10 +4,12 @@ import {useNavigate} from "react-router-dom";
 import {getApi} from "../../../../../config/api.ts";
 import {routes} from "../../../../../config/routes.ts";
 import {gradients} from "../NewBlogPost.tsx";
+import {useToast} from "@chakra-ui/react";
 
 
 export const useNewBlogPost = () => {
 
+    const toast = useToast();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [backgroundTemplate, setBackroundTemplate] = useState("oceanBreeze")
@@ -40,6 +42,14 @@ export const useNewBlogPost = () => {
             const response = await getApi().post("blogs", JSON.stringify(newBlogData));
             if (response.status === 200) {
                 navigate(routes.ownPosts.main);
+                toast({
+                    title: "Action completed.",
+                    description: "Post successfully created.",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                    position:"bottom-right"
+                })
             }
 
         } catch (e) {

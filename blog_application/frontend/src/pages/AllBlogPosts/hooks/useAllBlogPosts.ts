@@ -5,16 +5,18 @@ import { setAllPosts } from "../../../store/allPosts/allPostsSlice.ts";
 
 export const useAllBlogPosts = () => {
     const [loading, setLoading] = useState<boolean>(true);
-    const [allPosts, setAllPosts] = useState<any[]>([]);
+
+    const allPosts = useSelector(state=>state.allPosts.posts);
+    const dispatch = useDispatch()
 
     const getAllPosts = useCallback(async () => {
         try {
             const response = await getApi().get("blogs");
-            const postsWithSuperlikes = response.data.map((post: { superlikes: any; }) => ({
+            /*const postsWithSuperlikes = response.data.map((post: { superlikes: any; }) => ({
                 ...post,
                 superlikes: post.superlikes || 0
-            }));
-            setAllPosts(postsWithSuperlikes);
+            }));*/
+            dispatch(setAllPosts(response.data));
         } catch (e) {
             console.error(e);
         } finally {
