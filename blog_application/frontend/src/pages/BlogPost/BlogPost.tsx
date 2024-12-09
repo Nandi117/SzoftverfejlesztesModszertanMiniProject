@@ -101,11 +101,15 @@ const BlogPost = () => {
             </Alert>
         </>
     }
+    /**
+ * Triggers the translation process for the current blog post.
+ * Calls the translateBlogPost function provided by the useBlogPost hook.
+ */
 
     return <>
         <Flex flexDirection={"column"} alignItems={"center"} mt={"10vh"}>
             <Flex flexDirection={"column"} alignItems={"center"} width={"50%"}>
-
+                
                 <Button
                     leftIcon={<RepeatIcon />}
                     isLoading={translate}
