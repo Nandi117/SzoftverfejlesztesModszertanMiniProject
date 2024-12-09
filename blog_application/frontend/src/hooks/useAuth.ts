@@ -17,7 +17,6 @@ export const useAuth = () =>{
     const token = cookies.AUTH_TOKEN;
 
     useEffect(()=>{
-        console.log(token);
         if (cookies.AUTH_TOKEN){
             apiInstance.defaults.headers["Authorization"] = "Bearer " + token;
         }

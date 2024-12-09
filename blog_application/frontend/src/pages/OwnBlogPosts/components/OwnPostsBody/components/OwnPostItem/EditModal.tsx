@@ -9,7 +9,7 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
-    useDisclosure
+    useDisclosure, useToast
 } from "@chakra-ui/react";
 import {EditIcon} from "@chakra-ui/icons";
 import ReactQuill from "react-quill";
@@ -24,6 +24,8 @@ type EditModalProps = {
 }
 export const EditModal = memo(({data}:EditModalProps) =>{
 
+
+    const toast = useToast();
     const {isOpen, onOpen, onClose} = useDisclosure();
 
     const [updateInProgress, setUpdateInProgress] = useState<boolean>(false);
@@ -51,6 +53,14 @@ export const EditModal = memo(({data}:EditModalProps) =>{
             const response = await getApi().put("blogs", JSON.stringify(modificData));
             if (response.status === 200){
                 dispatch(updatePost(response.data));
+                toast({
+                    title: "Action completed.",
+                    description: "Post successfully updated.",
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                    position:"bottom-right"
+                })
             }
         }
         catch (e){

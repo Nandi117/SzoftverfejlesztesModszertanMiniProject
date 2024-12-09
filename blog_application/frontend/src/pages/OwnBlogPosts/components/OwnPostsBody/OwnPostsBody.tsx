@@ -21,7 +21,7 @@ export const OwnPostsBody = () => {
     }
 
 
-    return <Flex flexDirection={"column"} gap={6} my={5} width={"40%"}>
+    return <Flex flexDirection={"column"} gap={6} my={5} width={"30%"}>
         {
             posts.map((item:OwnPostType) => {
                 return <OwnPostItem data={item}/>

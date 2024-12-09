@@ -61,7 +61,7 @@ const NewBlogPost = () => {
     } = useNewBlogPost();
 
     return <>
-        <Flex flexDirection={"column"} alignItems={"center"} mx={"auto"} width={"50%"}>
+        <Flex flexDirection={"column"} alignItems={"center"} mx={"auto"} width={"50%"} mt={"5vh"}>
 
             <Heading as={"h5"}>New Post</Heading>
             <FormControl>

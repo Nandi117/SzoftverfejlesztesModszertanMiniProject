@@ -95,6 +95,7 @@ export const UserInfoPanel = memo(() => {
         console.log("lefutok")
         removeCookies("AUTH_TOKEN");
         localStorage.removeItem("UserInfo");
+
     };
 
     const handleChangePassword = async () => {
