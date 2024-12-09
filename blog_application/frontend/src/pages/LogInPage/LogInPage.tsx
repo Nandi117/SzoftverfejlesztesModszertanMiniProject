@@ -20,6 +20,37 @@ import {useDispatch} from "react-redux";
 import {setUser} from "../../store/auth/auth.slice.ts";
 
 
+
+/**
+ * Component: LogInPage
+ *
+ * This component renders the login page for the application. It provides a form where users can enter their email
+ * and password to log in. Upon successful login, the user is redirected to the main posts page. If an error occurs, 
+ * an error message is displayed.
+ *
+ * Features:
+ * - Collects email and password from the user.
+ * - Sends a POST request to authenticate the user using the `/auth/signin` endpoint.
+ * - Displays an error message if the login attempt fails (invalid email or password).
+ * - Shows a loading indicator while the login request is being processed.
+ * - Redirects the user to the main posts page upon successful login.
+ *
+ * Dependencies:
+ * - `useState`: React hook to manage the state for email, password, error, and login progress.
+ * - `useNavigate`: React Router hook for programmatic navigation.
+ * - `useDispatch`: Redux hook for dispatching actions to the store.
+ * - `getApi`: Custom API utility for making HTTP requests.
+ * - `setUser`: Redux action to store the authenticated user data.
+ * - `routes`: Configuration object that contains the app's route paths.
+ *
+ * API:
+ * - POST `/auth/signin`: This API call is used to authenticate a user with the provided email and password. 
+ *   If successful, the user data is returned and saved in the Redux store.
+ *
+ *
+ */
+
+
 const LogInPage = () => {
 
 
