@@ -5,6 +5,47 @@ import {useDispatch} from "react-redux";
 import {closeDrawer} from "../../store/drawer/drawer.slice.ts";
 import {Logo} from "../Logo/Logo.tsx";
 
+/**
+ * Menu Component
+ *
+ * This component renders a navigational menu for the application, integrating with Chakra UI for styling,
+ * Redux for state management, and React Router for navigation. It is designed for use in a sidebar or drawer.
+ *
+ * Features:
+ * - Displays a list of menu items configured in the `menuItems` configuration file.
+ * - Includes a logo and tagline at the top.
+ * - Allows users to navigate to different routes in the application.
+ * - Closes the drawer automatically after a menu item is selected.
+ * - Includes a "Version information" button at the bottom.
+ *
+ * Dependencies:
+ * - `@chakra-ui/react`: For responsive and styled UI components (`Flex`, `Button`, `Box`, `Spacer`, `Text`).
+ * - `react-router-dom`: For navigation (`useNavigate`).
+ * - `react-redux`: For managing the drawer's state (`useDispatch` and `closeDrawer` action).
+ * - `menuItems`: Configuration array containing menu item details (id, route, display text).
+ * - `Logo`: Custom component for displaying the application logo.
+ *
+ * Behavior:
+ * - The `menuItems` array is mapped to generate a list of buttons, each corresponding to a menu item.
+ * - Clicking a menu item:
+ *   - Navigates to the specified route using `useNavigate`.
+ *   - Dispatches the `closeDrawer` action to close the drawer.
+ * - A "Version information" button is placed at the bottom to navigate to the `/version-information` route.
+ *
+ * Structure:
+ * - `Flex`: The main container with a vertical layout.
+ *   - Header:
+ *     - `Logo`: Displays the app logo.
+ *     - Tagline: A text below the logo.
+ *   - Divider: A horizontal rule separating the header from the menu items.
+ *   - Menu Items: A list of buttons generated from the `menuItems` array.
+ *   - Spacer: Pushes the "Version information" button to the bottom.
+ *   - Footer: A button to display version information.
+ *
+ * Props:
+ * - None. The component relies on the `menuItems` configuration and external dependencies.
+ */
+
 export const Menu = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
