@@ -1,6 +1,6 @@
 import {memo, useCallback} from "react";
 import {CommentType} from "../../../../../../@types/comment.type.ts";
-import {Avatar, Flex, IconButton, Text} from "@chakra-ui/react";
+import {Avatar, Flex, IconButton, Text, useToast} from "@chakra-ui/react";
 import {DeleteIcon} from "@chakra-ui/icons";
 import {getApi} from "../../../../../../config/api.ts";
 
@@ -12,6 +12,7 @@ type CommentProps = {
 
 export const Comment = memo(({data, setComments}: CommentProps) => {
 
+    const toast = useToast();
 
     const deleteComment = useCallback(async () => {
         try {
@@ -19,6 +20,14 @@ export const Comment = memo(({data, setComments}: CommentProps) => {
             if (response.status === 200) setComments((prevState: CommentType[]) => {
                 return prevState.filter((x: CommentType) => x._id !== response.data)
             });
+            toast({
+                title: "Action completed.",
+                description: "Comment successfully deleted.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position:"bottom-right"
+            })
         } catch (e) {
 
         }

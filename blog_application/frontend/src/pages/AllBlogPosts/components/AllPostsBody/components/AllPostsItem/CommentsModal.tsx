@@ -10,7 +10,7 @@ import {
     ModalHeader,
     Text,
     Textarea,
-    useDisclosure
+    useDisclosure, useToast
 } from "@chakra-ui/react";
 import { getApi } from "../../../../../../config/api.ts";
 import { CommentType } from "../../../../../../@types/comment.type.ts";
@@ -77,6 +77,8 @@ type CommentsModalProps = {
 export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+
+    const toast = useToast();
     const [comments, setComments] = useState<CommentType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<any>({
@@ -93,6 +95,8 @@ export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
             setError((prevState: any) => {
                 return { ...prevState, isError: false };
             });
+
+
         } catch (e) {
             setError((prevState: any) => {
                 return { ...prevState, isError: true };
@@ -112,6 +116,14 @@ export const CommentsModal = memo(({ postId }: CommentsModalProps) => {
             const response = await getApi().post("/blogs/comments", JSON.stringify(newCommentData));
             setComments(prevComments => [...prevComments, response.data]);
             setNewComment("");
+            toast({
+                title: "Action completed.",
+                description: "Comment successfully created.",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+                position:"bottom-right"
+            })
         } catch (e) {
             console.error('Error adding comment:', e);
         }
