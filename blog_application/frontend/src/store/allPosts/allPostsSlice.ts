@@ -30,7 +30,13 @@ const allPostsSlice = createSlice({
             const filtered = state.posts.filter(x => x._id !== payload);
             state.posts = [...filtered];
         },
-
+/**
+ * Handles the superlike action for a post.
+ * Finds the post in the state by its unique ID and increments its superlike count.
+ * Logs the payload and post object for debugging purposes.
+ * @param state - The current state of the allPosts slice.
+ * @param payload - The ID of the post to superlike.
+ */
         superlikePost(state, { payload }: PayloadAction<string>) {
             console.log(payload)
             const post = state.posts.find(x => x._id == payload);
