@@ -13,6 +13,11 @@ const allPostsSlice = createSlice({
     name: 'allPosts',
     initialState,
     reducers: {
+        /**
+ * Replaces the current list of posts in the state with a new list.
+ * @param state - The current state of the allPosts slice.
+ * @param payload - An array of posts to replace the current posts.
+ */
         setAllPosts(state, { payload }: PayloadAction<AllPostsType[]>) {
             state.posts = [...payload];
         },
