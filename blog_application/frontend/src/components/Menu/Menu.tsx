@@ -1,4 +1,4 @@
-import {Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
+import {Badge, Box, Button, Flex, Spacer, Text} from "@chakra-ui/react";
 import {menuItems} from "../../config/menu.ts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
@@ -32,9 +32,11 @@ export const Menu = () => {
             })}
             <Spacer />
             <Box>
+                <Badge>v1.0.2</Badge>
                 <Button width={"100%"} colorScheme={"teal"} onClick={() => handleMenuItemClick("/version-information")}>
                     Version information
                 </Button>
+
             </Box>
         </Flex>
     );
