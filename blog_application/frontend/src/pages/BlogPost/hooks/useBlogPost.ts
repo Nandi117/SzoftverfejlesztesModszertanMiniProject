@@ -4,6 +4,66 @@ import {useParams} from "react-router-dom";
 import {DefaultPostType} from "../../../@types/blogPost.type.ts";
 import {TRANSLATOR_API_URL} from "../../../config/globals.ts";
 
+/**
+ * Custom Hook: useBlogPost
+ *
+ * This custom hook is responsible for fetching a single blog post based on its ID, managing the loading state,
+ * and providing functionality to translate the post's content using an external translation API.
+ *
+ * Features:
+ * - Fetches a specific blog post by its ID from the API.
+ * - Allows the translation of the post's content to another language using a translation API.
+ * - Manages loading, translation, and error states.
+ *
+ * Returned Object:
+ * - `post`: The fetched blog post object, or `null` if not yet fetched or an error occurred.
+ * - `loading`: A boolean indicating whether the blog post is still being loaded.
+ * - `error`: An object containing information about any error that occurred while fetching the blog post.
+ * - `translate`: A boolean indicating whether the translation process is ongoing.
+ * - `translatedText`: The translated content of the blog post, or `null` if not translated.
+ * - `translateBlogPost`: A function to trigger the translation of the blog post content.
+ * - `translationError`: A boolean indicating whether an error occurred during the translation process.
+ *
+ * Usage:
+ * This hook is typically used in a component that displays a blog post and provides an option to translate the post.
+ * Example:
+ * ```tsx
+ * const {
+ *   post,
+ *   loading,
+ *   error,
+ *   translate,
+ *   translatedText,
+ *   translateBlogPost,
+ *   translationError
+ * } = useBlogPost();
+ * 
+ * if (loading) {
+ *   return <Spinner />;
+ * }
+ * 
+ * return (
+ *   <div>
+ *     {post && <PostCard post={post} />}
+ *     {translate && <Spinner />}
+ *     <button onClick={translateBlogPost}>Translate</button>
+ *     {translatedText && <div>{translatedText}</div>}
+ *   </div>
+ * );
+ * ```
+ *
+ * Notes:
+ * - The hook relies on `getApi()` for fetching the blog post and `getTranslatorApi()` for the translation.
+ * - It uses the `useParams` hook from `react-router-dom` to get the `id` of the post from the URL.
+ * - `timoutLoading` is used to simulate a delay for the loading state to ensure a smooth UX.
+ * - The translation is only triggered if the post content exists.
+ * - Errors are handled for both the blog post fetching and the translation process.
+ *
+ * Dependencies:
+ * - `getApi`, `getTranslatorApi`: Functions that set up API requests for fetching and translating data.
+ * - `TRANSLATOR_API_URL`: The base URL for the translation API, defined in the global configuration.
+ */
+
 
 export const useBlogPost = () =>{
 
